@@ -17,40 +17,59 @@
       <h1 id="site-title">__NAME__</h1>
       <p id="tagline" class="tagline"></p>
     </div>
-    <div class="controls">
-      <div class="field origin-field">
-        <label for="origin-input" data-i18n="from"></label>
-        <div class="combo">
-          <input id="origin-input" type="text" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="origin-list">
-          <button type="button" id="origin-clear" class="clear" hidden aria-label="Clear">×</button>
-          <div id="origin-list" class="combo-list" role="listbox" hidden></div>
-        </div>
-      </div>
-      <label class="field">
-        <span data-i18n="date"></span>
-        <span class="date-wrap"><input type="date" id="date"><button type="button" id="clear-date" class="clear" hidden aria-label="Clear date">×</button></span>
-      </label>
-      <div class="lang" role="group" aria-label="Lingua / Language">
-        <button type="button" data-lang="it">IT</button>
-        <button type="button" data-lang="en">EN</button>
-      </div>
+    <div class="lang" role="group" aria-label="Lingua / Language">
+      <button type="button" data-lang="it">IT</button>
+      <button type="button" data-lang="en">EN</button>
     </div>
   </header>
 
   <div id="holiday-banner" class="banner" hidden></div>
 
-  <section class="mapwrap">
-    <div id="map" aria-label="Map"></div>
-    <div class="mapbtns">
-      <button type="button" id="fit-all" data-i18n="map_all"></button>
-      <button type="button" id="fit-sardinia" data-i18n="map_sardinia"></button>
-    </div>
-  </section>
-
   <main>
+    <section id="origin-card" class="panel">
+      <h2 data-i18n="where_from"></h2>
+      <div class="mapwrap">
+        <div id="map" aria-label="Map"></div>
+        <div class="mapbtns">
+          <button type="button" id="fit-all" data-i18n="map_all"></button>
+          <button type="button" id="fit-sardinia" data-i18n="map_sardinia"></button>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="field origin-field">
+          <label for="origin-input" data-i18n="from"></label>
+          <div class="combo">
+            <input id="origin-input" type="text" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="origin-list">
+            <button type="button" id="origin-clear" class="clear" hidden aria-label="Clear">×</button>
+            <div id="origin-list" class="combo-list" role="listbox" hidden></div>
+          </div>
+        </div>
+        <label class="field">
+          <span data-i18n="date"></span>
+          <span class="date-wrap"><input type="date" id="date"><button type="button" id="clear-date" class="clear" hidden aria-label="Clear date">×</button></span>
+        </label>
+      </div>
+    </section>
+
+    <section id="flights" class="panel">
+      <h2 data-i18n="s1_title"></h2>
+      <p class="intro" id="flights-intro"></p>
+      <div id="flights-body"></div>
+    </section>
+
     <section id="journey" class="panel journey" hidden>
       <h2 id="journey-title"></h2>
       <div id="journey-body"></div>
+    </section>
+
+    <section id="transfer" class="panel">
+      <h2 data-i18n="s2_title"></h2>
+      <p class="intro" data-i18n="s2_intro"></p>
+      <div class="row">
+        <label class="field"><span data-i18n="airport"></span><select id="transfer-airport"></select></label>
+        <label class="field" id="transfer-time-field"><span data-i18n="arrival_time"></span><input type="time" id="transfer-time" value="12:00"></label>
+      </div>
+      <div id="transfer-body"></div>
     </section>
 
     <section id="stays" class="panel">
@@ -64,22 +83,6 @@
       <h3 id="year-title"></h3>
       <p class="intro" id="year-intro"></p>
       <div id="year-body"></div>
-    </section>
-
-    <section id="flights" class="panel">
-      <h2 data-i18n="s1_title"></h2>
-      <p class="intro" id="flights-intro"></p>
-      <div id="flights-body"></div>
-    </section>
-
-    <section id="transfer" class="panel">
-      <h2 data-i18n="s2_title"></h2>
-      <p class="intro" data-i18n="s2_intro"></p>
-      <div class="row">
-        <label class="field"><span data-i18n="airport"></span><select id="transfer-airport"></select></label>
-        <label class="field" id="transfer-time-field"><span data-i18n="arrival_time"></span><input type="time" id="transfer-time" value="12:00"></label>
-      </div>
-      <div id="transfer-body"></div>
     </section>
 
     <section id="info" class="panel">

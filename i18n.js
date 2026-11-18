@@ -2,6 +2,7 @@
 window.I18N = {
   it: {
     from: "Parto da",
+    where_from: "Da dove parti?",
     journey_title: "Viaggio",
     acc_title: "Alloggi",
     ev_title: "Eventi",
@@ -125,6 +126,7 @@ window.I18N = {
   },
   en: {
     from: "Travelling from",
+    where_from: "Where are you travelling from?",
     journey_title: "Journey",
     acc_title: "Accommodation",
     ev_title: "Events",

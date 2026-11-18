@@ -23,7 +23,7 @@ h3 { font-size: 1.05rem; margin: 1.1rem 0 .5rem; }
 a { color: var(--sea); }
 
 .top {
-  display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-end; justify-content: space-between;
+  display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between;
   padding: 1.1rem clamp(1rem, 4vw, 2.5rem) .9rem;
   background: var(--paper); border-bottom: 4px solid transparent;
   border-image: linear-gradient(90deg, var(--terracotta) 0 25%, var(--ochre) 25% 50%, var(--sea) 50% 75%, var(--sage) 75%) 1;
@@ -59,8 +59,13 @@ main {
   max-width: 1300px; margin: 0 auto;
 }
 .panel { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.1rem 1.2rem; }
-#flights, #transfer { grid-column: 1 / -1; }
-@media (min-width: 900px) { #flights { grid-column: auto; } #transfer { grid-column: auto; } }
+/* One column for the steps of the trip; Accommodation and Events sit side by side when there's room. */
+main > .panel { grid-column: 1 / -1; }
+main > #stays-card, main > #events-card, [data-page=destination] main > #stays, [data-page=destination] main > #events { grid-column: auto; }
+#origin-card .mapwrap { margin: .6rem -1.2rem .8rem; }
+#origin-card #map { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+#origin-card .controls { align-items: flex-end; }
+.origin-field { flex: 1 1 18rem; }
 .panel-head { display: flex; justify-content: space-between; align-items: center; gap: .8rem; flex-wrap: wrap; }
 .intro { color: var(--muted); margin: .1rem 0 .8rem; }
 .row { display: flex; gap: .8rem; flex-wrap: wrap; margin-bottom: .6rem; }
@@ -156,8 +161,6 @@ footer .orgs { font-size: .95rem; color: var(--ink); margin-bottom: .6rem; }
 .dest-name { font-family: Georgia, serif; font-size: 1.15rem; }
 .ap { display: inline-block; font-size: .75rem; font-weight: 700; border-radius: 6px; padding: .05rem .4rem; background: var(--ochre); color: var(--ink); }
 .ap.off { background: #efe6d4; color: var(--muted); text-decoration: line-through; }
-#destinations { grid-column: 1 / -1; }
-@media (min-width: 900px) { #destinations { grid-column: auto; } }
 
 /* --- feedback --- */
 .feedback-btn {
@@ -233,3 +236,8 @@ footer { padding-bottom: 4.5rem; }
 .jw.info { background: #f3ece0; }
 
 .evhead { margin: .2rem 0 .4rem; font: 600 .95rem system-ui, sans-serif; color: var(--muted, #6b625b); }
+
+/* header: title on the left, language toggle stays top right */
+.top { flex-wrap: nowrap; align-items: flex-start; }
+.top .brand { flex: 1 1 auto; min-width: 0; }
+.top .lang { flex: none; }
