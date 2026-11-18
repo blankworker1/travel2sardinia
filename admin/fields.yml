@@ -195,6 +195,11 @@ flights:
     label: Arrival time if the same for every period (HH:MM, optional)
     widget: string
     required: false
+  - name: days_tbc
+    label: Days to be confirmed (show the route, marked "days to be confirmed")
+    widget: boolean
+    default: false
+    required: false
   - name: seasons
     label: Operating periods (one per line on the airport's list)
     widget: list

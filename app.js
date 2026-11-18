@@ -57,7 +57,11 @@
   const destName = () => (state.dest ? tx(state.dest.name) : "");
   const links = () => Object.assign({}, state.data.site.links || {}, (state.data.destSettings || {}).links || {});
   const hasDays = (x) => /[1-7]/.test(String(x.days || ""));
-  const allRoutes = () => (state.data.flights.routes || []).filter((r) => published(r) && (r.seasons || []).some(hasDays));
+  // days_tbc: the route is known to operate but its days aren't confirmed yet (shown, clearly marked).
+  const isTbc = (r) => r.days_tbc === true;
+  const inPeriod = (r, date) => (r.seasons || []).some((x) => x.start <= date && date <= x.end);
+  const allRoutes = () => (state.data.flights.routes || []).filter((r) => published(r) &&
+    ((r.seasons || []).some(hasDays) || (isTbc(r) && (r.seasons || []).some((x) => x.end >= today()))));
   const destinations = () => (state.data.destinations.destinations || []).filter(published);
 
   // The operating period (season) a route flies on for a given date, or null.
@@ -83,7 +87,7 @@
   function routeMonths(r, year) {
     const months = new Set();
     for (const s of r.seasons || []) {
-      if (!String(s.days || "").trim()) continue;
+      if (!String(s.days || "").trim() && !isTbc(r)) continue;
       for (let m = 0; m < 12; m++) { const [first, last] = monthBounds(year, m); if (s.start <= last && s.end >= first) months.add(m); }
     }
     return months;
@@ -93,7 +97,7 @@
     let list = allRoutes();
     if (state.dest && state.dest.airports && state.dest.airports.length) list = list.filter((r) => state.dest.airports.includes(r.to));
     if (state.origin) list = list.filter((r) => r.from_iata === state.origin);
-    else if (state.date) list = list.filter((r) => fliesOn(r, state.date));
+    else if (state.date) list = list.filter((r) => fliesOn(r, state.date) || (isTbc(r) && inPeriod(r, state.date)));
     return list;
   }
 
@@ -216,12 +220,12 @@
   }
 
   function scheduleText(r) {
-    return [...(r.seasons || [])].filter((x) => hasDays(x) && x.end >= today()).sort((x, y) => x.start.localeCompare(y.start)).map((s) => {
+    return [...(r.seasons || [])].filter((x) => (hasDays(x) || isTbc(r)) && x.end >= today()).sort((x, y) => x.start.localeCompare(y.start)).map((s) => {
       const a = parseDate(s.start), b = parseDate(s.end);
       const sameYear = a.getUTCFullYear() === b.getUTCFullYear();
       const sameMonth = sameYear && a.getUTCMonth() === b.getUTCMonth();
       const days = String(s.days || "").split("").filter((d) => /[1-7]/.test(d));
-      const dayTxt = days.length === 7 ? (state.lang === "it" ? "tutti i giorni" : "daily") : days.map(dayName).join(", ");
+      const dayTxt = !days.length ? t("days_tbc") : days.length === 7 ? (state.lang === "it" ? "tutti i giorni" : "daily") : days.map(dayName).join(", ");
       let when;
       if (s.start === s.end) when = fmtDay(s.start, { year: "numeric" });                       // a single date
       else if (sameMonth) when = `${a.getUTCDate()}–${fmtDay(s.end, { weekday: undefined, year: "numeric" })}`; // 22–29 Dec 2026
@@ -254,7 +258,9 @@
         const when = flies ? state.date : nxt;
         const sky = `https://www.skyscanner.net/transport/flights/${r.from_iata.toLowerCase()}/${r.to.toLowerCase()}/` + (when ? when.slice(2).replace(/-/g, "") + "/" : "");
         const goo = `https://www.google.com/travel/flights?q=${encodeURIComponent(`Flights from ${r.from_iata} to ${r.to}` + (when ? ` on ${when}` : ""))}`;
-        const status = state.date
+        const status = state.date && !flies && isTbc(r) && inPeriod(r, state.date)
+          ? `<span class="badge soft">${esc(t("days_tbc_check"))}</span>`
+          : state.date
           ? (flies ? `<span class="badge ok">${esc(t("flies_on_date"))}</span>` : `<span class="badge soft">${esc(t("not_on_date"))}</span>${nxt ? ` <span class="meta">${esc(t("next_flight", fmtDay(nxt)))}</span>` : ""}`)
           : "";
         const connect = state.dest ? `<button type="button" class="btn ghost" data-connect="${esc(r.to)}" data-time="${esc(arrTime(r, season || nextSeason(r)))}">${esc(t("show_connection", destName()))}</button>` : "";

@@ -1,47 +1,303 @@
 {
   "note": "Reference for scripts/import_airport_page.py: origin airports' names (IT/EN), country and position. Add a line when an import reports an unknown code.",
   "airports": {
-    "BLQ": ["Bologna", "Bologna", "IT", 44.535, 11.289],
-    "BGY": ["Milano Bergamo", "Milan Bergamo", "IT", 45.669, 9.704],
-    "LIN": ["Milano Linate", "Milan Linate", "IT", 45.445, 9.277],
-    "MXP": ["Milano Malpensa", "Milan Malpensa", "IT", 45.630, 8.723],
-    "PSA": ["Pisa", "Pisa", "IT", 43.684, 10.393],
-    "FCO": ["Roma Fiumicino", "Rome Fiumicino", "IT", 41.800, 12.239],
-    "NAP": ["Napoli", "Naples", "IT", 40.886, 14.291],
-    "TRS": ["Trieste", "Trieste", "IT", 45.827, 13.472],
-    "GOA": ["Genova", "Genoa", "IT", 44.413, 8.838],
-    "VRN": ["Verona", "Verona", "IT", 45.396, 10.888],
-    "VCE": ["Venezia", "Venice", "IT", 45.505, 12.352],
-    "TRN": ["Torino", "Turin", "IT", 45.200, 7.650],
-    "CRL": ["Bruxelles Charleroi", "Brussels Charleroi", "BE", 50.459, 4.454],
-    "BTS": ["Bratislava", "Bratislava", "SK", 48.170, 17.213],
-    "BUD": ["Budapest", "Budapest", "HU", 47.437, 19.256],
-    "ORY": ["Parigi Orly", "Paris Orly", "FR", 48.723, 2.379],
-    "STN": ["Londra Stansted", "London Stansted", "GB", 51.885, 0.235],
-    "LGW": ["Londra Gatwick", "London Gatwick", "GB", 51.148, -0.190],
-    "BHX": ["Birmingham", "Birmingham", "GB", 52.454, -1.748],
-    "BRS": ["Bristol", "Bristol", "GB", 51.383, -2.719],
-    "MAN": ["Manchester", "Manchester", "GB", 53.354, -2.275],
-    "DUB": ["Dublino", "Dublin", "IE", 53.421, -6.270],
-    "DUS": ["Düsseldorf", "Düsseldorf", "DE", 51.289, 6.767],
-    "BER": ["Berlino", "Berlin", "DE", 52.366, 13.503],
-    "CGN": ["Colonia/Bonn", "Cologne/Bonn", "DE", 50.866, 7.143],
-    "FRA": ["Francoforte", "Frankfurt", "DE", 50.038, 8.562],
-    "STR": ["Stoccarda", "Stuttgart", "DE", 48.690, 9.222],
-    "HAM": ["Amburgo", "Hamburg", "DE", 53.630, 9.988],
-    "MUC": ["Monaco di Baviera", "Munich", "DE", 48.354, 11.786],
-    "HAJ": ["Hannover", "Hanover", "DE", 52.461, 9.685],
-    "BCN": ["Barcellona", "Barcelona", "ES", 41.297, 2.078],
-    "MAD": ["Madrid", "Madrid", "ES", 40.472, -3.561],
-    "GVA": ["Ginevra", "Geneva", "CH", 46.238, 6.109],
-    "BSL": ["Basilea-Mulhouse", "Basel-Mulhouse", "CH", 47.590, 7.529],
-    "VIE": ["Vienna", "Vienna", "AT", 48.110, 16.570],
-    "SZG": ["Salisburgo", "Salzburg", "AT", 47.793, 13.004]
+    "BLQ": [
+      "Bologna",
+      "Bologna",
+      "IT",
+      44.535,
+      11.289
+    ],
+    "BGY": [
+      "Milano Bergamo",
+      "Milan Bergamo",
+      "IT",
+      45.669,
+      9.704
+    ],
+    "LIN": [
+      "Milano Linate",
+      "Milan Linate",
+      "IT",
+      45.445,
+      9.277
+    ],
+    "MXP": [
+      "Milano Malpensa",
+      "Milan Malpensa",
+      "IT",
+      45.63,
+      8.723
+    ],
+    "PSA": [
+      "Pisa",
+      "Pisa",
+      "IT",
+      43.684,
+      10.393
+    ],
+    "FCO": [
+      "Roma Fiumicino",
+      "Rome Fiumicino",
+      "IT",
+      41.8,
+      12.239
+    ],
+    "NAP": [
+      "Napoli",
+      "Naples",
+      "IT",
+      40.886,
+      14.291
+    ],
+    "TRS": [
+      "Trieste",
+      "Trieste",
+      "IT",
+      45.827,
+      13.472
+    ],
+    "GOA": [
+      "Genova",
+      "Genoa",
+      "IT",
+      44.413,
+      8.838
+    ],
+    "VRN": [
+      "Verona",
+      "Verona",
+      "IT",
+      45.396,
+      10.888
+    ],
+    "VCE": [
+      "Venezia",
+      "Venice",
+      "IT",
+      45.505,
+      12.352
+    ],
+    "TRN": [
+      "Torino",
+      "Turin",
+      "IT",
+      45.2,
+      7.65
+    ],
+    "CRL": [
+      "Bruxelles Charleroi",
+      "Brussels Charleroi",
+      "BE",
+      50.459,
+      4.454
+    ],
+    "BTS": [
+      "Bratislava",
+      "Bratislava",
+      "SK",
+      48.17,
+      17.213
+    ],
+    "BUD": [
+      "Budapest",
+      "Budapest",
+      "HU",
+      47.437,
+      19.256
+    ],
+    "ORY": [
+      "Parigi Orly",
+      "Paris Orly",
+      "FR",
+      48.723,
+      2.379
+    ],
+    "STN": [
+      "Londra Stansted",
+      "London Stansted",
+      "GB",
+      51.885,
+      0.235
+    ],
+    "LGW": [
+      "Londra Gatwick",
+      "London Gatwick",
+      "GB",
+      51.148,
+      -0.19
+    ],
+    "BHX": [
+      "Birmingham",
+      "Birmingham",
+      "GB",
+      52.454,
+      -1.748
+    ],
+    "BRS": [
+      "Bristol",
+      "Bristol",
+      "GB",
+      51.383,
+      -2.719
+    ],
+    "MAN": [
+      "Manchester",
+      "Manchester",
+      "GB",
+      53.354,
+      -2.275
+    ],
+    "DUB": [
+      "Dublino",
+      "Dublin",
+      "IE",
+      53.421,
+      -6.27
+    ],
+    "DUS": [
+      "Düsseldorf",
+      "Düsseldorf",
+      "DE",
+      51.289,
+      6.767
+    ],
+    "BER": [
+      "Berlino",
+      "Berlin",
+      "DE",
+      52.366,
+      13.503
+    ],
+    "CGN": [
+      "Colonia/Bonn",
+      "Cologne/Bonn",
+      "DE",
+      50.866,
+      7.143
+    ],
+    "FRA": [
+      "Francoforte",
+      "Frankfurt",
+      "DE",
+      50.038,
+      8.562
+    ],
+    "STR": [
+      "Stoccarda",
+      "Stuttgart",
+      "DE",
+      48.69,
+      9.222
+    ],
+    "HAM": [
+      "Amburgo",
+      "Hamburg",
+      "DE",
+      53.63,
+      9.988
+    ],
+    "MUC": [
+      "Monaco di Baviera",
+      "Munich",
+      "DE",
+      48.354,
+      11.786
+    ],
+    "HAJ": [
+      "Hannover",
+      "Hanover",
+      "DE",
+      52.461,
+      9.685
+    ],
+    "BCN": [
+      "Barcellona",
+      "Barcelona",
+      "ES",
+      41.297,
+      2.078
+    ],
+    "MAD": [
+      "Madrid",
+      "Madrid",
+      "ES",
+      40.472,
+      -3.561
+    ],
+    "GVA": [
+      "Ginevra",
+      "Geneva",
+      "CH",
+      46.238,
+      6.109
+    ],
+    "BSL": [
+      "Basilea-Mulhouse",
+      "Basel-Mulhouse",
+      "CH",
+      47.59,
+      7.529
+    ],
+    "VIE": [
+      "Vienna",
+      "Vienna",
+      "AT",
+      48.11,
+      16.57
+    ],
+    "SZG": [
+      "Salisburgo",
+      "Salzburg",
+      "AT",
+      47.793,
+      13.004
+    ],
+    "CIA": [
+      "Roma Ciampino",
+      "Rome Ciampino",
+      "IT",
+      41.799,
+      12.595
+    ],
+    "BRI": [
+      "Bari",
+      "Bari",
+      "IT",
+      41.138,
+      16.761
+    ],
+    "CTA": [
+      "Catania",
+      "Catania",
+      "IT",
+      37.467,
+      15.066
+    ],
+    "KRK": [
+      "Cracovia",
+      "Krakow",
+      "PL",
+      50.078,
+      19.785
+    ]
   },
   "airlines": {
-    "VOLOTEA": "Volotea", "EUROWINGS": "Eurowings", "CONDOR FLUGDIENST": "Condor", "EASYJET": "easyJet",
-    "RYANAIR": "Ryanair", "ITA AIRWAYS": "ITA Airways", "AEROITALIA": "Aeroitalia", "LUFTHANSA": "Lufthansa",
-    "BRITISH AIRWAYS": "British Airways", "VUELING": "Vueling", "WIZZ AIR": "Wizz Air", "TRANSAVIA FRANCE": "Transavia France",
-    "SWISS": "Swiss", "AUSTRIAN AIRLINES": "Austrian Airlines", "JET2.COM": "Jet2.com", "EDELWEISS AIR": "Edelweiss"
+    "VOLOTEA": "Volotea",
+    "EUROWINGS": "Eurowings",
+    "CONDOR FLUGDIENST": "Condor",
+    "EASYJET": "easyJet",
+    "RYANAIR": "Ryanair",
+    "ITA AIRWAYS": "ITA Airways",
+    "AEROITALIA": "Aeroitalia",
+    "LUFTHANSA": "Lufthansa",
+    "BRITISH AIRWAYS": "British Airways",
+    "VUELING": "Vueling",
+    "WIZZ AIR": "Wizz Air",
+    "TRANSAVIA FRANCE": "Transavia France",
+    "SWISS": "Swiss",
+    "AUSTRIAN AIRLINES": "Austrian Airlines",
+    "JET2.COM": "Jet2.com",
+    "EDELWEISS AIR": "Edelweiss"
   }
 }

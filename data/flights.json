@@ -1265,6 +1265,448 @@
       "sample": false,
       "published": true,
       "admin_note": "Imported from https://www.geasar.it/voli/tutti-i-voli/?arr=OLB&date=&tipo=Linea (saved 2026-11-18)"
+    },
+    {
+      "id": "cag-vce-ryanair",
+      "from_iata": "VCE",
+      "from_city": "Venezia",
+      "from_city_en": "Venice",
+      "country": "IT",
+      "lat": 45.505,
+      "lon": 12.352,
+      "to": "CAG",
+      "airline": "Ryanair",
+      "flight_no": "",
+      "arr_time": "",
+      "days_tbc": true,
+      "seasons": [
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "",
+          "arr_time": "",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": true,
+      "admin_note": "Cagliari arrivals board 18–19 Nov 2026 (seen: FR3935 00:25, FR1551 13:05, FR2978 23:55/22:00). Days and dates to confirm (board samples / SOGAER)."
+    },
+    {
+      "id": "cag-bgy-ryanair",
+      "from_iata": "BGY",
+      "from_city": "Milano Bergamo",
+      "from_city_en": "Milan Bergamo",
+      "country": "IT",
+      "lat": 45.669,
+      "lon": 9.704,
+      "to": "CAG",
+      "airline": "Ryanair",
+      "flight_no": "",
+      "arr_time": "",
+      "days_tbc": true,
+      "seasons": [
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "",
+          "arr_time": "",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": true,
+      "admin_note": "Cagliari arrivals board 18–19 Nov 2026 (seen: FR3200 07:30/18:50). Days and dates to confirm (board samples / SOGAER)."
+    },
+    {
+      "id": "cag-fco-aeroitalia",
+      "from_iata": "FCO",
+      "from_city": "Roma Fiumicino",
+      "from_city_en": "Rome Fiumicino",
+      "country": "IT",
+      "lat": 41.8,
+      "lon": 12.239,
+      "to": "CAG",
+      "airline": "Aeroitalia",
+      "flight_no": "",
+      "arr_time": "",
+      "days_tbc": true,
+      "seasons": [
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "",
+          "arr_time": "",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": true,
+      "admin_note": "Cagliari arrivals board 18–19 Nov 2026 (seen: XZ2331/2337/2335/2341/2339/2345/2347/2349, about 8 a day). Days and dates to confirm (board samples / SOGAER)."
+    },
+    {
+      "id": "cag-lin-aeroitalia",
+      "from_iata": "LIN",
+      "from_city": "Milano Linate",
+      "from_city_en": "Milan Linate",
+      "country": "IT",
+      "lat": 45.445,
+      "lon": 9.277,
+      "to": "CAG",
+      "airline": "Aeroitalia",
+      "flight_no": "",
+      "arr_time": "",
+      "days_tbc": true,
+      "seasons": [
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "",
+          "arr_time": "",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": true,
+      "admin_note": "Cagliari arrivals board 18–19 Nov 2026 (seen: XZ2351/2355/2359/2361/2363, about 5 a day). Days and dates to confirm (board samples / SOGAER)."
+    },
+    {
+      "id": "cag-mxp-ryanair",
+      "from_iata": "MXP",
+      "from_city": "Milano Malpensa",
+      "from_city_en": "Milan Malpensa",
+      "country": "IT",
+      "lat": 45.63,
+      "lon": 8.723,
+      "to": "CAG",
+      "airline": "Ryanair",
+      "flight_no": "",
+      "arr_time": "",
+      "days_tbc": true,
+      "seasons": [
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "",
+          "arr_time": "",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": true,
+      "admin_note": "Cagliari arrivals board 18–19 Nov 2026 (seen: FR4578 10:10, FR5290 18:35/08:05, FR238 18:05). Days and dates to confirm (board samples / SOGAER)."
+    },
+    {
+      "id": "cag-vrn-ryanair",
+      "from_iata": "VRN",
+      "from_city": "Verona",
+      "from_city_en": "Verona",
+      "country": "IT",
+      "lat": 45.396,
+      "lon": 10.888,
+      "to": "CAG",
+      "airline": "Ryanair",
+      "flight_no": "",
+      "arr_time": "",
+      "days_tbc": true,
+      "seasons": [
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "",
+          "arr_time": "",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": true,
+      "admin_note": "Cagliari arrivals board 18–19 Nov 2026 (seen: FR322 13:55/10:50). Days and dates to confirm (board samples / SOGAER)."
+    },
+    {
+      "id": "cag-cia-ryanair",
+      "from_iata": "CIA",
+      "from_city": "Roma Ciampino",
+      "from_city_en": "Rome Ciampino",
+      "country": "IT",
+      "lat": 41.799,
+      "lon": 12.595,
+      "to": "CAG",
+      "airline": "Ryanair",
+      "flight_no": "",
+      "arr_time": "",
+      "days_tbc": true,
+      "seasons": [
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "",
+          "arr_time": "",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": true,
+      "admin_note": "Cagliari arrivals board 18–19 Nov 2026 (seen: FR4324 14:20/20:30). Days and dates to confirm (board samples / SOGAER)."
+    },
+    {
+      "id": "cag-bcn-vueling",
+      "from_iata": "BCN",
+      "from_city": "Barcellona",
+      "from_city_en": "Barcelona",
+      "country": "ES",
+      "lat": 41.297,
+      "lon": 2.078,
+      "to": "CAG",
+      "airline": "Vueling",
+      "flight_no": "",
+      "arr_time": "",
+      "days_tbc": true,
+      "seasons": [
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "",
+          "arr_time": "",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": true,
+      "admin_note": "Cagliari arrivals board 18–19 Nov 2026 (seen: VY6114 12:35). Days and dates to confirm (board samples / SOGAER)."
+    },
+    {
+      "id": "cag-bsl-easyjet",
+      "from_iata": "BSL",
+      "from_city": "Basilea-Mulhouse",
+      "from_city_en": "Basel-Mulhouse",
+      "country": "CH",
+      "lat": 47.59,
+      "lon": 7.529,
+      "to": "CAG",
+      "airline": "easyJet",
+      "flight_no": "",
+      "arr_time": "",
+      "days_tbc": true,
+      "seasons": [
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "",
+          "arr_time": "",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": true,
+      "admin_note": "Cagliari arrivals board 18–19 Nov 2026 (seen: DS1109 08:20). Days and dates to confirm (board samples / SOGAER)."
+    },
+    {
+      "id": "cag-psa-ryanair",
+      "from_iata": "PSA",
+      "from_city": "Pisa",
+      "from_city_en": "Pisa",
+      "country": "IT",
+      "lat": 43.684,
+      "lon": 10.393,
+      "to": "CAG",
+      "airline": "Ryanair",
+      "flight_no": "",
+      "arr_time": "",
+      "days_tbc": true,
+      "seasons": [
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "",
+          "arr_time": "",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": true,
+      "admin_note": "Cagliari arrivals board 18–19 Nov 2026 (seen: FR5708 09:10). Days and dates to confirm (board samples / SOGAER)."
+    },
+    {
+      "id": "cag-cta-airbaltic",
+      "from_iata": "CTA",
+      "from_city": "Catania",
+      "from_city_en": "Catania",
+      "country": "IT",
+      "lat": 37.467,
+      "lon": 15.066,
+      "to": "CAG",
+      "airline": "airBaltic",
+      "flight_no": "",
+      "arr_time": "",
+      "days_tbc": true,
+      "seasons": [
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "",
+          "arr_time": "",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": true,
+      "admin_note": "Cagliari arrivals board 18–19 Nov 2026 (seen: BT7702 11:10). Days and dates to confirm (board samples / SOGAER)."
+    },
+    {
+      "id": "cag-cta-ryanair",
+      "from_iata": "CTA",
+      "from_city": "Catania",
+      "from_city_en": "Catania",
+      "country": "IT",
+      "lat": 37.467,
+      "lon": 15.066,
+      "to": "CAG",
+      "airline": "Ryanair",
+      "flight_no": "",
+      "arr_time": "",
+      "days_tbc": true,
+      "seasons": [
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "",
+          "arr_time": "",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": true,
+      "admin_note": "Cagliari arrivals board 18–19 Nov 2026 (seen: FR375 22:15). Days and dates to confirm (board samples / SOGAER)."
+    },
+    {
+      "id": "cag-crl-ryanair",
+      "from_iata": "CRL",
+      "from_city": "Bruxelles Charleroi",
+      "from_city_en": "Brussels Charleroi",
+      "country": "BE",
+      "lat": 50.459,
+      "lon": 4.454,
+      "to": "CAG",
+      "airline": "Ryanair",
+      "flight_no": "",
+      "arr_time": "",
+      "days_tbc": true,
+      "seasons": [
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "",
+          "arr_time": "",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": true,
+      "admin_note": "Cagliari arrivals board 18–19 Nov 2026 (seen: FR4417 11:35). Days and dates to confirm (board samples / SOGAER)."
+    },
+    {
+      "id": "cag-krk-ryanair",
+      "from_iata": "KRK",
+      "from_city": "Cracovia",
+      "from_city_en": "Krakow",
+      "country": "PL",
+      "lat": 50.078,
+      "lon": 19.785,
+      "to": "CAG",
+      "airline": "Ryanair",
+      "flight_no": "",
+      "arr_time": "",
+      "days_tbc": true,
+      "seasons": [
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "",
+          "arr_time": "",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": true,
+      "admin_note": "Cagliari arrivals board 18–19 Nov 2026 (seen: FR4426 14:25). Days and dates to confirm (board samples / SOGAER)."
+    },
+    {
+      "id": "cag-bri-ryanair",
+      "from_iata": "BRI",
+      "from_city": "Bari",
+      "from_city_en": "Bari",
+      "country": "IT",
+      "lat": 41.138,
+      "lon": 16.761,
+      "to": "CAG",
+      "airline": "Ryanair",
+      "flight_no": "",
+      "arr_time": "",
+      "days_tbc": true,
+      "seasons": [
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "",
+          "arr_time": "",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": true,
+      "admin_note": "Cagliari arrivals board 18–19 Nov 2026 (seen: FR8726 14:35). Days and dates to confirm (board samples / SOGAER)."
+    },
+    {
+      "id": "cag-stn-ryanair",
+      "from_iata": "STN",
+      "from_city": "Londra Stansted",
+      "from_city_en": "London Stansted",
+      "country": "GB",
+      "lat": 51.885,
+      "lon": 0.235,
+      "to": "CAG",
+      "airline": "Ryanair",
+      "flight_no": "",
+      "arr_time": "",
+      "days_tbc": true,
+      "seasons": [
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "",
+          "arr_time": "",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": true,
+      "admin_note": "Cagliari arrivals board 18–19 Nov 2026 (seen: FR2687 16:05). Days and dates to confirm (board samples / SOGAER)."
+    },
+    {
+      "id": "cag-blq-ryanair",
+      "from_iata": "BLQ",
+      "from_city": "Bologna",
+      "from_city_en": "Bologna",
+      "country": "IT",
+      "lat": 44.535,
+      "lon": 11.289,
+      "to": "CAG",
+      "airline": "Ryanair",
+      "flight_no": "",
+      "arr_time": "",
+      "days_tbc": true,
+      "seasons": [
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "",
+          "arr_time": "",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": true,
+      "admin_note": "Cagliari arrivals board 18–19 Nov 2026 (seen: FR18 21:20). Days and dates to confirm (board samples / SOGAER)."
     }
   ]
 }
