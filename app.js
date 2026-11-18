@@ -683,8 +683,10 @@
         .bindTooltip(`${a.name} (${a.code})`, { permanent: !!state.dest && on, direction: "left", className: "ap-label" }).addTo(g);
     }
     for (const d of dests) {
+      // a soft pulsing ring behind the town's dot; the name shows on hover/tap
+      L.circleMarker([d.lat, d.lon], { radius: 8, stroke: false, fillColor: "#c4573a", fillOpacity: 0.5, interactive: false, className: "dest-pulse" }).addTo(g);
       const m = L.circleMarker([d.lat, d.lon], { radius: 8, color: "#fff", fillColor: "#2b2622", fillOpacity: 1, weight: 2 })
-        .bindTooltip(tx(d.name), { permanent: true, direction: "right", className: "dest-label" }).addTo(g);
+        .bindTooltip(tx(d.name), { direction: "right", className: "dest-label" }).addTo(g);
       if (!state.dest) m.on("click", () => { location.href = new URL(`${d.id}/?${qs()}`, BASE).href; });
     }
 

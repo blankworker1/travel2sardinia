@@ -205,3 +205,14 @@ footer { padding-bottom: 4.5rem; }
 .ap-dot { margin-right: .4rem; vertical-align: -.05em; }
 .ap-label { font-weight: 600; font-size: .8rem; }
 @media (max-width: 640px) { .map-legend { font-size: .72rem; padding: .3rem .45rem; } }
+
+/* --- pulsing destination dot --- */
+.dest-pulse { transform-box: fill-box; transform-origin: center; }
+@media (prefers-reduced-motion: no-preference) {
+  .dest-pulse { animation: dest-pulse 2.2s ease-out infinite; }
+}
+@keyframes dest-pulse {
+  0%   { transform: scale(1);   opacity: .6; }
+  80%  { transform: scale(3.2); opacity: 0; }
+  100% { transform: scale(3.2); opacity: 0; }
+}
