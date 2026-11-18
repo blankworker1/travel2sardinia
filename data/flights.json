@@ -85,35 +85,35 @@
         {
           "start": "2026-10-30",
           "end": "2026-12-18",
-          "days": "",
+          "days": "5",
           "arr_time": "12:40",
           "flight_no": ""
         },
         {
           "start": "2026-12-22",
           "end": "2026-12-29",
-          "days": "",
+          "days": "2",
           "arr_time": "07:10",
           "flight_no": ""
         },
         {
           "start": "2027-03-23",
           "end": "2027-03-23",
-          "days": "",
+          "days": "2",
           "arr_time": "18:15",
           "flight_no": ""
         },
         {
           "start": "2027-03-24",
           "end": "2027-03-24",
-          "days": "",
+          "days": "3",
           "arr_time": "07:00",
           "flight_no": ""
         }
       ],
       "sample": false,
       "published": false,
-      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — days of week to fill in"
+      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — some periods still need days"
     },
     {
       "id": "aho-goa-xz",
@@ -138,7 +138,7 @@
       ],
       "sample": false,
       "published": false,
-      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — days of week to fill in"
+      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — some periods still need days"
     },
     {
       "id": "aho-bgy-fr",
@@ -156,7 +156,7 @@
         {
           "start": "2026-10-26",
           "end": "2027-03-22",
-          "days": "",
+          "days": "1",
           "arr_time": "11:35",
           "flight_no": ""
         },
@@ -170,28 +170,28 @@
         {
           "start": "2026-12-24",
           "end": "2026-12-24",
-          "days": "",
+          "days": "4",
           "arr_time": "17:10",
           "flight_no": ""
         },
         {
           "start": "2026-12-31",
           "end": "2026-12-31",
-          "days": "",
+          "days": "4",
           "arr_time": "21:00",
           "flight_no": ""
         },
         {
           "start": "2027-03-24",
           "end": "2027-03-24",
-          "days": "",
+          "days": "3",
           "arr_time": "07:20",
           "flight_no": ""
         }
       ],
       "sample": false,
       "published": false,
-      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — days of week to fill in"
+      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — some periods still need days"
     },
     {
       "id": "aho-lin-az",
@@ -209,7 +209,7 @@
         {
           "start": "2026-10-27",
           "end": "2026-12-01",
-          "days": "",
+          "days": "1234567",
           "arr_time": "08:00",
           "flight_no": "AZ1600"
         },
@@ -230,7 +230,7 @@
       ],
       "sample": false,
       "published": false,
-      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — days of week to fill in"
+      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — some periods still need days"
     },
     {
       "id": "aho-mxp-fr",
@@ -269,14 +269,14 @@
         {
           "start": "2027-03-23",
           "end": "2027-03-23",
-          "days": "",
+          "days": "2",
           "arr_time": "23:15",
           "flight_no": ""
         }
       ],
       "sample": false,
       "published": false,
-      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — days of week to fill in"
+      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — some periods still need days"
     },
     {
       "id": "aho-nap-fr",
@@ -301,14 +301,14 @@
         {
           "start": "2026-12-07",
           "end": "2027-03-22",
-          "days": "",
+          "days": "1",
           "arr_time": "08:50",
           "flight_no": ""
         }
       ],
       "sample": false,
       "published": false,
-      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — days of week to fill in"
+      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — some periods still need days"
     },
     {
       "id": "aho-psa-fr",
@@ -326,21 +326,21 @@
         {
           "start": "2026-10-25",
           "end": "2027-01-31",
-          "days": "",
+          "days": "7",
           "arr_time": "08:30",
           "flight_no": ""
         },
         {
           "start": "2026-10-30",
           "end": "2026-12-18",
-          "days": "",
+          "days": "5",
           "arr_time": "07:25",
           "flight_no": ""
         },
         {
           "start": "2026-12-22",
           "end": "2026-12-29",
-          "days": "",
+          "days": "2",
           "arr_time": "11:10",
           "flight_no": ""
         },
@@ -354,14 +354,14 @@
         {
           "start": "2027-02-07",
           "end": "2027-03-21",
-          "days": "",
+          "days": "7",
           "arr_time": "07:30",
           "flight_no": ""
         }
       ],
       "sample": false,
       "published": false,
-      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — days of week to fill in"
+      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — some periods still need days"
     },
     {
       "id": "aho-fco-xz",
@@ -379,7 +379,7 @@
         {
           "start": "2026-10-25",
           "end": "2026-12-31",
-          "days": "",
+          "days": "1234567",
           "arr_time": "10:15",
           "flight_no": "XZ2511"
         },
@@ -407,7 +407,7 @@
       ],
       "sample": false,
       "published": false,
-      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — days of week to fill in"
+      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — some periods still need days"
     },
     {
       "id": "aho-trs-xz",
@@ -432,14 +432,14 @@
         {
           "start": "2026-12-26",
           "end": "2026-12-26",
-          "days": "",
+          "days": "6",
           "arr_time": "12:10",
           "flight_no": ""
         }
       ],
       "sample": false,
       "published": false,
-      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — days of week to fill in"
+      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — some periods still need days"
     }
   ]
 }
