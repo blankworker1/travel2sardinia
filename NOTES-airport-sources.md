@@ -1,6 +1,9 @@
 # To do: airport route sources for the admin dashboard
 
-**Status: waiting for Carl to check the links.** Nothing below has been added to the app or to `/admin` yet.
+**Status (18 Nov 2026):** Alghero and Olbia confirmed by Carl and added to `/admin` (Site settings → Airports → "Where to check flights"). Both use the same page format and are imported with `scripts/import_airport_page.py`. **Cagliari still to find.**
+
+- Alghero: https://www.aeroportodialghero.it/voli/tutti-i-voli/?arr=AHO
+- Olbia: https://www.geasar.it/voli/tutti-i-voli/?arr=OLB
 
 When they're confirmed, add each airport's source link(s) to `data/site.json` → `airports` (e.g. a `sources` field shown in the admin as "where to check"). That way whoever does the twice-yearly route update has them to hand.
 

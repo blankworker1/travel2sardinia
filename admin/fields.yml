@@ -406,6 +406,10 @@ site:
   - name: website
     widget: string
     required: false
+  - name: flights_list_url
+    label: Where to check flights (the airport's 'All flights' arrivals page)
+    widget: string
+    required: false
 - name: center
   label: Island map centre
   widget: object
