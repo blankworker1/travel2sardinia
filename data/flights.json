@@ -78,7 +78,7 @@
         {
           "start": "2026-10-25",
           "end": "2027-03-21",
-          "days": "",
+          "days": "7",
           "arr_time": "15:25",
           "flight_no": ""
         },
@@ -113,7 +113,7 @@
       ],
       "sample": false,
       "published": false,
-      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — some periods still need days"
+      "admin_note": "Imported from aeroportodialghero.it (saved page, 18 Nov 2026)"
     },
     {
       "id": "aho-goa-xz",
@@ -131,14 +131,14 @@
         {
           "start": "2026-12-23",
           "end": "2026-12-29",
-          "days": "",
+          "days": "236",
           "arr_time": "14:10",
           "flight_no": ""
         }
       ],
       "sample": false,
       "published": false,
-      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — some periods still need days"
+      "admin_note": "Imported from aeroportodialghero.it (saved page, 18 Nov 2026)"
     },
     {
       "id": "aho-bgy-fr",
@@ -163,7 +163,7 @@
         {
           "start": "2026-10-30",
           "end": "2026-12-18",
-          "days": "",
+          "days": "5",
           "arr_time": "17:45",
           "flight_no": ""
         },
@@ -191,7 +191,7 @@
       ],
       "sample": false,
       "published": false,
-      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — some periods still need days"
+      "admin_note": "Imported from aeroportodialghero.it (saved page, 18 Nov 2026)"
     },
     {
       "id": "aho-lin-az",
@@ -216,21 +216,21 @@
         {
           "start": "2026-10-27",
           "end": "2027-01-30",
-          "days": "",
+          "days": "1234567",
           "arr_time": "23:00",
           "flight_no": "AZ1566"
         },
         {
           "start": "2026-11-15",
           "end": "2026-11-29",
-          "days": "",
+          "days": "7",
           "arr_time": "20:50",
           "flight_no": "AZ1604"
         }
       ],
       "sample": false,
       "published": false,
-      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — some periods still need days"
+      "admin_note": "Imported from aeroportodialghero.it (saved page, 18 Nov 2026)"
     },
     {
       "id": "aho-mxp-fr",
@@ -248,21 +248,21 @@
         {
           "start": "2026-10-25",
           "end": "2027-03-21",
-          "days": "",
+          "days": "7",
           "arr_time": "17:15",
           "flight_no": ""
         },
         {
           "start": "2026-10-30",
           "end": "2026-12-18",
-          "days": "",
+          "days": "5",
           "arr_time": "23:10",
           "flight_no": ""
         },
         {
           "start": "2026-12-23",
           "end": "2026-12-30",
-          "days": "",
+          "days": "3",
           "arr_time": "22:25",
           "flight_no": ""
         },
@@ -276,7 +276,7 @@
       ],
       "sample": false,
       "published": false,
-      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — some periods still need days"
+      "admin_note": "Imported from aeroportodialghero.it (saved page, 18 Nov 2026)"
     },
     {
       "id": "aho-nap-fr",
@@ -294,7 +294,7 @@
         {
           "start": "2026-12-05",
           "end": "2027-03-27",
-          "days": "",
+          "days": "6",
           "arr_time": "21:10",
           "flight_no": ""
         },
@@ -308,7 +308,7 @@
       ],
       "sample": false,
       "published": false,
-      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — some periods still need days"
+      "admin_note": "Imported from aeroportodialghero.it (saved page, 18 Nov 2026)"
     },
     {
       "id": "aho-psa-fr",
@@ -347,7 +347,7 @@
         {
           "start": "2026-12-24",
           "end": "2026-12-31",
-          "days": "",
+          "days": "4",
           "arr_time": "11:35",
           "flight_no": ""
         },
@@ -361,7 +361,7 @@
       ],
       "sample": false,
       "published": false,
-      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — some periods still need days"
+      "admin_note": "Imported from aeroportodialghero.it (saved page, 18 Nov 2026)"
     },
     {
       "id": "aho-fco-xz",
@@ -386,28 +386,28 @@
         {
           "start": "2026-10-25",
           "end": "2027-03-27",
-          "days": "",
+          "days": "1234567",
           "arr_time": "14:00",
           "flight_no": "XZ2513"
         },
         {
           "start": "2026-10-25",
           "end": "2026-12-30",
-          "days": "",
+          "days": "1234567",
           "arr_time": "22:35",
           "flight_no": "XZ2517"
         },
         {
           "start": "2027-02-01",
           "end": "2027-03-27",
-          "days": "",
+          "days": "1234567",
           "arr_time": "18:40",
           "flight_no": "XZ2515"
         }
       ],
       "sample": false,
       "published": false,
-      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — some periods still need days"
+      "admin_note": "Imported from aeroportodialghero.it (saved page, 18 Nov 2026)"
     },
     {
       "id": "aho-trs-xz",
@@ -425,7 +425,7 @@
         {
           "start": "2026-12-23",
           "end": "2026-12-29",
-          "days": "",
+          "days": "23",
           "arr_time": "13:35",
           "flight_no": ""
         },
@@ -439,7 +439,7 @@
       ],
       "sample": false,
       "published": false,
-      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — some periods still need days"
+      "admin_note": "Imported from aeroportodialghero.it (saved page, 18 Nov 2026)"
     }
   ]
 }
