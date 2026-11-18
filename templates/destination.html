@@ -83,6 +83,21 @@
     <p><a href="../admin/" class="admin-link">admin</a></p>
   </footer>
 
+  <button type="button" id="feedback-open" class="feedback-btn" hidden data-i18n="fb_button"></button>
+  <dialog id="feedback" aria-labelledby="fb-title">
+    <form id="feedback-form" method="dialog">
+      <h2 id="fb-title" data-i18n="fb_title"></h2>
+      <p class="intro" data-i18n="fb_intro"></p>
+      <label class="field"><span data-i18n="fb_section"></span><select id="fb-section"></select></label>
+      <label class="field"><span data-i18n="fb_message"></span><textarea id="fb-text" rows="5" required></textarea></label>
+      <div class="actions">
+        <button type="submit" class="btn" data-i18n="fb_send"></button>
+        <button type="button" class="btn ghost" id="fb-cancel" data-i18n="fb_cancel"></button>
+      </div>
+      <p class="small" data-i18n="fb_note"></p>
+    </form>
+  </dialog>
+
   <script src="../vendor/leaflet/leaflet.js"></script>
   <script src="../i18n.js"></script>
   <script src="../app.js"></script>

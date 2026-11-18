@@ -431,6 +431,47 @@
       `<li><strong>${esc(tx(x.title))}</strong>${x.verified === false ? ` <span class="badge soft">${esc(t("unverified"))}</span>` : ""}<p>${esc(tx(x.body))}</p></li>`).join("") + "</ul>";
   }
 
+  // ---------- feedback (report an error) ----------
+  // Goes to the town's feedback/coordinator link, else the island's. mailto: and wa.me links get the message prefilled.
+  function feedbackChannel() {
+    const d = (state.data.destSettings || {}).links || {};
+    const s = state.data.site.links || {};
+    return [d.feedback_url, d.coordinator_contact_url, s.feedback_url, s.network_contact_url]
+      .find((u) => /^(https?:\/\/|mailto:)/.test(u || "")) || "";
+  }
+
+  function renderFeedback() {
+    const btn = $("#feedback-open");
+    if (!btn) return;
+    btn.hidden = !feedbackChannel();
+    const opts = t(state.dest ? "fb_sections_dest" : "fb_sections_home");
+    const sel = $("#fb-section");
+    const keep = sel.selectedIndex;
+    sel.innerHTML = opts.map((o) => `<option>${esc(o)}</option>`).join("");
+    if (keep > 0) sel.selectedIndex = keep;
+  }
+
+  function sendFeedback() {
+    const url = feedbackChannel();
+    const text = $("#fb-text").value.trim();
+    if (!url || !text) return;
+    const brand = tx(state.data.site.title) || "travel2sardinia";
+    const place = state.dest ? destName() : (state.lang === "it" ? "Sardegna" : "Sardinia");
+    const subject = `[${brand}] ${place} · ${$("#fb-section").value}`;
+    const body = `${text}\n\n— ${location.href}`;
+    let target = url;
+    if (url.startsWith("mailto:")) {
+      target = url + (url.includes("?") ? "&" : "?") + `subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    } else if (/^https:\/\/(wa\.me|api\.whatsapp\.com)\//.test(url)) {
+      const u = new URL(url);
+      u.searchParams.set("text", `${subject}\n\n${body}`);
+      target = u.href;
+    }
+    window.open(target, "_blank", "noopener");
+    $("#fb-text").value = "";
+    $("#feedback").close();
+  }
+
   // ---------- map ----------
   function initMap() {
     if (!window.L) return;
@@ -495,6 +536,7 @@
     if (has("#stays-body")) renderStays();
     renderEvents();
     renderInfo();
+    renderFeedback();
     renderMap(fit === undefined ? "all" : fit);
   }
 
@@ -567,6 +609,14 @@
       $("#transfer-time").addEventListener("change", renderTransfer);
     }
     $("#fit-all").addEventListener("click", () => renderMap("all"));
+    if (has("#feedback")) {
+      $("#feedback-open").addEventListener("click", () => {
+        $("#feedback").showModal();
+        $("#fb-text").focus();
+      });
+      $("#fb-cancel").addEventListener("click", () => $("#feedback").close());
+      $("#feedback-form").addEventListener("submit", (e) => { e.preventDefault(); sendFeedback(); });
+    }
     $("#fit-sardinia").addEventListener("click", () => renderMap("sardinia"));
 
     initMap();

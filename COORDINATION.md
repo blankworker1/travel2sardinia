@@ -58,3 +58,12 @@ Its **Contact the coordinator** button uses the link in the admin: *<Town> → l
 ## A new town
 
 Towns that want to join start at `/organisations/` and contact the network coordinator (the link in *Site settings → Links*). The network coordinator then follows "Adding a town" in the README.
+
+## Error reports from the public
+
+Every page has a **Report an error** button (bottom right). Visitors choose a section, describe the problem, and the message opens in their own email or WhatsApp, already filled in with the town, section and page link. There's no server and no form storage.
+
+- **On a town page** it goes to the town's *Report an error link* if set, otherwise to the coordinator's contact link (*<Town> → links and coordinator*).
+- **On the island pages** it goes to the island *Report an error link*, otherwise to the network contact (*Site settings → Links*).
+
+The button is hidden until one of these links is set. Coordinators handle reports in the next monthly update, or straight away if something is badly wrong (a wrong date, a broken link).

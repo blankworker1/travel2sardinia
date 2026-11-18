@@ -75,6 +75,16 @@ window.I18N = {
     orgs_link_home: "Per i paesi e le organizzazioni",
     footer_info: "Piattaforma informativa: prezzi e prenotazioni sono sui siti dei fornitori.",
     footer_data: "Orari: dati aperti ARST, Trenitalia e ASPO. Mappa © OpenStreetMap.",
+    fb_button: "Segnala un errore",
+    fb_title: "Segnala un errore",
+    fb_intro: "Hai trovato un'informazione sbagliata o mancante? Diccelo: la correggeremo nel prossimo aggiornamento.",
+    fb_section: "Dove",
+    fb_message: "Che cosa non va?",
+    fb_send: "Invia",
+    fb_cancel: "Annulla",
+    fb_note: "Il messaggio si apre nella tua app di posta o WhatsApp, così puoi controllarlo prima di inviarlo.",
+    fb_sections_home: ["Voli", "Destinazioni", "Festività", "Altro"],
+    fb_sections_dest: ["Voli", "Come arrivare", "Dove dormire", "Eventi", "Da sapere", "Altro"],
     min: "min"
   },
   en: {
@@ -152,6 +162,16 @@ window.I18N = {
     orgs_link_home: "For towns and organisations",
     footer_info: "An information platform: prices and bookings are on the providers' own sites.",
     footer_data: "Timetables: ARST, Trenitalia and ASPO open data. Map © OpenStreetMap.",
+    fb_button: "Report an error",
+    fb_title: "Report an error",
+    fb_intro: "Found something wrong or missing? Tell us and we'll fix it in the next update.",
+    fb_section: "Where",
+    fb_message: "What's wrong?",
+    fb_send: "Send",
+    fb_cancel: "Cancel",
+    fb_note: "Your message opens in your email or WhatsApp app, so you can check it before sending.",
+    fb_sections_home: ["Flights", "Destinations", "Public holidays", "Other"],
+    fb_sections_dest: ["Flights", "Getting there", "Where to stay", "Events", "Good to know", "Other"],
     min: "min"
   }
 };

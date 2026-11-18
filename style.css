@@ -158,3 +158,16 @@ footer .orgs { font-size: .95rem; color: var(--ink); margin-bottom: .6rem; }
 .ap.off { background: #efe6d4; color: var(--muted); text-decoration: line-through; }
 #destinations { grid-column: 1 / -1; }
 @media (min-width: 900px) { #destinations { grid-column: auto; } }
+
+/* --- feedback --- */
+.feedback-btn {
+  position: fixed; right: 1rem; bottom: 1rem; z-index: 1000;
+  font: 600 .88rem system-ui, sans-serif; color: #fff; background: var(--terracotta);
+  border: 0; border-radius: 999px; padding: .6rem 1rem; box-shadow: 0 2px 8px rgba(0,0,0,.2); cursor: pointer;
+}
+#feedback { border: 1px solid var(--line); border-radius: var(--radius); padding: 1.2rem; max-width: min(92vw, 480px); width: 100%; background: var(--paper); color: var(--ink); }
+#feedback::backdrop { background: rgba(43,38,34,.45); }
+#feedback form { display: grid; gap: .7rem; }
+#feedback h2 { margin: 0; }
+#feedback textarea { font: inherit; border: 1px solid var(--line); border-radius: 8px; padding: .5rem .6rem; resize: vertical; }
+footer { padding-bottom: 4.5rem; }

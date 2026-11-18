@@ -358,6 +358,10 @@ site:
     label: Contact link for towns that want to join (https://wa.me/… or mailto:)
     widget: string
     required: false
+  - name: feedback_url
+    label: '"Report an error" link for the island pages (mailto: or https://wa.me/…); empty = network contact'
+    widget: string
+    required: false
 - name: airports
   label: Airports
   widget: list
@@ -406,6 +410,10 @@ destination_settings:
     required: false
   - name: coordinator_contact_url
     label: Coordinator contact link (https://wa.me/… or mailto:)
+    widget: string
+    required: false
+  - name: feedback_url
+    label: '"Report an error" link for this town (mailto: or https://wa.me/…); empty = coordinator contact'
     widget: string
     required: false
 destinations:
