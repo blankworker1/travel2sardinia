@@ -1,0 +1,38 @@
+{
+  "updated": "2026-11-18",
+  "tips": [
+    {
+      "id": "no-mainline-station",
+      "category": "transport",
+      "title": { "it": "Bosa non ha una stazione ferroviaria di linea", "en": "Bosa has no mainline railway station" },
+      "body": {
+        "it": "I treni arrivano a Macomer; da lì si prosegue in autobus ARST fino a Bosa.",
+        "en": "Trains run to Macomer; from there an ARST bus continues to Bosa."
+      },
+      "verified": false,
+      "published": true
+    },
+    {
+      "id": "holiday-timetables",
+      "category": "transport",
+      "title": { "it": "Orari festivi", "en": "Holiday timetables" },
+      "body": {
+        "it": "Nei giorni festivi autobus e treni seguono orari ridotti. Controlla sempre l'ultima corsa.",
+        "en": "On public holidays buses and trains run reduced timetables. Always check the last connection."
+      },
+      "verified": true,
+      "published": true
+    },
+    {
+      "id": "winter-flights",
+      "category": "travel",
+      "title": { "it": "Voli d'inverno", "en": "Winter flights" },
+      "body": {
+        "it": "Da novembre a marzo i voli verso la Sardegna diminuiscono molto. Prenota presto.",
+        "en": "From November to March flights to Sardinia drop sharply. Book early."
+      },
+      "verified": true,
+      "published": true
+    }
+  ]
+}

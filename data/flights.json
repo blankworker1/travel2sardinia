@@ -1,0 +1,48 @@
+{
+  "updated": "2026-11-18",
+  "note": "Seasonal route table. Enter routes from the airports' own destination pages. Days: 1=Mon ... 7=Sun. Entries marked sample are placeholders: replace or delete them.",
+  "routes": [
+    {
+      "id": "sample-1",
+      "from_iata": "STN",
+      "from_city": "London Stansted",
+      "country": "GB",
+      "lat": 51.885,
+      "lon": 0.235,
+      "to": "AHO",
+      "airline": "Sample airline",
+      "arr_time": "",
+      "seasons": [ { "start": "2027-01-01", "end": "2027-12-31", "days": "1357" } ],
+      "sample": true,
+      "published": true
+    },
+    {
+      "id": "sample-2",
+      "from_iata": "FCO",
+      "from_city": "Roma Fiumicino",
+      "country": "IT",
+      "lat": 41.800,
+      "lon": 12.239,
+      "to": "CAG",
+      "airline": "Sample airline",
+      "arr_time": "",
+      "seasons": [ { "start": "2027-01-01", "end": "2027-12-31", "days": "1234567" } ],
+      "sample": true,
+      "published": true
+    },
+    {
+      "id": "sample-3",
+      "from_iata": "MXP",
+      "from_city": "Milano Malpensa",
+      "country": "IT",
+      "lat": 45.630,
+      "lon": 8.723,
+      "to": "OLB",
+      "airline": "Sample airline",
+      "arr_time": "",
+      "seasons": [ { "start": "2027-04-01", "end": "2027-10-30", "days": "1234567" } ],
+      "sample": true,
+      "published": true
+    }
+  ]
+}

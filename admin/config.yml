@@ -1,0 +1,416 @@
+# Sveltia CMS configuration for travel2bosa.
+# Sign in with a GitHub personal access token (fine-grained, "Contents: read and write"
+# on blankworker1/travel2bosa only). Every save is a commit; the site redeploys itself.
+# Reusable field shapes (YAML anchors)
+# (Expanded: no YAML anchors, for maximum CMS compatibility.)
+backend:
+  name: github
+  repo: blankworker1/travel2bosa
+  branch: main
+media_folder: assets/uploads
+public_folder: /assets/uploads
+collections:
+- name: data
+  label: Travel to Bosa
+  editor:
+    preview: false
+  files:
+  - name: events
+    label: Events and holidays
+    file: data/events.json
+    format: json
+    fields:
+    - name: version
+      widget: hidden
+      default: 1
+    - name: year
+      label: Year
+      widget: number
+      value_type: int
+    - widget: datetime
+      date_format: YYYY-MM-DD
+      time_format: false
+      format: YYYY-MM-DD
+      name: updated
+      label: Last updated
+    - name: timezone
+      widget: hidden
+      default: Europe/Rome
+    - name: events
+      label: Events
+      widget: list
+      summary: '{{fields.start}} · {{fields.title.it}} ({{fields.status}})'
+      fields:
+      - name: id
+        label: ID (unique, e.g. regnos-altos-2027)
+        widget: string
+      - name: type
+        label: Type
+        widget: select
+        options:
+        - holiday
+        - event
+        default: event
+      - name: scope
+        label: Scope
+        widget: select
+        options:
+        - national
+        - regional
+        - bosa
+        default: bosa
+      - widget: object
+        fields:
+        - name: it
+          label: Italiano
+          widget: string
+        - name: en
+          label: English
+          widget: string
+        name: title
+        label: Title
+      - widget: datetime
+        date_format: YYYY-MM-DD
+        time_format: false
+        format: YYYY-MM-DD
+        name: start
+        label: Start date (leave empty if unknown)
+        required: false
+      - widget: datetime
+        date_format: YYYY-MM-DD
+        time_format: false
+        format: YYYY-MM-DD
+        name: end
+        label: End date
+        required: false
+      - name: approx
+        label: Approximate timing (if no date yet)
+        required: false
+        widget: object
+        fields:
+        - name: it
+          label: Italiano
+          widget: string
+        - name: en
+          label: English
+          widget: string
+      - name: status
+        label: Status
+        widget: select
+        options:
+        - label: Fixed (confirmed)
+          value: fixed
+        - label: Pattern (expected from yearly rule)
+          value: pattern
+        - label: To be confirmed
+          value: tbc
+        default: tbc
+      - name: transport
+        label: Transport effect
+        widget: select
+        required: false
+        options:
+        - label: Holiday timetables
+          value: holiday_timetable
+      - name: demand
+        label: Accommodation demand
+        widget: select
+        required: false
+        options:
+        - normal
+        - high
+      - name: highlight_days
+        label: Main days
+        widget: list
+        required: false
+        field:
+          widget: datetime
+          date_format: YYYY-MM-DD
+          time_format: false
+          format: YYYY-MM-DD
+          name: day
+          label: Day
+      - widget: object
+        fields:
+        - name: it
+          label: Italiano
+          widget: string
+        - name: en
+          label: English
+          widget: string
+        name: note
+        label: Note
+        required: false
+      - name: published
+        label: Published
+        widget: boolean
+        default: true
+  - name: flights
+    label: Flight routes
+    file: data/flights.json
+    format: json
+    fields:
+    - widget: datetime
+      date_format: YYYY-MM-DD
+      time_format: false
+      format: YYYY-MM-DD
+      name: updated
+      label: Last updated
+    - name: note
+      widget: hidden
+    - name: routes
+      label: Routes
+      widget: list
+      summary: '{{fields.from_city}} → {{fields.to}} · {{fields.airline}}'
+      fields:
+      - name: id
+        label: ID (unique)
+        widget: string
+      - name: from_city
+        label: Origin city / airport name
+        widget: string
+      - name: from_iata
+        label: Origin IATA code (e.g. STN)
+        widget: string
+        pattern:
+        - ^[A-Z]{3}$
+        - Three capital letters
+      - name: country
+        label: Country code (e.g. GB)
+        widget: string
+      - name: lat
+        label: Origin latitude
+        widget: number
+        value_type: float
+      - name: lon
+        label: Origin longitude
+        widget: number
+        value_type: float
+      - name: to
+        label: Arrives at
+        widget: select
+        options:
+        - AHO
+        - CAG
+        - OLB
+      - name: airline
+        label: Airline
+        widget: string
+      - name: arr_time
+        label: Typical arrival time (HH:MM, optional)
+        widget: string
+        required: false
+      - name: seasons
+        label: Operating periods
+        widget: list
+        fields:
+        - widget: datetime
+          date_format: YYYY-MM-DD
+          time_format: false
+          format: YYYY-MM-DD
+          name: start
+          label: From
+        - widget: datetime
+          date_format: YYYY-MM-DD
+          time_format: false
+          format: YYYY-MM-DD
+          name: end
+          label: To
+        - name: days
+          label: Days of week (1=Mon … 7=Sun, e.g. 1357)
+          widget: string
+          default: '1234567'
+      - name: sample
+        label: Sample entry (shows a 'sample' badge)
+        widget: boolean
+        default: false
+      - name: published
+        label: Published
+        widget: boolean
+        default: true
+  - name: stays
+    label: Places to stay (Hodlstay)
+    file: data/stays.json
+    format: json
+    fields:
+    - widget: datetime
+      date_format: YYYY-MM-DD
+      time_format: false
+      format: YYYY-MM-DD
+      name: updated
+      label: Last updated
+    - name: stays
+      label: Stays
+      widget: list
+      summary: '{{fields.name}} · {{fields.area}}'
+      fields:
+      - name: id
+        label: ID (unique)
+        widget: string
+      - name: name
+        label: Name
+        widget: string
+      - name: type
+        label: Type
+        widget: select
+        options:
+        - B&B
+        - Apartment
+        - Room
+        - House
+        - Other
+      - name: area
+        label: Area (e.g. Centro storico, Bosa Marina)
+        widget: string
+        required: false
+      - name: url
+        label: Hodlstay listing URL
+        widget: string
+        required: false
+      - name: languages
+        label: Host languages
+        widget: list
+        required: false
+      - widget: object
+        fields:
+        - name: it
+          label: Italiano
+          widget: text
+        - name: en
+          label: English
+          widget: text
+        name: notes
+        label: Notes
+        required: false
+      - name: published
+        label: Published
+        widget: boolean
+        default: false
+  - name: info
+    label: Good to know (local tips)
+    file: data/info.json
+    format: json
+    fields:
+    - widget: datetime
+      date_format: YYYY-MM-DD
+      time_format: false
+      format: YYYY-MM-DD
+      name: updated
+      label: Last updated
+    - name: tips
+      label: Tips
+      widget: list
+      summary: '{{fields.title.it}}'
+      fields:
+      - name: id
+        label: ID (unique)
+        widget: string
+      - name: category
+        label: Category
+        widget: select
+        options:
+        - transport
+        - travel
+        - town
+        - safety
+      - widget: object
+        fields:
+        - name: it
+          label: Italiano
+          widget: string
+        - name: en
+          label: English
+          widget: string
+        name: title
+        label: Title
+      - widget: object
+        fields:
+        - name: it
+          label: Italiano
+          widget: text
+        - name: en
+          label: English
+          widget: text
+        name: body
+        label: Text
+      - name: verified
+        label: Verified
+        widget: boolean
+        default: false
+      - name: published
+        label: Published
+        widget: boolean
+        default: true
+  - name: site
+    label: Site settings and links
+    file: data/site.json
+    format: json
+    fields:
+    - widget: object
+      fields:
+      - name: it
+        label: Italiano
+        widget: string
+      - name: en
+        label: English
+        widget: string
+      name: title
+      label: Site title
+    - widget: object
+      fields:
+      - name: it
+        label: Italiano
+        widget: string
+      - name: en
+        label: English
+        widget: string
+      name: tagline
+      label: Tagline
+    - name: links
+      label: Links
+      widget: object
+      fields:
+      - name: hodlstay_base_url
+        label: Hodlstay Bosa page
+        widget: string
+        required: false
+      - name: hodlstay_host_signup_url
+        label: Hodlstay host sign-up page
+        widget: string
+        required: false
+      - name: arst
+        label: ARST tickets
+        widget: string
+      - name: trenitalia
+        label: Trenitalia tickets
+        widget: string
+      - name: aspo
+        label: ASPO tickets
+        widget: string
+    - name: bosa
+      label: Bosa map position
+      widget: object
+      fields:
+      - name: lat
+        widget: number
+        value_type: float
+      - name: lon
+        widget: number
+        value_type: float
+    - name: airports
+      label: Airports
+      widget: list
+      fields:
+      - name: code
+        widget: string
+      - name: name
+        widget: string
+      - name: lat
+        widget: number
+        value_type: float
+      - name: lon
+        widget: number
+        value_type: float
+      - name: website
+        widget: string
+        required: false

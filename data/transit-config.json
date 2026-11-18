@@ -1,0 +1,78 @@
+{
+  "note": "Feeds and stop-name patterns used by scripts/build_transit.py. Patterns are case-insensitive regular expressions matched against GTFS stop names. After each run, check data/transit.json -> matched_stops and adjust patterns if a segment matched the wrong stops or none at all.",
+  "window_days": 400,
+  "min_transfer_minutes": 10,
+  "feeds": {
+    "arst": [
+      "https://www.arstspa.info/arst-cagliari-it.zip",
+      "https://files.mobilitydatabase.org/mdb-895/latest.zip"
+    ],
+    "trenitalia": [
+      "https://files.mobilitydatabase.org/mdb-1052/latest.zip"
+    ],
+    "aspo": [
+      "https://www.aspo.it/wp-content/uploads/open_data.zip",
+      "https://files.mobilitydatabase.org/mdb-2008/latest.zip"
+    ]
+  },
+  "segments": {
+    "AHO-BOSA": {
+      "feed": "arst", "mode": "bus", "operator": "ARST",
+      "from": "aeroporto.*(alghero|fertilia)|(alghero|fertilia).*aeroporto",
+      "to": "\\bbosa\\b"
+    },
+    "AHO-ALGHERO": {
+      "feed": "arst", "mode": "bus", "operator": "ARST",
+      "from": "aeroporto.*(alghero|fertilia)|(alghero|fertilia).*aeroporto",
+      "to": "alghero", "to_exclude": "aeroporto|fertilia"
+    },
+    "ALGHERO-BOSA": {
+      "feed": "arst", "mode": "bus", "operator": "ARST",
+      "from": "alghero", "from_exclude": "aeroporto|fertilia",
+      "to": "\\bbosa\\b"
+    },
+    "CAG-MACOMER": {
+      "feed": "trenitalia", "mode": "train", "operator": "Trenitalia",
+      "from": "elmas.*aeroporto|aeroporto.*elmas|cagliari.*aeroporto",
+      "to": "macomer"
+    },
+    "OLB-OLBIA": {
+      "feed": "aspo", "mode": "bus", "operator": "ASPO",
+      "from": "aeroporto",
+      "to": "stazione|terranova", "to_exclude": "aeroporto"
+    },
+    "OLBIA-MACOMER": {
+      "feed": "trenitalia", "mode": "train", "operator": "Trenitalia",
+      "from": "^olbia", "from_exclude": "aeroporto",
+      "to": "macomer"
+    },
+    "OLBIA-CHILIVANI": {
+      "feed": "trenitalia", "mode": "train", "operator": "Trenitalia",
+      "from": "^olbia", "from_exclude": "aeroporto",
+      "to": "chilivani"
+    },
+    "CHILIVANI-MACOMER": {
+      "feed": "trenitalia", "mode": "train", "operator": "Trenitalia",
+      "from": "chilivani",
+      "to": "macomer"
+    },
+    "MACOMER-BOSA": {
+      "feed": "arst", "mode": "bus", "operator": "ARST",
+      "from": "macomer",
+      "to": "\\bbosa\\b"
+    }
+  },
+  "chains": {
+    "AHO": [
+      ["AHO-BOSA"],
+      ["AHO-ALGHERO", "ALGHERO-BOSA"]
+    ],
+    "CAG": [
+      ["CAG-MACOMER", "MACOMER-BOSA"]
+    ],
+    "OLB": [
+      ["OLB-OLBIA", "OLBIA-MACOMER", "MACOMER-BOSA"],
+      ["OLB-OLBIA", "OLBIA-CHILIVANI", "CHILIVANI-MACOMER", "MACOMER-BOSA"]
+    ]
+  }
+}

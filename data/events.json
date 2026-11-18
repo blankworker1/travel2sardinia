@@ -1,0 +1,318 @@
+{
+  "version": 1,
+  "year": 2027,
+  "updated": "2026-11-18",
+  "timezone": "Europe/Rome",
+  "events": [
+    {
+      "id": "capodanno-2027",
+      "type": "holiday",
+      "scope": "national",
+      "title": {
+        "it": "Capodanno",
+        "en": "New Year's Day"
+      },
+      "start": "2027-01-01",
+      "end": "2027-01-01",
+      "status": "fixed",
+      "transport": "holiday_timetable",
+      "published": true
+    },
+    {
+      "id": "epifania-2027",
+      "type": "holiday",
+      "scope": "national",
+      "title": {
+        "it": "Epifania",
+        "en": "Epiphany"
+      },
+      "start": "2027-01-06",
+      "end": "2027-01-06",
+      "status": "fixed",
+      "transport": "holiday_timetable",
+      "published": true
+    },
+    {
+      "id": "santantonio-2027",
+      "type": "event",
+      "scope": "bosa",
+      "title": {
+        "it": "Fuochi di Sant'Antonio",
+        "en": "Sant'Antonio bonfires"
+      },
+      "start": "2027-01-16",
+      "end": "2027-01-17",
+      "status": "pattern",
+      "note": {
+        "it": "Apertura ufficiale del Carnevale",
+        "en": "Official opening of Carnival"
+      },
+      "published": true
+    },
+    {
+      "id": "karrasegare-2027",
+      "type": "event",
+      "scope": "bosa",
+      "title": {
+        "it": "Karrasegare Osincu (Carnevale di Bosa)",
+        "en": "Karrasegare Osincu (Bosa Carnival)"
+      },
+      "start": "2027-01-16",
+      "end": "2027-02-09",
+      "status": "pattern",
+      "highlight_days": [
+        "2027-02-04",
+        "2027-02-07",
+        "2027-02-08",
+        "2027-02-09"
+      ],
+      "demand": "high",
+      "published": true
+    },
+    {
+      "id": "settimana-santa-2027",
+      "type": "event",
+      "scope": "bosa",
+      "title": {
+        "it": "Riti della Settimana Santa (Chida Santa)",
+        "en": "Holy Week rites (Chida Santa)"
+      },
+      "start": "2027-03-21",
+      "end": "2027-03-28",
+      "status": "fixed",
+      "published": true
+    },
+    {
+      "id": "pasqua-2027",
+      "type": "holiday",
+      "scope": "national",
+      "title": {
+        "it": "Pasqua",
+        "en": "Easter Sunday"
+      },
+      "start": "2027-03-28",
+      "end": "2027-03-28",
+      "status": "fixed",
+      "transport": "holiday_timetable",
+      "published": true
+    },
+    {
+      "id": "pasquetta-2027",
+      "type": "holiday",
+      "scope": "national",
+      "title": {
+        "it": "Lunedì dell'Angelo (Pasquetta)",
+        "en": "Easter Monday"
+      },
+      "start": "2027-03-29",
+      "end": "2027-03-29",
+      "status": "fixed",
+      "transport": "holiday_timetable",
+      "published": true
+    },
+    {
+      "id": "liberazione-2027",
+      "type": "holiday",
+      "scope": "national",
+      "title": {
+        "it": "Festa della Liberazione",
+        "en": "Liberation Day"
+      },
+      "start": "2027-04-25",
+      "end": "2027-04-25",
+      "status": "fixed",
+      "transport": "holiday_timetable",
+      "published": true
+    },
+    {
+      "id": "sa-die-2027",
+      "type": "holiday",
+      "scope": "regional",
+      "title": {
+        "it": "Sa Die de sa Sardigna",
+        "en": "Sardinia Day"
+      },
+      "start": "2027-04-28",
+      "end": "2027-04-28",
+      "status": "fixed",
+      "published": true
+    },
+    {
+      "id": "lavoratori-2027",
+      "type": "holiday",
+      "scope": "national",
+      "title": {
+        "it": "Festa dei Lavoratori",
+        "en": "Labour Day"
+      },
+      "start": "2027-05-01",
+      "end": "2027-05-01",
+      "status": "fixed",
+      "transport": "holiday_timetable",
+      "published": true
+    },
+    {
+      "id": "patroni-2027",
+      "type": "holiday",
+      "scope": "bosa",
+      "title": {
+        "it": "Santi Emilio e Priamo (festa patronale)",
+        "en": "Saints Emilio & Priamo (patron saints)"
+      },
+      "start": "2027-05-28",
+      "end": "2027-05-28",
+      "status": "fixed",
+      "published": true
+    },
+    {
+      "id": "repubblica-2027",
+      "type": "holiday",
+      "scope": "national",
+      "title": {
+        "it": "Festa della Repubblica",
+        "en": "Republic Day"
+      },
+      "start": "2027-06-02",
+      "end": "2027-06-02",
+      "status": "fixed",
+      "transport": "holiday_timetable",
+      "published": true
+    },
+    {
+      "id": "santa-maria-mare-2027",
+      "type": "event",
+      "scope": "bosa",
+      "title": {
+        "it": "Santa Maria del Mare",
+        "en": "Santa Maria del Mare"
+      },
+      "start": null,
+      "end": null,
+      "approx": {
+        "it": "inizio agosto",
+        "en": "early August"
+      },
+      "status": "tbc",
+      "note": {
+        "it": "Data da confermare con la Pro Loco",
+        "en": "Date to confirm with the Pro Loco"
+      },
+      "demand": "high",
+      "published": true
+    },
+    {
+      "id": "ferragosto-2027",
+      "type": "holiday",
+      "scope": "national",
+      "title": {
+        "it": "Ferragosto",
+        "en": "Assumption Day"
+      },
+      "start": "2027-08-15",
+      "end": "2027-08-15",
+      "status": "fixed",
+      "transport": "holiday_timetable",
+      "demand": "high",
+      "published": true
+    },
+    {
+      "id": "regnos-altos-2027",
+      "type": "event",
+      "scope": "bosa",
+      "title": {
+        "it": "Nostra Signora de Regnos Altos",
+        "en": "Our Lady of Regnos Altos"
+      },
+      "start": "2027-09-11",
+      "end": "2027-09-12",
+      "status": "pattern",
+      "note": {
+        "it": "Sa Costa, altarittos e processione dal Castello alla Cattedrale",
+        "en": "Sa Costa quarter, flower altars, procession from the Castle to the Cathedral"
+      },
+      "published": true
+    },
+    {
+      "id": "ognissanti-2027",
+      "type": "holiday",
+      "scope": "national",
+      "title": {
+        "it": "Ognissanti",
+        "en": "All Saints' Day"
+      },
+      "start": "2027-11-01",
+      "end": "2027-11-01",
+      "status": "fixed",
+      "transport": "holiday_timetable",
+      "published": true
+    },
+    {
+      "id": "immacolata-2027",
+      "type": "holiday",
+      "scope": "national",
+      "title": {
+        "it": "Immacolata Concezione",
+        "en": "Immaculate Conception"
+      },
+      "start": "2027-12-08",
+      "end": "2027-12-08",
+      "status": "fixed",
+      "transport": "holiday_timetable",
+      "published": true
+    },
+    {
+      "id": "natale-2027",
+      "type": "holiday",
+      "scope": "national",
+      "title": {
+        "it": "Natale",
+        "en": "Christmas Day"
+      },
+      "start": "2027-12-25",
+      "end": "2027-12-25",
+      "status": "fixed",
+      "transport": "holiday_timetable",
+      "published": true
+    },
+    {
+      "id": "santo-stefano-2027",
+      "type": "holiday",
+      "scope": "national",
+      "title": {
+        "it": "Santo Stefano",
+        "en": "St Stephen's Day"
+      },
+      "start": "2027-12-26",
+      "end": "2027-12-26",
+      "status": "fixed",
+      "transport": "holiday_timetable",
+      "published": true
+    },
+    {
+      "id": "beer-fest-2027",
+      "type": "event",
+      "scope": "bosa",
+      "title": {
+        "it": "Bosa Beer Fest",
+        "en": "Bosa Beer Fest"
+      },
+      "start": null,
+      "end": null,
+      "status": "tbc",
+      "published": true
+    },
+    {
+      "id": "wine-festival-2027",
+      "type": "event",
+      "scope": "bosa",
+      "title": {
+        "it": "Bosa Wine Festival",
+        "en": "Bosa Wine Festival"
+      },
+      "start": null,
+      "end": null,
+      "status": "tbc",
+      "published": true
+    }
+  ]
+}
