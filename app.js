@@ -274,8 +274,9 @@
   function renderFlights() {
     const site = state.data.site;
     const list = visibleRoutes();
-    $("#flights-intro").textContent = state.origin ? t("intro_city", originCity()) : state.date ? t("intro_date") : t("intro_all");
+    $("#flights-intro").textContent = state.origin ? t("intro_city", originCity()) : t("intro_all");
     const body = $("#flights-body");
+    if (!state.origin) { body.innerHTML = ""; return; }   // the list appears once a city is chosen
     if (!list.length) { body.innerHTML = `<p class="empty">${esc(t("no_flights"))}</p>`; return; }
 
     let html = list.some((r) => r.sample) ? `<p class="notice">${esc(t("sample_notice"))}</p>` : "";
