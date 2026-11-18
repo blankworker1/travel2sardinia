@@ -147,3 +147,14 @@ footer .orgs { font-size: .95rem; color: var(--ink); margin-bottom: .6rem; }
 [data-only]:not(.show) { display: none !important; }
 
 [hidden] { display: none !important; }
+
+/* --- island / destination --- */
+.crumb { margin: 0 0 .2rem; font-size: .88rem; color: var(--muted); }
+.crumb a { color: var(--sea); }
+.step { display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 50%; background: var(--ink); color: #fff; font: 700 .85rem system-ui, sans-serif; vertical-align: .15em; margin-right: .2rem; }
+.dest-label, .bosa-label { font-weight: 700; }
+.dest-name { font-family: Georgia, serif; font-size: 1.15rem; }
+.ap { display: inline-block; font-size: .75rem; font-weight: 700; border-radius: 6px; padding: .05rem .4rem; background: var(--ochre); color: var(--ink); }
+.ap.off { background: #efe6d4; color: var(--muted); text-decoration: line-through; }
+#destinations { grid-column: 1 / -1; }
+@media (min-width: 900px) { #destinations { grid-column: auto; } }

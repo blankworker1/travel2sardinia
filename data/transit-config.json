@@ -1,5 +1,5 @@
 {
-  "note": "Feeds and stop-name patterns used by scripts/build_transit.py. Patterns are case-insensitive regular expressions matched against GTFS stop names. After each run, check data/transit.json -> matched_stops and adjust patterns if a segment matched the wrong stops or none at all.",
+  "note": "Feeds and stop-name patterns used by scripts/build_transit.py. Patterns are case-insensitive regular expressions matched against GTFS stop names. After each run, check data/transit.json -> matched_stops and adjust patterns if a segment matched the wrong stops or none at all. Chains are grouped by destination id (see data/destinations.json).",
   "window_days": 400,
   "min_transfer_minutes": 10,
   "feeds": {
@@ -17,62 +17,104 @@
   },
   "segments": {
     "AHO-BOSA": {
-      "feed": "arst", "mode": "bus", "operator": "ARST",
+      "feed": "arst",
+      "mode": "bus",
+      "operator": "ARST",
       "from": "aeroporto.*(alghero|fertilia)|(alghero|fertilia).*aeroporto",
       "to": "\\bbosa\\b"
     },
     "AHO-ALGHERO": {
-      "feed": "arst", "mode": "bus", "operator": "ARST",
+      "feed": "arst",
+      "mode": "bus",
+      "operator": "ARST",
       "from": "aeroporto.*(alghero|fertilia)|(alghero|fertilia).*aeroporto",
-      "to": "alghero", "to_exclude": "aeroporto|fertilia"
+      "to": "alghero",
+      "to_exclude": "aeroporto|fertilia"
     },
     "ALGHERO-BOSA": {
-      "feed": "arst", "mode": "bus", "operator": "ARST",
-      "from": "alghero", "from_exclude": "aeroporto|fertilia",
+      "feed": "arst",
+      "mode": "bus",
+      "operator": "ARST",
+      "from": "alghero",
+      "from_exclude": "aeroporto|fertilia",
       "to": "\\bbosa\\b"
     },
     "CAG-MACOMER": {
-      "feed": "trenitalia", "mode": "train", "operator": "Trenitalia",
+      "feed": "trenitalia",
+      "mode": "train",
+      "operator": "Trenitalia",
       "from": "elmas.*aeroporto|aeroporto.*elmas|cagliari.*aeroporto",
       "to": "macomer"
     },
     "OLB-OLBIA": {
-      "feed": "aspo", "mode": "bus", "operator": "ASPO",
+      "feed": "aspo",
+      "mode": "bus",
+      "operator": "ASPO",
       "from": "aeroporto",
-      "to": "stazione|terranova", "to_exclude": "aeroporto"
+      "to": "stazione|terranova",
+      "to_exclude": "aeroporto"
     },
     "OLBIA-MACOMER": {
-      "feed": "trenitalia", "mode": "train", "operator": "Trenitalia",
-      "from": "^olbia", "from_exclude": "aeroporto",
+      "feed": "trenitalia",
+      "mode": "train",
+      "operator": "Trenitalia",
+      "from": "^olbia",
+      "from_exclude": "aeroporto",
       "to": "macomer"
     },
     "OLBIA-CHILIVANI": {
-      "feed": "trenitalia", "mode": "train", "operator": "Trenitalia",
-      "from": "^olbia", "from_exclude": "aeroporto",
+      "feed": "trenitalia",
+      "mode": "train",
+      "operator": "Trenitalia",
+      "from": "^olbia",
+      "from_exclude": "aeroporto",
       "to": "chilivani"
     },
     "CHILIVANI-MACOMER": {
-      "feed": "trenitalia", "mode": "train", "operator": "Trenitalia",
+      "feed": "trenitalia",
+      "mode": "train",
+      "operator": "Trenitalia",
       "from": "chilivani",
       "to": "macomer"
     },
     "MACOMER-BOSA": {
-      "feed": "arst", "mode": "bus", "operator": "ARST",
+      "feed": "arst",
+      "mode": "bus",
+      "operator": "ARST",
       "from": "macomer",
       "to": "\\bbosa\\b"
     }
   },
   "chains": {
-    "AHO": [
-      ["AHO-BOSA"],
-      ["AHO-ALGHERO", "ALGHERO-BOSA"]
-    ],
-    "CAG": [
-      ["CAG-MACOMER", "MACOMER-BOSA"]
-    ],
-    "OLB": [
-      ["OLB-OLBIA", "OLBIA-MACOMER", "MACOMER-BOSA"],
-      ["OLB-OLBIA", "OLBIA-CHILIVANI", "CHILIVANI-MACOMER", "MACOMER-BOSA"]
-    ]
+    "bosa": {
+      "AHO": [
+        [
+          "AHO-BOSA"
+        ],
+        [
+          "AHO-ALGHERO",
+          "ALGHERO-BOSA"
+        ]
+      ],
+      "CAG": [
+        [
+          "CAG-MACOMER",
+          "MACOMER-BOSA"
+        ]
+      ],
+      "OLB": [
+        [
+          "OLB-OLBIA",
+          "OLBIA-MACOMER",
+          "MACOMER-BOSA"
+        ],
+        [
+          "OLB-OLBIA",
+          "OLBIA-CHILIVANI",
+          "CHILIVANI-MACOMER",
+          "MACOMER-BOSA"
+        ]
+      ]
+    }
   }
 }

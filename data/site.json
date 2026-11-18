@@ -1,23 +1,17 @@
 {
   "title": {
-    "it": "Travel to Bosa",
-    "en": "Travel to Bosa"
+    "it": "travel2sardegna",
+    "en": "travel2sardinia"
   },
   "tagline": {
-    "it": "Da dove parti? Come arrivare a Bosa, dove dormire e cosa succede durante l'anno.",
-    "en": "Where are you travelling from? How to get to Bosa, where to stay and what's on through the year."
-  },
-  "bosa": {
-    "lat": 40.2981,
-    "lon": 8.4979
+    "it": "Da dove parti? Come arrivare in Sardegna, nei paesi che partecipano: viaggio, dove dormire e cosa succede durante l'anno.",
+    "en": "Where are you travelling from? How to reach Sardinia's participating towns: the journey, where to stay and what's on through the year."
   },
   "links": {
-    "hodlstay_base_url": "",
-    "hodlstay_host_signup_url": "",
     "arst": "https://www.arst.sardegna.it",
     "trenitalia": "https://www.trenitalia.com",
     "aspo": "https://www.aspo.it",
-    "coordinator_contact_url": ""
+    "network_contact_url": ""
   },
   "airports": [
     {
@@ -25,21 +19,28 @@
       "name": "Alghero-Fertilia",
       "lat": 40.6321,
       "lon": 8.2908,
-      "website": "https://www.aeroportodialghero.it"
+      "website": "https://www.aeroportodialghero.it",
+      "short": "Alghero Aeroporto"
     },
     {
       "code": "CAG",
       "name": "Cagliari-Elmas",
       "lat": 39.2515,
       "lon": 9.0543,
-      "website": "https://www.sogaer.it"
+      "website": "https://www.sogaer.it",
+      "short": "Cagliari Aeroporto"
     },
     {
       "code": "OLB",
       "name": "Olbia Costa Smeralda",
       "lat": 40.8987,
       "lon": 9.5176,
-      "website": "https://www.geasar.it"
+      "website": "https://www.geasar.it",
+      "short": "Olbia Aeroporto"
     }
-  ]
+  ],
+  "center": {
+    "lat": 40.05,
+    "lon": 9.0
+  }
 }

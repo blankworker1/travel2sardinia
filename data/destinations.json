@@ -1,0 +1,25 @@
+{
+  "updated": "2026-11-18",
+  "destinations": [
+    {
+      "id": "bosa",
+      "name": {
+        "it": "Bosa",
+        "en": "Bosa"
+      },
+      "province": "Oristano",
+      "lat": 40.2981,
+      "lon": 8.4979,
+      "tagline": {
+        "it": "Il borgo colorato sul fiume Temo, tra il castello Malaspina e il mare.",
+        "en": "The colourful town on the Temo river, between the Malaspina castle and the sea."
+      },
+      "airports": [
+        "AHO",
+        "CAG",
+        "OLB"
+      ],
+      "published": true
+    }
+  ]
+}

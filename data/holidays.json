@@ -37,62 +37,6 @@
       "url": ""
     },
     {
-      "id": "santantonio-2027",
-      "type": "event",
-      "scope": "bosa",
-      "title": {
-        "it": "Fuochi di Sant'Antonio",
-        "en": "Sant'Antonio bonfires"
-      },
-      "start": "2027-01-16",
-      "end": "2027-01-17",
-      "status": "pattern",
-      "note": {
-        "it": "Apertura ufficiale del Carnevale",
-        "en": "Official opening of Carnival"
-      },
-      "published": true,
-      "organiser": "",
-      "url": ""
-    },
-    {
-      "id": "karrasegare-2027",
-      "type": "event",
-      "scope": "bosa",
-      "title": {
-        "it": "Karrasegare Osincu (Carnevale di Bosa)",
-        "en": "Karrasegare Osincu (Bosa Carnival)"
-      },
-      "start": "2027-01-16",
-      "end": "2027-02-09",
-      "status": "pattern",
-      "highlight_days": [
-        "2027-02-04",
-        "2027-02-07",
-        "2027-02-08",
-        "2027-02-09"
-      ],
-      "demand": "high",
-      "published": true,
-      "organiser": "",
-      "url": ""
-    },
-    {
-      "id": "settimana-santa-2027",
-      "type": "event",
-      "scope": "bosa",
-      "title": {
-        "it": "Riti della Settimana Santa (Chida Santa)",
-        "en": "Holy Week rites (Chida Santa)"
-      },
-      "start": "2027-03-21",
-      "end": "2027-03-28",
-      "status": "fixed",
-      "published": true,
-      "organiser": "",
-      "url": ""
-    },
-    {
       "id": "pasqua-2027",
       "type": "holiday",
       "scope": "national",
@@ -172,21 +116,6 @@
       "url": ""
     },
     {
-      "id": "patroni-2027",
-      "type": "holiday",
-      "scope": "bosa",
-      "title": {
-        "it": "Santi Emilio e Priamo (festa patronale)",
-        "en": "Saints Emilio & Priamo (patron saints)"
-      },
-      "start": "2027-05-28",
-      "end": "2027-05-28",
-      "status": "fixed",
-      "published": true,
-      "organiser": "",
-      "url": ""
-    },
-    {
       "id": "repubblica-2027",
       "type": "holiday",
       "scope": "national",
@@ -198,30 +127,6 @@
       "end": "2027-06-02",
       "status": "fixed",
       "transport": "holiday_timetable",
-      "published": true,
-      "organiser": "",
-      "url": ""
-    },
-    {
-      "id": "santa-maria-mare-2027",
-      "type": "event",
-      "scope": "bosa",
-      "title": {
-        "it": "Santa Maria del Mare",
-        "en": "Santa Maria del Mare"
-      },
-      "start": null,
-      "end": null,
-      "approx": {
-        "it": "inizio agosto",
-        "en": "early August"
-      },
-      "status": "tbc",
-      "note": {
-        "it": "Data da confermare con la Pro Loco",
-        "en": "Date to confirm with the Pro Loco"
-      },
-      "demand": "high",
       "published": true,
       "organiser": "",
       "url": ""
@@ -239,25 +144,6 @@
       "status": "fixed",
       "transport": "holiday_timetable",
       "demand": "high",
-      "published": true,
-      "organiser": "",
-      "url": ""
-    },
-    {
-      "id": "regnos-altos-2027",
-      "type": "event",
-      "scope": "bosa",
-      "title": {
-        "it": "Nostra Signora de Regnos Altos",
-        "en": "Our Lady of Regnos Altos"
-      },
-      "start": "2027-09-11",
-      "end": "2027-09-12",
-      "status": "pattern",
-      "note": {
-        "it": "Sa Costa, altarittos e processione dal Castello alla Cattedrale",
-        "en": "Sa Costa quarter, flower altars, procession from the Castle to the Cathedral"
-      },
       "published": true,
       "organiser": "",
       "url": ""
@@ -322,36 +208,6 @@
       "end": "2027-12-26",
       "status": "fixed",
       "transport": "holiday_timetable",
-      "published": true,
-      "organiser": "",
-      "url": ""
-    },
-    {
-      "id": "beer-fest-2027",
-      "type": "event",
-      "scope": "bosa",
-      "title": {
-        "it": "Bosa Beer Fest",
-        "en": "Bosa Beer Fest"
-      },
-      "start": null,
-      "end": null,
-      "status": "tbc",
-      "published": true,
-      "organiser": "",
-      "url": ""
-    },
-    {
-      "id": "wine-festival-2027",
-      "type": "event",
-      "scope": "bosa",
-      "title": {
-        "it": "Bosa Wine Festival",
-        "en": "Bosa Wine Festival"
-      },
-      "start": null,
-      "end": null,
-      "status": "tbc",
       "published": true,
       "organiser": "",
       "url": ""

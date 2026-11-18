@@ -1,13 +1,19 @@
-/* travel2bosa: static information app. No backend: everything is read from /data.
-   Level 1 (travellers): start from your city; the date is optional. */
+/* travel2sardinia: static information app. No backend: everything is read from /data.
+   One script serves two kinds of page:
+   - the island home (body[data-page=home]): flights, destinations, island holidays
+   - a destination page (body[data-dest=<id>]): flights, getting there, stays, events, tips
+   Travellers start from their city; the date is optional. */
 (function () {
   "use strict";
 
+  const BASE = new URL(".", document.currentScript.src); // site root, wherever it is hosted
+  const DEST = document.body.dataset.dest || "";
   const AIRPORT_EXIT_MIN = 30; // time from landing to the first bus/train
-  const state = { lang: "it", origin: "", date: "", data: {}, map: null, layers: null };
+  const state = { lang: "en", origin: "", date: "", data: {}, dest: null, map: null, layers: null };
 
   // ---------- helpers ----------
   const $ = (s) => document.querySelector(s);
+  const has = (s) => !!document.querySelector(s);
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const t = (k, ...a) => { const v = (I18N[state.lang] || I18N.en)[k]; return typeof v === "function" ? v(...a) : (v ?? k); };
   const tx = (o) => (o && typeof o === "object") ? (o[state.lang] || o.en || o.it || "") : (o || "");
@@ -26,25 +32,32 @@
   const dur = (m) => (m >= 60 ? `${Math.floor(m / 60)} h ${String(m % 60).padStart(2, "0")}` : `${m} ${t("min")}`);
   const published = (x) => x && x.published !== false;
   const isUrl = (u) => /^https?:\/\//.test(u || "");
+  const monthBounds = (y, m) => {
+    const first = `${y}-${String(m + 1).padStart(2, "0")}-01`;
+    const last = addDays(m === 11 ? `${y + 1}-01-01` : `${y}-${String(m + 2).padStart(2, "0")}-01`, -1);
+    return [first, last];
+  };
   const store = {
     get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
     set(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* storage unavailable */ } }
   };
 
-  async function loadJSON(name, fallback) {
+  async function loadJSON(path, fallback) {
     try {
-      const r = await fetch(`data/${name}.json`, { cache: "no-cache" });
+      const r = await fetch(new URL(`data/${path}.json`, BASE), { cache: "no-cache" });
       if (!r.ok) throw new Error(r.status);
       return await r.json();
     } catch (e) {
-      console.warn("could not load", name, e);
+      console.warn("could not load", path, e);
       return fallback;
     }
   }
 
   // ---------- data queries ----------
+  const destName = () => (state.dest ? tx(state.dest.name) : "");
+  const links = () => Object.assign({}, state.data.site.links || {}, (state.data.destSettings || {}).links || {});
   const allRoutes = () => (state.data.flights.routes || []).filter(published);
-  const airportName = (code) => (state.data.site.airports.find((a) => a.code === code) || { name: code }).name;
+  const destinations = () => (state.data.destinations.destinations || []).filter(published);
 
   function fliesOn(r, date) {
     const wd = String(isoWeekday(date));
@@ -60,17 +73,14 @@
     const months = new Set();
     for (const s of r.seasons || []) {
       if (!String(s.days || "").trim()) continue;
-      for (let m = 0; m < 12; m++) {
-        const first = `${year}-${String(m + 1).padStart(2, "0")}-01`;
-        const last = addDays(m === 11 ? `${year + 1}-01-01` : `${year}-${String(m + 2).padStart(2, "0")}-01`, -1);
-        if (s.start <= last && s.end >= first) months.add(m);
-      }
+      for (let m = 0; m < 12; m++) { const [first, last] = monthBounds(year, m); if (s.start <= last && s.end >= first) months.add(m); }
     }
     return months;
   }
 
   function visibleRoutes() {
     let list = allRoutes();
+    if (state.dest && state.dest.airports && state.dest.airports.length) list = list.filter((r) => state.dest.airports.includes(r.to));
     if (state.origin) list = list.filter((r) => r.from_iata === state.origin);
     else if (state.date) list = list.filter((r) => fliesOn(r, state.date));
     return list;
@@ -81,13 +91,13 @@
     return r ? r.from_city : "";
   }
 
-  function eventsBetween(from, to) {
-    return (state.data.events.events || []).filter((e) => published(e) && e.start && e.start <= to && (e.end || e.start) >= from);
-  }
-
+  const allEvents = () => (state.data.events || []).filter(published);
+  const eventsBetween = (from, to) => allEvents().filter((e) => e.start && e.start <= to && (e.end || e.start) >= from);
   const isTransportHoliday = (date) => eventsBetween(date, date).some((e) => e.transport === "holiday_timetable");
 
   // ---------- transit routing ----------
+  const chainsFor = (airport) => (((state.data.transit.chains || {})[DEST]) || {})[airport] || [];
+
   function serviceActive(tr, svc, date) {
     if (!tr.window_start) return false;
     const i = Math.round((parseDate(date) - parseDate(tr.window_start)) / 86400000);
@@ -104,10 +114,9 @@
 
   function itineraries(airport, date, landedMin, limit) {
     const tr = state.data.transit;
-    const chains = (tr.chains || {})[airport] || [];
     const gap = tr.min_transfer_minutes || 10;
     const results = [];
-    for (const chain of chains) {
+    for (const chain of chainsFor(airport)) {
       const legsByStep = chain.map((seg) => tripsOn(seg, date).sort((a, b) => a.dep - b.dep));
       if (legsByStep.some((l) => !l.length)) continue;
       for (const first of legsByStep[0].filter((x) => x.dep >= landedMin + AIRPORT_EXIT_MIN)) {
@@ -129,43 +138,49 @@
     return limit ? unique.slice(0, limit) : unique;
   }
 
-  function transitReady() {
-    const tr = state.data.transit;
-    return tr && tr.generated && tr.window_start;
-  }
-
-  function inWindow(date) {
-    const tr = state.data.transit;
-    return date >= tr.window_start && date <= addDays(tr.window_start, tr.window_days - 1);
-  }
+  const transitReady = () => { const tr = state.data.transit; return tr && tr.generated && tr.window_start; };
+  const inWindow = (date) => { const tr = state.data.transit; return date >= tr.window_start && date <= addDays(tr.window_start, tr.window_days - 1); };
 
   function typicalWeekday() {
     const tr = state.data.transit;
     let d = today() > tr.window_start ? today() : tr.window_start;
-    for (let i = 0; i < 60; i++, d = addDays(d, 1)) {
-      if (isoWeekday(d) === 3 && !isTransportHoliday(d) && inWindow(d)) return d;
-    }
+    for (let i = 0; i < 60; i++, d = addDays(d, 1)) if (isoWeekday(d) === 3 && !isTransportHoliday(d) && inWindow(d)) return d;
     return null;
   }
 
   // ---------- rendering ----------
-  const AIRPORT_NAMES = { AHO: "Alghero Aeroporto", CAG: "Cagliari Aeroporto", OLB: "Olbia Aeroporto" };
-  const cap = (s) => AIRPORT_NAMES[s] || (s.charAt(0) + s.slice(1).toLowerCase());
   const legIcon = (mode) => (mode === "train" ? "🚆" : "🚌");
+  function placeName(code) {
+    const ap = state.data.site.airports.find((a) => a.code === code);
+    if (ap) return ap.short || ap.name;
+    const d = destinations().find((x) => x.id.toUpperCase() === code);
+    if (d) return tx(d.name);
+    return code.charAt(0) + code.slice(1).toLowerCase();
+  }
 
   function renderStatic() {
     document.documentElement.lang = state.lang;
-    document.querySelectorAll("[data-i18n]").forEach((el) => { el.textContent = t(el.dataset.i18n); });
+    document.querySelectorAll("[data-i18n]").forEach((el) => { el.textContent = t(el.dataset.i18n, destName()); });
     document.querySelectorAll("[data-lang]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === state.lang)));
     const site = state.data.site;
-    $("#site-title").textContent = tx(site.title) || "Travel to Bosa";
-    $("#tagline").textContent = tx(site.tagline);
-    document.title = tx(site.title) || "Travel to Bosa";
-    $("#orgs-link").href = `organisations/?lang=${state.lang}`;
+    const brand = tx(site.title) || "travel2sardinia";
+    if (state.dest) {
+      $("#site-title").textContent = destName();
+      $("#tagline").textContent = tx(state.dest.tagline);
+      $("#brand-name").textContent = brand;
+      $("#home-link").href = new URL(`?${qs()}`, BASE).href;
+      document.title = `${destName()} · ${brand}`;
+      $("#orgs-link").href = `organisations/?lang=${state.lang}`;
+    } else {
+      $("#site-title").textContent = brand;
+      $("#tagline").textContent = tx(site.tagline);
+      document.title = brand;
+      $("#orgs-link").href = `organisations/?lang=${state.lang}`;
+    }
 
-    // origin picker: unique cities grouped by country
+    // origin picker: unique cities (with flights to this destination's airports) grouped by country
     const byCountry = {};
-    for (const r of allRoutes()) {
+    for (const r of allRoutes().filter((r) => !state.dest || !state.dest.airports || state.dest.airports.includes(r.to))) {
       const c = countryName(r.country || "");
       (byCountry[c] = byCountry[c] || new Map()).set(r.from_iata, r.from_city);
     }
@@ -176,23 +191,23 @@
           .map(([iata, city]) => `<option value="${esc(iata)}">${esc(city)} (${esc(iata)})</option>`).join("") + "</optgroup>").join("");
     sel.value = state.origin;
 
-    const ta = $("#transfer-airport");
-    const keep = ta.value;
-    ta.innerHTML = site.airports.map((a) => `<option value="${a.code}">${esc(a.name)} (${a.code})</option>`).join("");
-    if (keep) ta.value = keep;
-
+    if (has("#transfer-airport")) {
+      const ta = $("#transfer-airport");
+      const keep = ta.value;
+      const aps = site.airports.filter((a) => !state.dest.airports || state.dest.airports.includes(a.code));
+      ta.innerHTML = aps.map((a) => `<option value="${a.code}">${esc(a.name)} (${a.code})</option>`).join("");
+      if (keep && aps.some((a) => a.code === keep)) ta.value = keep;
+      $("#transfer-time-field").hidden = !state.date;
+    }
     $("#date").value = state.date;
     $("#clear-date").hidden = !state.date;
-    $("#transfer-time-field").hidden = !state.date;
   }
 
   function renderBanner() {
     const b = $("#holiday-banner");
-    const hol = state.date ? eventsBetween(state.date, state.date).filter((e) => e.type === "holiday") : [];
-    if (hol.length && isTransportHoliday(state.date)) {
-      b.hidden = false;
-      b.textContent = `${hol.map((e) => tx(e.title)).join(" · ")} · ${t("holiday_warning")}`;
-    } else b.hidden = true;
+    const hol = state.date ? eventsBetween(state.date, state.date).filter((e) => e.type === "holiday" && e.transport === "holiday_timetable") : [];
+    b.hidden = !hol.length;
+    if (hol.length) b.textContent = `${hol.map((e) => tx(e.title)).join(" · ")} · ${t("holiday_warning")}`;
   }
 
   function scheduleText(r) {
@@ -228,6 +243,7 @@
         const status = state.date
           ? (flies ? `<span class="badge ok">${esc(t("flies_on_date"))}</span>` : `<span class="badge soft">${esc(t("not_on_date"))}</span>${nxt ? ` <span class="meta">${esc(t("next_flight", fmtDay(nxt)))}</span>` : ""}`)
           : "";
+        const connect = state.dest ? `<button type="button" class="btn ghost" data-connect="${esc(r.to)}" data-time="${esc(r.arr_time || "")}">${esc(t("show_connection", destName()))}</button>` : "";
         html += `<li class="card">
           <div class="card-main">
             <strong>${esc(r.from_city)}</strong> <span class="code">${esc(r.from_iata)} → ${esc(r.to)}</span>
@@ -239,7 +255,7 @@
           <div class="actions">
             <a class="btn" href="${sky}" target="_blank" rel="noopener">${esc(t("search_skyscanner"))}</a>
             <a class="btn ghost" href="${goo}" target="_blank" rel="noopener">${esc(t("search_google"))}</a>
-            <button type="button" class="btn ghost" data-connect="${esc(r.to)}" data-time="${esc(r.arr_time || "")}">${esc(t("show_connection"))}</button>
+            ${connect}
           </div></li>`;
       }
       html += "</ul>";
@@ -253,17 +269,42 @@
     }));
   }
 
+  function qs(extra) {
+    const p = new URLSearchParams();
+    p.set("lang", state.lang);
+    if (state.origin) p.set("from", state.origin);
+    if (state.date) p.set("date", state.date);
+    for (const [k, v] of Object.entries(extra || {})) p.set(k, v);
+    return p.toString();
+  }
+
+  function renderDestinations() {
+    const site = state.data.site;
+    const list = destinations();
+    const reachable = state.origin ? new Set(allRoutes().filter((r) => r.from_iata === state.origin).map((r) => r.to)) : null;
+    $("#destinations-body").innerHTML = '<ul class="cards dests">' + list.map((d) => {
+      const aps = (d.airports || []).map((c) => {
+        const ap = site.airports.find((a) => a.code === c);
+        const on = !reachable || reachable.has(c);
+        return `<span class="ap ${on ? "" : "off"}">${esc(ap ? ap.code : c)}</span>`;
+      }).join(" ");
+      return `<li class="card"><div class="card-main"><strong class="dest-name">${esc(tx(d.name))}</strong> <span class="meta">${esc(d.province || "")}</span>
+        <p>${esc(tx(d.tagline))}</p><div class="meta">${esc(t("from_airports"))}: ${aps}</div></div>
+        <div class="actions"><a class="btn" href="${esc(new URL(`${d.id}/?${qs()}`, BASE).href)}">${esc(t("open_dest", tx(d.name)))}</a></div></li>`;
+    }).join("") + "</ul>";
+  }
+
   function pathText(chain) {
     return chain.map((seg) => {
       const s = state.data.transit.segments[seg] || {};
       const [a, b] = seg.split("-");
-      return `${legIcon(s.mode)} ${esc(cap(a))} → ${esc(cap(b))} <span class="meta">${esc(s.operator || "")}</span>`;
+      return `${legIcon(s.mode)} ${esc(placeName(a))} → ${esc(placeName(b))} <span class="meta">${esc(s.operator || "")}</span>`;
     }).join("<br>");
   }
 
   function opButtons(ops) {
-    const links = state.data.site.links || {};
-    const opLink = { ARST: links.arst, Trenitalia: links.trenitalia, ASPO: links.aspo };
+    const l = links();
+    const opLink = { ARST: l.arst, Trenitalia: l.trenitalia, ASPO: l.aspo };
     return ops.filter((o) => opLink[o]).map((o) => `<a class="btn ghost" href="${esc(opLink[o])}" target="_blank" rel="noopener">${esc(t("buy_ticket"))} ${esc(o)}</a>`).join("");
   }
 
@@ -272,22 +313,21 @@
     const body = $("#transfer-body");
     const airport = $("#transfer-airport").value;
     if (!transitReady()) { body.innerHTML = `<p class="empty">${esc(t("transit_missing"))}</p>`; return; }
+    if (!chainsFor(airport).length) { body.innerHTML = `<p class="empty">${esc(t("transit_no_route"))}</p>`; return; }
     const updated = `<p class="small">${esc(t("transit_updated", fmtDay(tr.generated.slice(0, 10), { weekday: undefined, year: "numeric" })))}</p>`;
 
-    // No date: a plain overview of the usual route and how often it runs.
+    // No date: the usual route and how often it runs.
     if (!state.date) {
       const d = typicalWeekday();
       const its = d ? itineraries(airport, d, -AIRPORT_EXIT_MIN) : [];
-      const chains = (tr.chains || {})[airport] || [];
-      const usedChain = its.length ? its[0].map((l) => l.seg) : chains[0] || [];
+      const usedChain = its.length ? its[0].map((l) => l.seg) : chainsFor(airport)[0];
       let html = `<div class="itin"><div class="itin-head"><strong>${esc(t("route_path"))}</strong></div><div class="legs">${pathText(usedChain)}</div>`;
       if (its.length) {
         const durs = its.map((l) => l[l.length - 1].arr - l[0].dep).sort((a, b) => a - b);
         html += `<p>${esc(t("typical_day", its.length, hm(its[0][0].dep), hm(its[its.length - 1][0].dep)))} ${esc(t("typical_time", dur(durs[Math.floor(durs.length / 2)])))}</p>`;
         html += `<div class="actions">${opButtons([...new Set(its[0].map((l) => l.operator))])}</div>`;
       }
-      html += `</div><p class="notice">${esc(t("pick_date_for_times"))}</p>${updated}`;
-      body.innerHTML = html;
+      body.innerHTML = html + `</div><p class="notice">${esc(t("pick_date_for_times"))}</p>${updated}`;
       return;
     }
 
@@ -296,14 +336,14 @@
     const its = itineraries(airport, state.date, toMin(time), 3);
     let html = "";
     if (isTransportHoliday(state.date)) html += `<p class="notice">${esc(t("holiday_warning"))}</p>`;
-    if (!its.length) html += `<p class="empty">${esc(t("transit_none", time))}</p>`;
+    if (!its.length) html += `<p class="empty">${esc(t("transit_none", time, destName()))}</p>`;
     html += '<ol class="itins">';
     for (const legs of its) {
       const last = legs[legs.length - 1];
-      html += `<li class="itin"><div class="itin-head"><strong>${hm(legs[0].dep)} → ${hm(last.arr)}</strong> <span class="meta">${esc(t("arrive_bosa"))} · ${esc(t("total"))} ${dur(last.arr - toMin(time))}</span></div><ul class="legs">`;
+      html += `<li class="itin"><div class="itin-head"><strong>${hm(legs[0].dep)} → ${hm(last.arr)}</strong> <span class="meta">${esc(t("arrive_dest", destName()))} · ${esc(t("total"))} ${dur(last.arr - toMin(time))}</span></div><ul class="legs">`;
       legs.forEach((l, i) => {
         const [a, b] = l.seg.split("-");
-        html += `<li><span class="mode">${legIcon(l.mode)}</span> ${hm(l.dep)}–${hm(l.arr)} · ${esc(cap(a))} → ${esc(cap(b))} <span class="meta">${esc(l.operator)}${l.route ? " " + esc(l.route) : ""}${i > 0 ? ` · ${esc(t("change_at"))}` : ""}</span></li>`;
+        html += `<li><span class="mode">${legIcon(l.mode)}</span> ${hm(l.dep)}–${hm(l.arr)} · ${esc(placeName(a))} → ${esc(placeName(b))} <span class="meta">${esc(l.operator)}${l.route ? " " + esc(l.route) : ""}${i > 0 ? ` · ${esc(t("change_at"))}` : ""}</span></li>`;
       });
       html += `</ul><div class="actions">${opButtons([...new Set(legs.map((l) => l.operator))])}</div></li>`;
     }
@@ -311,17 +351,17 @@
   }
 
   function renderStays() {
-    const stays = (state.data.stays.stays || []).filter(published);
-    const links = state.data.site.links || {};
+    const stays = ((state.data.stays || {}).stays || []).filter(published);
+    const l = links();
     const body = $("#stays-body");
-    const signup = links.hodlstay_host_signup_url;
+    const signup = l.hodlstay_host_signup_url;
     if (!stays.length) {
-      body.innerHTML = `<p class="empty">${esc(t("no_stays"))}</p>` +
+      body.innerHTML = `<p class="empty">${esc(t("no_stays", destName()))}</p>` +
         (signup ? `<a class="btn" href="${esc(signup)}" target="_blank" rel="noopener">${esc(t("become_host"))}</a>` : "");
       return;
     }
     body.innerHTML = '<ul class="cards">' + stays.map((s) => {
-      const url = s.url || links.hodlstay_base_url;
+      const url = s.url || l.hodlstay_base_url;
       return `<li class="card"><div class="card-main"><strong>${esc(s.name)}</strong>
         <div class="meta">${[s.type, s.area, (s.languages || []).join(", ")].filter(Boolean).map(esc).join(" · ")}</div>
         ${tx(s.notes) ? `<p>${esc(tx(s.notes))}</p>` : ""}</div>
@@ -343,7 +383,6 @@
   }
 
   function renderEvents() {
-    // Around the chosen date
     let html = "";
     if (state.date) {
       const d = state.date;
@@ -356,19 +395,17 @@
     $("#events-body").innerHTML = html;
 
     // The year at a glance
-    const ev = state.data.events;
-    const year = ev.year || Number(today().slice(0, 4));
-    const all = (ev.events || []).filter(published);
+    const year = state.data.year || Number(today().slice(0, 4));
+    const all = allEvents();
     const flightMonths = new Set();
-    if (state.origin) allRoutes().filter((r) => r.from_iata === state.origin).forEach((r) => routeMonths(r, year).forEach((m) => flightMonths.add(m)));
-    $("#year-title").textContent = t("year_title", year);
-    $("#year-intro").textContent = state.origin ? t("year_intro_city", originCity()) : t("year_intro");
+    if (state.origin) visibleRoutes().forEach((r) => routeMonths(r, year).forEach((m) => flightMonths.add(m)));
+    $("#year-title").textContent = state.dest ? t("year_title", year, destName()) : t("holidays_title", year);
+    $("#year-intro").textContent = state.dest ? (state.origin ? t("year_intro_city", originCity()) : t("year_intro")) : t("holidays_intro") + (state.origin ? " " + t("flights_marks", originCity()) : "");
 
     let yh = '<div class="months">';
     for (let m = 0; m < 12; m++) {
-      const first = `${year}-${String(m + 1).padStart(2, "0")}-01`;
-      const last = addDays(m === 11 ? `${year + 1}-01-01` : `${year}-${String(m + 2).padStart(2, "0")}-01`, -1);
-      const items = all.filter((e) => e.start && e.start <= last && (e.end || e.start) >= first && e.start >= first);
+      const [first, last] = monthBounds(year, m);
+      const items = all.filter((e) => e.start && e.start >= first && e.start <= last);
       const fly = state.origin ? (flightMonths.has(m) ? `<span class="fly yes">✈ ${esc(t("flights_month"))}</span>` : `<span class="fly no">✈ —</span>`) : "";
       const current = state.date && state.date >= first && state.date <= last ? " current" : "";
       yh += `<section class="month${current}"><h4>${esc(monthName(year, m))} ${fly}</h4>` +
@@ -389,7 +426,7 @@
   }
 
   function renderInfo() {
-    const tips = (state.data.info.tips || []).filter(published);
+    const tips = (state.data.tips || []).filter(published);
     $("#info-body").innerHTML = '<ul class="tips">' + tips.map((x) =>
       `<li><strong>${esc(tx(x.title))}</strong>${x.verified === false ? ` <span class="badge soft">${esc(t("unverified"))}</span>` : ""}<p>${esc(tx(x.body))}</p></li>`).join("") + "</ul>";
   }
@@ -402,8 +439,8 @@
       maxZoom: 18, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(state.map);
     state.layers = L.layerGroup().addTo(state.map);
-    const site = state.data.site;
-    state.map.setView([site.bosa.lat, site.bosa.lon], 7);
+    const c = state.dest || state.data.site.center || { lat: 40.05, lon: 9.0 };
+    state.map.setView([c.lat, c.lon], 7);
   }
 
   function renderMap(fit) {
@@ -411,27 +448,33 @@
     const site = state.data.site;
     const g = state.layers;
     g.clearLayers();
-    const bosa = [site.bosa.lat, site.bosa.lon];
     const apPos = Object.fromEntries(site.airports.map((a) => [a.code, [a.lat, a.lon]]));
     const routes = visibleRoutes().filter((r) => r.lat != null && r.lon != null && apPos[r.to]);
-    const usedAirports = state.origin ? new Set(routes.map((r) => r.to)) : new Set(Object.keys(apPos));
+    const used = state.origin ? new Set(routes.map((r) => r.to)) : new Set(state.dest && state.dest.airports ? state.dest.airports : Object.keys(apPos));
 
     for (const r of routes) {
       L.polyline([[r.lat, r.lon], apPos[r.to]], { color: "#2f6f8f", weight: state.origin ? 2.5 : 1.5, opacity: 0.7 }).addTo(g);
       L.circleMarker([r.lat, r.lon], { radius: state.origin ? 7 : 5, color: "#2f6f8f", fillColor: "#fff", fillOpacity: 1, weight: 2 })
         .bindTooltip(`${r.from_city} (${r.from_iata}) → ${r.to}`, { permanent: !!state.origin, direction: "top" }).addTo(g);
     }
+    const dests = state.dest ? [state.dest] : destinations();
     for (const a of site.airports) {
-      const on = usedAirports.has(a.code);
-      L.polyline([apPos[a.code], bosa], { color: "#c4573a", weight: 2, dashArray: "5 6", opacity: on ? 1 : 0.25 }).addTo(g);
+      const on = used.has(a.code);
+      if (state.dest && (state.dest.airports || []).includes(a.code)) {
+        L.polyline([apPos[a.code], [state.dest.lat, state.dest.lon]], { color: "#c4573a", weight: 2, dashArray: "5 6", opacity: on ? 1 : 0.25 }).addTo(g);
+      }
       L.circleMarker(apPos[a.code], { radius: 7, color: "#2b2622", fillColor: on ? "#d9a441" : "#e9dfc9", fillOpacity: 1, weight: 2 })
         .bindTooltip(`${a.name} (${a.code})`).addTo(g);
     }
-    L.circleMarker(bosa, { radius: 9, color: "#2b2622", fillColor: "#c4573a", fillOpacity: 1, weight: 2 })
-      .bindTooltip("Bosa", { permanent: true, direction: "right", className: "bosa-label" }).addTo(g);
+    for (const d of dests) {
+      const m = L.circleMarker([d.lat, d.lon], { radius: 9, color: "#2b2622", fillColor: "#c4573a", fillOpacity: 1, weight: 2 })
+        .bindTooltip(tx(d.name), { permanent: true, direction: "right", className: "dest-label" }).addTo(g);
+      if (!state.dest) m.on("click", () => { location.href = new URL(`${d.id}/?${qs()}`, BASE).href; });
+    }
 
-    if (fit === "sardinia" || !routes.length) state.map.fitBounds(L.latLngBounds([bosa, ...Object.values(apPos)]).pad(0.25));
-    else if (fit) state.map.fitBounds(L.latLngBounds([bosa, ...routes.map((r) => [r.lat, r.lon])]).pad(0.15));
+    const island = [...Object.values(apPos), ...dests.map((d) => [d.lat, d.lon])];
+    if (fit === "sardinia" || !routes.length) state.map.fitBounds(L.latLngBounds(island).pad(0.2));
+    else if (fit) state.map.fitBounds(L.latLngBounds([...dests.map((d) => [d.lat, d.lon]), ...routes.map((r) => [r.lat, r.lon])]).pad(0.15));
   }
 
   // ---------- wiring ----------
@@ -447,69 +490,89 @@
     renderStatic();
     renderBanner();
     renderFlights();
-    renderTransfer();
-    renderStays();
+    if (has("#destinations-body")) renderDestinations();
+    if (has("#transfer-body")) renderTransfer();
+    if (has("#stays-body")) renderStays();
     renderEvents();
     renderInfo();
     renderMap(fit === undefined ? "all" : fit);
   }
 
-  function setDate(d) {
-    state.date = d || "";
-    syncURL();
-    renderAll();
-  }
+  function setDate(d) { state.date = d || ""; syncURL(); renderAll(); }
 
   function setOrigin(o) {
     state.origin = o || "";
-    store.set("t2b-from", state.origin);
-    const r = allRoutes().find((x) => x.from_iata === state.origin);
-    if (r) { $("#transfer-airport").value = r.to; if (r.arr_time) $("#transfer-time").value = r.arr_time; }
+    store.set("t2s-from", state.origin);
+    const r = visibleRoutes()[0];
+    if (r && has("#transfer-airport")) { $("#transfer-airport").value = r.to; if (r.arr_time) $("#transfer-time").value = r.arr_time; }
     syncURL();
     renderAll();
   }
 
   function setLang(l) {
     state.lang = I18N[l] ? l : "en";
-    store.set("t2b-lang", state.lang);
+    store.set("t2s-lang", state.lang);
     syncURL();
     renderAll(null);
   }
 
+  function defaultLang() {
+    const host = location.hostname;
+    if (/sardegna/i.test(host)) return "it";   // travel2sardegna.com
+    if (/sardinia/i.test(host)) return "en";   // travel2sardinia.com
+    return (navigator.language || "en").slice(0, 2) === "it" ? "it" : "en";
+  }
+
   async function init() {
     const params = new URLSearchParams(location.search);
-    const browserLang = (navigator.language || "it").slice(0, 2);
-    state.lang = params.get("lang") || store.get("t2b-lang") || (browserLang === "it" ? "it" : "en");
+    state.lang = params.get("lang") || store.get("t2s-lang") || defaultLang();
     if (!I18N[state.lang]) state.lang = "en";
     const d = params.get("date") || "";
     state.date = /^\d{4}-\d{2}-\d{2}$/.test(d) ? d : "";
 
-    const [site, flights, events, stays, info, transit] = await Promise.all([
-      loadJSON("site", { airports: [], bosa: { lat: 40.2981, lon: 8.4979 }, links: {} }),
+    const [site, flights, holidays, dests, tips, transit] = await Promise.all([
+      loadJSON("site", { airports: [], links: {} }),
       loadJSON("flights", { routes: [] }),
-      loadJSON("events", { events: [] }),
-      loadJSON("stays", { stays: [] }),
+      loadJSON("holidays", { events: [] }),
+      loadJSON("destinations", { destinations: [] }),
       loadJSON("info", { tips: [] }),
       loadJSON("transit", { generated: null, segments: {}, services: [], chains: {} })
     ]);
-    state.data = { site, flights, events, stays, info, transit };
+    state.data = { site, flights, destinations: dests, transit, events: holidays.events || [], tips: tips.tips || [], year: holidays.year };
 
-    const from = params.get("from") || store.get("t2b-from") || "";
-    state.origin = allRoutes().some((r) => r.from_iata === from) ? from : "";
+    if (DEST) {
+      state.dest = (dests.destinations || []).find((x) => x.id === DEST) || { id: DEST, name: { it: DEST, en: DEST }, lat: 40.05, lon: 9.0 };
+      const [destSettings, events, stays, info] = await Promise.all([
+        loadJSON(`destinations/${DEST}/destination`, { links: {} }),
+        loadJSON(`destinations/${DEST}/events`, { events: [] }),
+        loadJSON(`destinations/${DEST}/stays`, { stays: [] }),
+        loadJSON(`destinations/${DEST}/info`, { tips: [] })
+      ]);
+      state.data.destSettings = destSettings;
+      state.data.stays = stays;
+      state.data.events = state.data.events.concat(events.events || []);
+      state.data.tips = (info.tips || []).concat(state.data.tips);
+      state.data.year = events.year || state.data.year;
+    }
+
+    const from = params.get("from") || store.get("t2s-from") || "";
+    state.origin = allRoutes().some((r) => r.from_iata === from && (!state.dest || !state.dest.airports || state.dest.airports.includes(r.to))) ? from : "";
 
     $("#date").addEventListener("change", (e) => setDate(e.target.value));
     $("#clear-date").addEventListener("click", () => setDate(""));
     $("#origin").addEventListener("change", (e) => setOrigin(e.target.value));
     document.querySelectorAll("[data-lang]").forEach((b) => b.addEventListener("click", () => setLang(b.dataset.lang)));
-    $("#transfer-airport").addEventListener("change", renderTransfer);
-    $("#transfer-time").addEventListener("change", renderTransfer);
+    if (has("#transfer-airport")) {
+      $("#transfer-airport").addEventListener("change", renderTransfer);
+      $("#transfer-time").addEventListener("change", renderTransfer);
+    }
     $("#fit-all").addEventListener("click", () => renderMap("all"));
     $("#fit-sardinia").addEventListener("click", () => renderMap("sardinia"));
 
     initMap();
     renderStatic();
-    const r = allRoutes().find((x) => x.from_iata === state.origin);
-    if (r) $("#transfer-airport").value = r.to;
+    const r = visibleRoutes()[0];
+    if (r && state.origin && has("#transfer-airport")) $("#transfer-airport").value = r.to;
     renderAll();
   }
 
