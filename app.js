@@ -703,7 +703,7 @@
         if (opts.length) html += `<p class="notice">${esc(t("no_flight_on_date", originCity()))}</p>`;
       }
       if (!opts.length) continue;
-      if (!state.dest) html += `<h3 class="jdest">→ ${esc(tx(dest.name))}</h3>`;
+      if (!state.dest && dests.length > 1) html += `<h3 class="jdest">→ ${esc(tx(dest.name))}</h3>`;
       opts.forEach((o, i) => {
         const ap = state.data.site.airports.find((a) => a.code === o.airport) || {};
         const airlines = [...new Set(o.routes.map((r) => r.airline))].join(", ");
@@ -711,7 +711,6 @@
         const groundLine = g.count
           ? `${esc(t("on_land_total", dur(g.dur)))} · ${esc(t(state.date && !g.fallback ? "connections_on_date" : "connections_day", g.count, hm(g.first), hm(g.last)))}`
           : "";
-        const destUrl = (hash) => state.dest ? hash : new URL(`${dest.id}/?${qs()}${hash}`, BASE).href;
         html += `<div class="jopt" style="--ap:${esc(ap.color || "#2f6f8f")}">
           ${opts.length > 1 && i === 0 ? `<span class="badge ok jbest">${esc(t("quickest_on_land"))}</span>` : ""}
           <ol class="jsteps">
@@ -719,14 +718,60 @@
               <div class="meta">${esc(airlines)} · ${esc(o.routes.map(scheduleShort).filter(Boolean).join(" / ") || t("days_tbc"))}</div></div></li>
             ${legRows(g.chain)}
             <li class="jsum"><span class="jicon">⏱</span><div>${groundLine ? `<div class="meta">${groundLine}</div>` : ""}${connectionCheck(o, dest)}</div></li>
-            <li><span class="jicon">🛏</span><div><a href="${esc(destUrl("#stays"))}">${esc(t("s3_title", tx(dest.name)))}</a> · <a href="${esc(destUrl("#events"))}">${esc(t("whats_on"))}</a>
-              ${state.dest ? "" : ` · <a class="btn small-btn" href="${esc(destUrl(""))}">${esc(t("open_dest", tx(dest.name)))}</a>`}</div></li>
           </ol></div>`;
       });
     }
-    $("#journey-title").textContent = t("journey_title", originCity());
+    $("#journey-title").textContent = t("journey_title");
     $("#journey-body").innerHTML = html || `<p class="empty">${esc(t("no_flights"))}</p>`;
     box.hidden = false;
+  }
+
+  // ---------- home: Accommodation and Events cards (one block per town) ----------
+  const destLink = (dest, hash) => new URL(`${dest.id}/?${qs()}${hash}`, BASE).href;
+
+  function renderHomeCards() {
+    const sc = $("#stays-card"), ec = $("#events-card");
+    if (!sc || !ec) return;
+    const show = !!state.origin;
+    sc.hidden = ec.hidden = !show;
+    if (!show) return;
+    const dests = destinations().filter((d) => journeyOptions(d).length);
+    const many = dests.length > 1;
+    let sh = "", eh = "";
+    for (const dest of dests) {
+      const dd = (state.data.destData || {})[dest.id] || {};
+      const name = tx(dest.name);
+      if (many) { sh += `<h3 class="jdest">${esc(name)}</h3>`; eh += `<h3 class="jdest">${esc(name)}</h3>`; }
+
+      const stays = (dd.stays || []).filter(published);
+      sh += stays.length
+        ? `<ul class="cards">${stays.slice(0, 3).map((s) => `<li class="card"><div class="card-main"><strong>${esc(s.name)}</strong>
+            <div class="meta">${[s.type, s.area].filter(Boolean).map(esc).join(" · ")}</div></div></li>`).join("")}</ul>`
+        : `<p class="empty">${esc(t("no_stays", name))}</p>`;
+      sh += `<p><a class="btn small-btn" href="${esc(destLink(dest, "#stays"))}">${esc(t("all_stays", name, stays.length))}</a></p>`;
+
+      const evs = (dd.events || []).filter((e) => published(e) && e.start);
+      let list, head;
+      if (state.date) {
+        const from = addDays(state.date, -7), to = addDays(state.date, 14);
+        list = evs.filter((e) => e.start <= to && (e.end || e.start) >= from);
+        head = t("around_date", fmtDay(state.date));
+      } else {
+        list = evs.filter((e) => (e.end || e.start) >= today());
+        head = t("coming_up");
+      }
+      list = list.sort((a, b) => a.start.localeCompare(b.start)).slice(0, 5);
+      eh += `<h4 class="evhead">${esc(head)}</h4>` + (list.length
+        ? `<ul class="events">${list.map((e) => eventItem(e, true)).join("")}</ul>`
+        : `<p class="empty">${esc(t("no_events_near"))}</p>`);
+      eh += `<p><a class="btn small-btn" href="${esc(destLink(dest, "#events"))}">${esc(t("full_calendar", name))}</a></p>`;
+    }
+    $("#stays-card-body").innerHTML = sh;
+    $("#events-card-body").innerHTML = eh;
+    document.querySelectorAll("#events-card [data-pick]").forEach((b) => b.addEventListener("click", () => {
+      setDate(b.dataset.pick);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }));
   }
 
   // ---------- feedback (report an error) ----------
@@ -900,6 +945,7 @@
     renderFlights();
     if (has("#destinations-body")) renderDestinations();
     renderJourney();
+    renderHomeCards();
     if (has("#transfer-body")) renderTransfer();
     if (has("#stays-body")) renderStays();
     renderEvents();
@@ -950,6 +996,18 @@
       loadJSON("transit-config", { places: {} })
     ]);
     state.data = { site, flights, destinations: dests, transit, transitConfig, events: holidays.events || [], tips: tips.tips || [], year: holidays.year };
+
+    if (!DEST) {
+      // The home page shows each town's stays and events in its own cards.
+      state.data.destData = {};
+      await Promise.all((dests.destinations || []).filter(published).map(async (d) => {
+        const [events, stays] = await Promise.all([
+          loadJSON(`destinations/${d.id}/events`, { events: [] }),
+          loadJSON(`destinations/${d.id}/stays`, { stays: [] })
+        ]);
+        state.data.destData[d.id] = { events: events.events || [], stays: stays.stays || [] };
+      }));
+    }
 
     if (DEST) {
       state.dest = (dests.destinations || []).find((x) => x.id === DEST) || { id: DEST, name: { it: DEST, en: DEST }, lat: 40.05, lon: 9.0 };

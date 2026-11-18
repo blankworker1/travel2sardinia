@@ -231,3 +231,5 @@ footer { padding-bottom: 4.5rem; }
 .jw.ok { background: #e8f1e6; }
 .jw.warn { background: #f8e3d6; font-weight: 600; }
 .jw.info { background: #f3ece0; }
+
+.evhead { margin: .2rem 0 .4rem; font: 600 .95rem system-ui, sans-serif; color: var(--muted, #6b625b); }
