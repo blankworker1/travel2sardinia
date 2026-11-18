@@ -21,23 +21,25 @@
       "mode": "bus",
       "operator": "ARST",
       "from": "aeroporto.*(alghero|fertilia)|(alghero|fertilia).*aeroporto",
-      "to": "\\bbosa\\b"
+      "to": "^bosa\\b",
+      "to_exclude": "abba|bivio"
     },
     "AHO-ALGHERO": {
       "feed": "arst",
       "mode": "bus",
       "operator": "ARST",
       "from": "aeroporto.*(alghero|fertilia)|(alghero|fertilia).*aeroporto",
-      "to": "alghero",
-      "to_exclude": "aeroporto|fertilia"
+      "to": "^alghero via catalogna$",
+      "to_exclude": ""
     },
     "ALGHERO-BOSA": {
       "feed": "arst",
       "mode": "bus",
       "operator": "ARST",
-      "from": "alghero",
-      "from_exclude": "aeroporto|fertilia",
-      "to": "\\bbosa\\b"
+      "from": "^alghero via catalogna$",
+      "from_exclude": "",
+      "to": "^bosa\\b",
+      "to_exclude": "abba|bivio"
     },
     "CAG-MACOMER": {
       "feed": "trenitalia",
@@ -81,8 +83,9 @@
       "feed": "arst",
       "mode": "bus",
       "operator": "ARST",
-      "from": "macomer",
-      "to": "\\bbosa\\b"
+      "from": "^macomer( autostazione)?$",
+      "to": "^bosa\\b",
+      "to_exclude": "abba|bivio"
     }
   },
   "chains": {
