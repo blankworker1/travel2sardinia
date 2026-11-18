@@ -64,12 +64,16 @@ collections:
       - name: airline
         label: Airline
         widget: string
+      - name: flight_no
+        label: Flight number if the same for every period (optional)
+        widget: string
+        required: false
       - name: arr_time
-        label: Typical arrival time (HH:MM, optional)
+        label: Arrival time if the same for every period (HH:MM, optional)
         widget: string
         required: false
       - name: seasons
-        label: Operating periods
+        label: Operating periods (one per line on the airport's list)
         widget: list
         fields:
         - widget: datetime
@@ -88,6 +92,17 @@ collections:
           label: Days of week (1=Mon … 7=Sun, e.g. 1357)
           widget: string
           default: '1234567'
+        - name: arr_time
+          label: Arrival time in this period (HH:MM)
+          widget: string
+          required: false
+          pattern:
+          - ^$|^([01][0-9]|2[0-3]):[0-5][0-9]$
+          - Use 24-hour HH:MM, e.g. 07:10
+        - name: flight_no
+          label: Flight number in this period (e.g. FR753)
+          widget: string
+          required: false
       - name: sample
         label: Sample entry (shows a 'sample' badge)
         widget: boolean

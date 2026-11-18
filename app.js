@@ -59,10 +59,17 @@
   const allRoutes = () => (state.data.flights.routes || []).filter(published);
   const destinations = () => (state.data.destinations.destinations || []).filter(published);
 
-  function fliesOn(r, date) {
+  // The operating period (season) a route flies on for a given date, or null.
+  function seasonOn(r, date) {
     const wd = String(isoWeekday(date));
-    return (r.seasons || []).some((s) => s.start <= date && date <= s.end && String(s.days || "").includes(wd));
+    return (r.seasons || []).find((s) => s.start <= date && date <= s.end && String(s.days || "").includes(wd)) || null;
   }
+  const fliesOn = (r, date) => !!seasonOn(r, date);
+  // Arrival time: the period's own time first, then the route's general time.
+  const arrTime = (r, s) => (s && s.arr_time) || r.arr_time || "";
+  // With no date chosen: the next period still to come (else the first one).
+  const nextSeason = (r) => { const ss = [...(r.seasons || [])].sort((x, y) => x.start.localeCompare(y.start)); return ss.find((x) => x.end >= today()) || ss[0]; };
+  const flightNo = (r, s) => (s && s.flight_no) || r.flight_no || "";
 
   function nextFlight(r, from, maxDays) {
     for (let i = 1; i <= (maxDays || 120); i++) { const d = addDays(from, i); if (fliesOn(r, d)) return d; }
@@ -205,14 +212,22 @@
   }
 
   function scheduleText(r) {
-    return (r.seasons || []).map((s) => {
+    return [...(r.seasons || [])].sort((x, y) => x.start.localeCompare(y.start)).map((s) => {
       const a = parseDate(s.start), b = parseDate(s.end);
       const sameYear = a.getUTCFullYear() === b.getUTCFullYear();
-      const from = monthName(a.getUTCFullYear(), a.getUTCMonth(), "short") + (sameYear ? "" : " " + a.getUTCFullYear());
-      const to = monthName(b.getUTCFullYear(), b.getUTCMonth(), "short") + " " + b.getUTCFullYear();
+      const sameMonth = sameYear && a.getUTCMonth() === b.getUTCMonth();
       const days = String(s.days || "").split("").filter((d) => /[1-7]/.test(d));
       const dayTxt = days.length === 7 ? (state.lang === "it" ? "tutti i giorni" : "daily") : days.map(dayName).join(", ");
-      return `${from}–${to} · ${dayTxt}`;
+      let when;
+      if (s.start === s.end) when = fmtDay(s.start, { year: "numeric" });                       // a single date
+      else if (sameMonth) when = `${a.getUTCDate()}–${fmtDay(s.end, { weekday: undefined, year: "numeric" })}`; // 22–29 Dec 2026
+      else {
+        const from = monthName(a.getUTCFullYear(), a.getUTCMonth(), "short") + (sameYear ? "" : " " + a.getUTCFullYear());
+        const to = monthName(b.getUTCFullYear(), b.getUTCMonth(), "short") + " " + b.getUTCFullYear();
+        when = `${from}–${to}`;
+      }
+      const time = arrTime(r, s);
+      return [when, s.start === s.end ? "" : dayTxt, time ? `${t("arrives")} ${time}` : ""].filter(Boolean).join(" · ");
     }).join(" / ");
   }
 
@@ -229,7 +244,8 @@
       if (!rows.length) continue;
       html += `<h3>${esc(ap.name)} <span class="code">${ap.code}</span> <span class="count">${esc(t("flights_count", rows.length))}</span></h3><ul class="cards">`;
       for (const r of rows) {
-        const flies = state.date ? fliesOn(r, state.date) : null;
+        const season = state.date ? seasonOn(r, state.date) : null;
+        const flies = state.date ? !!season : null;
         const nxt = state.date && !flies ? nextFlight(r, state.date) : null;
         const when = flies ? state.date : nxt;
         const sky = `https://www.skyscanner.net/transport/flights/${r.from_iata.toLowerCase()}/${r.to.toLowerCase()}/` + (when ? when.slice(2).replace(/-/g, "") + "/" : "");
@@ -237,12 +253,12 @@
         const status = state.date
           ? (flies ? `<span class="badge ok">${esc(t("flies_on_date"))}</span>` : `<span class="badge soft">${esc(t("not_on_date"))}</span>${nxt ? ` <span class="meta">${esc(t("next_flight", fmtDay(nxt)))}</span>` : ""}`)
           : "";
-        const connect = state.dest ? `<button type="button" class="btn ghost" data-connect="${esc(r.to)}" data-time="${esc(r.arr_time || "")}">${esc(t("show_connection", destName()))}</button>` : "";
+        const connect = state.dest ? `<button type="button" class="btn ghost" data-connect="${esc(r.to)}" data-time="${esc(arrTime(r, season || nextSeason(r)))}">${esc(t("show_connection", destName()))}</button>` : "";
         html += `<li class="card">
           <div class="card-main">
             <strong>${esc(r.from_city)}</strong> <span class="code">${esc(r.from_iata)} → ${esc(r.to)}</span>
             ${r.sample ? `<span class="badge">${esc(t("sample"))}</span>` : ""}
-            <div class="meta">${esc(r.airline)}${r.arr_time ? ` · ${esc(t("arrives"))} ${esc(r.arr_time)}` : ""}</div>
+            <div class="meta">${esc(r.airline)}${flightNo(r, season) ? ` · ${esc(flightNo(r, season))}` : ""}${season && arrTime(r, season) ? ` · ${esc(t("arrives"))} ${esc(arrTime(r, season))}` : ""}</div>
             <div class="meta sched">${esc(scheduleText(r))}</div>
             ${status ? `<div class="status">${status}</div>` : ""}
           </div>
@@ -668,7 +684,7 @@
     state.origin = o || "";
     store.set("t2s-from", state.origin);
     const r = visibleRoutes()[0];
-    if (r && has("#transfer-airport")) { $("#transfer-airport").value = r.to; if (r.arr_time) $("#transfer-time").value = r.arr_time; }
+    if (r && has("#transfer-airport")) { $("#transfer-airport").value = r.to; const tm = arrTime(r, state.date ? seasonOn(r, state.date) : nextSeason(r)); if (tm) $("#transfer-time").value = tm; }
     syncURL();
     renderAll();
   }
@@ -744,7 +760,11 @@
     initMap();
     renderStatic();
     const r = visibleRoutes()[0];
-    if (r && state.origin && has("#transfer-airport")) $("#transfer-airport").value = r.to;
+    if (r && state.origin && has("#transfer-airport")) {
+      $("#transfer-airport").value = r.to;
+      const tm = arrTime(r, state.date ? seasonOn(r, state.date) : nextSeason(r));
+      if (tm) $("#transfer-time").value = tm;
+    }
     renderAll();
   }
 
