@@ -12,7 +12,13 @@
       "to": "AHO",
       "airline": "Sample airline",
       "arr_time": "",
-      "seasons": [ { "start": "2027-01-01", "end": "2027-12-31", "days": "1357" } ],
+      "seasons": [
+        {
+          "start": "2027-01-01",
+          "end": "2027-12-31",
+          "days": "1357"
+        }
+      ],
       "sample": true,
       "published": true
     },
@@ -21,12 +27,18 @@
       "from_iata": "FCO",
       "from_city": "Roma Fiumicino",
       "country": "IT",
-      "lat": 41.800,
+      "lat": 41.8,
       "lon": 12.239,
       "to": "CAG",
       "airline": "Sample airline",
       "arr_time": "",
-      "seasons": [ { "start": "2027-01-01", "end": "2027-12-31", "days": "1234567" } ],
+      "seasons": [
+        {
+          "start": "2027-01-01",
+          "end": "2027-12-31",
+          "days": "1234567"
+        }
+      ],
       "sample": true,
       "published": true
     },
@@ -35,14 +47,399 @@
       "from_iata": "MXP",
       "from_city": "Milano Malpensa",
       "country": "IT",
-      "lat": 45.630,
+      "lat": 45.63,
       "lon": 8.723,
       "to": "OLB",
       "airline": "Sample airline",
       "arr_time": "",
-      "seasons": [ { "start": "2027-04-01", "end": "2027-10-30", "days": "1234567" } ],
+      "seasons": [
+        {
+          "start": "2027-04-01",
+          "end": "2027-10-30",
+          "days": "1234567"
+        }
+      ],
       "sample": true,
       "published": true
+    },
+    {
+      "id": "aho-blq-fr",
+      "from_iata": "BLQ",
+      "from_city": "Bologna",
+      "from_city_en": "Bologna",
+      "country": "IT",
+      "lat": 44.535,
+      "lon": 11.289,
+      "to": "AHO",
+      "airline": "Ryanair",
+      "flight_no": "FR753",
+      "arr_time": "",
+      "seasons": [
+        {
+          "start": "2026-10-25",
+          "end": "2027-03-21",
+          "days": "",
+          "arr_time": "15:25",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-10-30",
+          "end": "2026-12-18",
+          "days": "",
+          "arr_time": "12:40",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-22",
+          "end": "2026-12-29",
+          "days": "",
+          "arr_time": "07:10",
+          "flight_no": ""
+        },
+        {
+          "start": "2027-03-23",
+          "end": "2027-03-23",
+          "days": "",
+          "arr_time": "18:15",
+          "flight_no": ""
+        },
+        {
+          "start": "2027-03-24",
+          "end": "2027-03-24",
+          "days": "",
+          "arr_time": "07:00",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": false,
+      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — days of week to fill in"
+    },
+    {
+      "id": "aho-goa-xz",
+      "from_iata": "GOA",
+      "from_city": "Genova",
+      "from_city_en": "Genoa",
+      "country": "IT",
+      "lat": 44.413,
+      "lon": 8.838,
+      "to": "AHO",
+      "airline": "Aeroitalia",
+      "flight_no": "XZ2428",
+      "arr_time": "",
+      "seasons": [
+        {
+          "start": "2026-12-23",
+          "end": "2026-12-29",
+          "days": "",
+          "arr_time": "14:10",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": false,
+      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — days of week to fill in"
+    },
+    {
+      "id": "aho-bgy-fr",
+      "from_iata": "BGY",
+      "from_city": "Milano Bergamo",
+      "from_city_en": "Milan Bergamo",
+      "country": "IT",
+      "lat": 45.669,
+      "lon": 9.704,
+      "to": "AHO",
+      "airline": "Ryanair",
+      "flight_no": "FR2254",
+      "arr_time": "",
+      "seasons": [
+        {
+          "start": "2026-10-26",
+          "end": "2027-03-22",
+          "days": "",
+          "arr_time": "11:35",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-10-30",
+          "end": "2026-12-18",
+          "days": "",
+          "arr_time": "17:45",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-24",
+          "end": "2026-12-24",
+          "days": "",
+          "arr_time": "17:10",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-31",
+          "end": "2026-12-31",
+          "days": "",
+          "arr_time": "21:00",
+          "flight_no": ""
+        },
+        {
+          "start": "2027-03-24",
+          "end": "2027-03-24",
+          "days": "",
+          "arr_time": "07:20",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": false,
+      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — days of week to fill in"
+    },
+    {
+      "id": "aho-lin-az",
+      "from_iata": "LIN",
+      "from_city": "Milano Linate",
+      "from_city_en": "Milan Linate",
+      "country": "IT",
+      "lat": 45.445,
+      "lon": 9.277,
+      "to": "AHO",
+      "airline": "ITA Airways",
+      "flight_no": "",
+      "arr_time": "",
+      "seasons": [
+        {
+          "start": "2026-10-27",
+          "end": "2026-12-01",
+          "days": "",
+          "arr_time": "08:00",
+          "flight_no": "AZ1600"
+        },
+        {
+          "start": "2026-10-27",
+          "end": "2027-01-30",
+          "days": "",
+          "arr_time": "23:00",
+          "flight_no": "AZ1566"
+        },
+        {
+          "start": "2026-11-15",
+          "end": "2026-11-29",
+          "days": "",
+          "arr_time": "20:50",
+          "flight_no": "AZ1604"
+        }
+      ],
+      "sample": false,
+      "published": false,
+      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — days of week to fill in"
+    },
+    {
+      "id": "aho-mxp-fr",
+      "from_iata": "MXP",
+      "from_city": "Milano Malpensa",
+      "from_city_en": "Milan Malpensa",
+      "country": "IT",
+      "lat": 45.63,
+      "lon": 8.723,
+      "to": "AHO",
+      "airline": "Ryanair",
+      "flight_no": "FR1090",
+      "arr_time": "",
+      "seasons": [
+        {
+          "start": "2026-10-25",
+          "end": "2027-03-21",
+          "days": "",
+          "arr_time": "17:15",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-10-30",
+          "end": "2026-12-18",
+          "days": "",
+          "arr_time": "23:10",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-23",
+          "end": "2026-12-30",
+          "days": "",
+          "arr_time": "22:25",
+          "flight_no": ""
+        },
+        {
+          "start": "2027-03-23",
+          "end": "2027-03-23",
+          "days": "",
+          "arr_time": "23:15",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": false,
+      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — days of week to fill in"
+    },
+    {
+      "id": "aho-nap-fr",
+      "from_iata": "NAP",
+      "from_city": "Napoli",
+      "from_city_en": "Naples",
+      "country": "IT",
+      "lat": 40.886,
+      "lon": 14.291,
+      "to": "AHO",
+      "airline": "Ryanair",
+      "flight_no": "FR1660",
+      "arr_time": "",
+      "seasons": [
+        {
+          "start": "2026-12-05",
+          "end": "2027-03-27",
+          "days": "",
+          "arr_time": "21:10",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-07",
+          "end": "2027-03-22",
+          "days": "",
+          "arr_time": "08:50",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": false,
+      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — days of week to fill in"
+    },
+    {
+      "id": "aho-psa-fr",
+      "from_iata": "PSA",
+      "from_city": "Pisa",
+      "from_city_en": "Pisa",
+      "country": "IT",
+      "lat": 43.684,
+      "lon": 10.393,
+      "to": "AHO",
+      "airline": "Ryanair",
+      "flight_no": "FR7992",
+      "arr_time": "",
+      "seasons": [
+        {
+          "start": "2026-10-25",
+          "end": "2027-01-31",
+          "days": "",
+          "arr_time": "08:30",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-10-30",
+          "end": "2026-12-18",
+          "days": "",
+          "arr_time": "07:25",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-22",
+          "end": "2026-12-29",
+          "days": "",
+          "arr_time": "11:10",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-24",
+          "end": "2026-12-31",
+          "days": "",
+          "arr_time": "11:35",
+          "flight_no": ""
+        },
+        {
+          "start": "2027-02-07",
+          "end": "2027-03-21",
+          "days": "",
+          "arr_time": "07:30",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": false,
+      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — days of week to fill in"
+    },
+    {
+      "id": "aho-fco-xz",
+      "from_iata": "FCO",
+      "from_city": "Roma Fiumicino",
+      "from_city_en": "Rome Fiumicino",
+      "country": "IT",
+      "lat": 41.8,
+      "lon": 12.239,
+      "to": "AHO",
+      "airline": "Aeroitalia",
+      "flight_no": "",
+      "arr_time": "",
+      "seasons": [
+        {
+          "start": "2026-10-25",
+          "end": "2026-12-31",
+          "days": "",
+          "arr_time": "10:15",
+          "flight_no": "XZ2511"
+        },
+        {
+          "start": "2026-10-25",
+          "end": "2027-03-27",
+          "days": "",
+          "arr_time": "14:00",
+          "flight_no": "XZ2513"
+        },
+        {
+          "start": "2026-10-25",
+          "end": "2026-12-30",
+          "days": "",
+          "arr_time": "22:35",
+          "flight_no": "XZ2517"
+        },
+        {
+          "start": "2027-02-01",
+          "end": "2027-03-27",
+          "days": "",
+          "arr_time": "18:40",
+          "flight_no": "XZ2515"
+        }
+      ],
+      "sample": false,
+      "published": false,
+      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — days of week to fill in"
+    },
+    {
+      "id": "aho-trs-xz",
+      "from_iata": "TRS",
+      "from_city": "Trieste",
+      "from_city_en": "Trieste",
+      "country": "IT",
+      "lat": 45.827,
+      "lon": 13.472,
+      "to": "AHO",
+      "airline": "Aeroitalia",
+      "flight_no": "XZ2916",
+      "arr_time": "",
+      "seasons": [
+        {
+          "start": "2026-12-23",
+          "end": "2026-12-29",
+          "days": "",
+          "arr_time": "13:35",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-26",
+          "end": "2026-12-26",
+          "days": "",
+          "arr_time": "12:10",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": false,
+      "admin_note": "aeroportodialghero.it list, 18 Nov 2026 — days of week to fill in"
     }
   ]
 }

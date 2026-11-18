@@ -35,8 +35,12 @@ collections:
         label: ID (unique)
         widget: string
       - name: from_city
-        label: Origin city / airport name
+        label: Origin city / airport (Italian, e.g. Napoli, Milano Linate)
         widget: string
+      - name: from_city_en
+        label: English name if different (e.g. Naples, Milan Linate)
+        widget: string
+        required: false
       - name: from_iata
         label: Origin IATA code (e.g. STN)
         widget: string
@@ -89,9 +93,9 @@ collections:
           name: end
           label: To
         - name: days
-          label: Days of week (1=Mon … 7=Sun, e.g. 1357)
+          label: Days of week (1=Mon … 7=Sun, e.g. 1357). Empty = not yet known, period not shown
           widget: string
-          default: '1234567'
+          required: false
         - name: arr_time
           label: Arrival time in this period (HH:MM)
           widget: string
@@ -103,6 +107,10 @@ collections:
           label: Flight number in this period (e.g. FR753)
           widget: string
           required: false
+      - name: admin_note
+        label: Admin note (not shown on the site)
+        widget: string
+        required: false
       - name: sample
         label: Sample entry (shows a 'sample' badge)
         widget: boolean

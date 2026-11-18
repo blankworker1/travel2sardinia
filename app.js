@@ -56,19 +56,23 @@
   // ---------- data queries ----------
   const destName = () => (state.dest ? tx(state.dest.name) : "");
   const links = () => Object.assign({}, state.data.site.links || {}, (state.data.destSettings || {}).links || {});
-  const allRoutes = () => (state.data.flights.routes || []).filter(published);
+  const hasDays = (x) => /[1-7]/.test(String(x.days || ""));
+  const allRoutes = () => (state.data.flights.routes || []).filter((r) => published(r) && (r.seasons || []).some(hasDays));
   const destinations = () => (state.data.destinations.destinations || []).filter(published);
 
   // The operating period (season) a route flies on for a given date, or null.
   function seasonOn(r, date) {
     const wd = String(isoWeekday(date));
-    return (r.seasons || []).find((s) => s.start <= date && date <= s.end && String(s.days || "").includes(wd)) || null;
+    return (r.seasons || []).filter(hasDays).sort((x, y) => (x.arr_time || "").localeCompare(y.arr_time || ""))
+      .find((s) => s.start <= date && date <= s.end && String(s.days || "").includes(wd)) || null;
   }
   const fliesOn = (r, date) => !!seasonOn(r, date);
   // Arrival time: the period's own time first, then the route's general time.
   const arrTime = (r, s) => (s && s.arr_time) || r.arr_time || "";
   // With no date chosen: the next period still to come (else the first one).
-  const nextSeason = (r) => { const ss = [...(r.seasons || [])].sort((x, y) => x.start.localeCompare(y.start)); return ss.find((x) => x.end >= today()) || ss[0]; };
+  const nextSeason = (r) => { const ss = [...(r.seasons || [])].filter(hasDays).sort((x, y) => x.start.localeCompare(y.start)); return ss.find((x) => x.end >= today()) || ss[0]; };
+  // City name in the current language (from_city_en is optional).
+  const cityName = (r) => (state.lang === "en" && r.from_city_en) || r.from_city;
   const flightNo = (r, s) => (s && s.flight_no) || r.flight_no || "";
 
   function nextFlight(r, from, maxDays) {
@@ -95,7 +99,7 @@
 
   function originCity() {
     const r = allRoutes().find((x) => x.from_iata === state.origin);
-    return r ? r.from_city : "";
+    return r ? cityName(r) : "";
   }
 
   const allEvents = () => (state.data.events || []).filter(published);
@@ -212,7 +216,7 @@
   }
 
   function scheduleText(r) {
-    return [...(r.seasons || [])].sort((x, y) => x.start.localeCompare(y.start)).map((s) => {
+    return [...(r.seasons || [])].filter((x) => hasDays(x) && x.end >= today()).sort((x, y) => x.start.localeCompare(y.start)).map((s) => {
       const a = parseDate(s.start), b = parseDate(s.end);
       const sameYear = a.getUTCFullYear() === b.getUTCFullYear();
       const sameMonth = sameYear && a.getUTCMonth() === b.getUTCMonth();
@@ -240,7 +244,7 @@
 
     let html = list.some((r) => r.sample) ? `<p class="notice">${esc(t("sample_notice"))}</p>` : "";
     for (const ap of site.airports) {
-      const rows = list.filter((r) => r.to === ap.code).sort((a, b) => a.from_city.localeCompare(b.from_city, locale()));
+      const rows = list.filter((r) => r.to === ap.code).sort((a, b) => cityName(a).localeCompare(cityName(b), locale()));
       if (!rows.length) continue;
       html += `<h3>${esc(ap.name)} <span class="code">${ap.code}</span> <span class="count">${esc(t("flights_count", rows.length))}</span></h3><ul class="cards">`;
       for (const r of rows) {
@@ -256,7 +260,7 @@
         const connect = state.dest ? `<button type="button" class="btn ghost" data-connect="${esc(r.to)}" data-time="${esc(arrTime(r, season || nextSeason(r)))}">${esc(t("show_connection", destName()))}</button>` : "";
         html += `<li class="card">
           <div class="card-main">
-            <strong>${esc(r.from_city)}</strong> <span class="code">${esc(r.from_iata)} → ${esc(r.to)}</span>
+            <strong>${esc(cityName(r))}</strong> <span class="code">${esc(r.from_iata)} → ${esc(r.to)}</span>
             ${r.sample ? `<span class="badge">${esc(t("sample"))}</span>` : ""}
             <div class="meta">${esc(r.airline)}${flightNo(r, season) ? ` · ${esc(flightNo(r, season))}` : ""}${season && arrTime(r, season) ? ` · ${esc(t("arrives"))} ${esc(arrTime(r, season))}` : ""}</div>
             <div class="meta sched">${esc(scheduleText(r))}</div>
@@ -450,11 +454,16 @@
     const seen = new Map();
     for (const r of allRoutes()) {
       if (state.dest && state.dest.airports && !state.dest.airports.includes(r.to)) continue;
-      if (seen.has(r.from_iata)) continue;
+      if (seen.has(r.from_iata)) {
+        const o = seen.get(r.from_iata);
+        o.place += " " + norm(`${r.from_city} ${r.from_city_en || ""}`);
+        if (r.from_city_en && !o.hasEn) { o.city = cityName(r); o.hasEn = true; }
+        continue;
+      }
       const c = r.country || "";
       seen.set(r.from_iata, {
-        iata: r.from_iata, city: r.from_city, country: c, countryLabel: countryName(c),
-        place: norm(`${r.from_city} ${r.from_iata}`),
+        iata: r.from_iata, city: cityName(r), hasEn: !!r.from_city_en, country: c, countryLabel: countryName(c),
+        place: norm(`${r.from_city} ${r.from_city_en || ""} ${r.from_iata}`),
         countryWords: norm([c, c === "GB" ? "uk" : "", nameIn(c, "it"), nameIn(c, "en")].join(" ")).split(/[\s-]+/).filter(Boolean)
       });
     }
@@ -629,7 +638,7 @@
     for (const r of routes) {
       L.polyline([[r.lat, r.lon], apPos[r.to]], { color: "#2f6f8f", weight: state.origin ? 2.5 : 1.5, opacity: 0.7 }).addTo(g);
       L.circleMarker([r.lat, r.lon], { radius: state.origin ? 7 : 5, color: "#2f6f8f", fillColor: "#fff", fillOpacity: 1, weight: 2 })
-        .bindTooltip(`${r.from_city} (${r.from_iata}) → ${r.to}`, { permanent: !!state.origin, direction: "top" })
+        .bindTooltip(`${cityName(r)} (${r.from_iata}) → ${r.to}`, { permanent: !!state.origin, direction: "top" })
         .on("click", () => setOrigin(r.from_iata)).addTo(g);
     }
     const dests = state.dest ? [state.dest] : destinations();
