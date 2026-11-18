@@ -402,6 +402,10 @@ site:
     label: Short name (used in routes)
     widget: string
     required: false
+  - name: color
+    label: Map colour (departure cities and routes to this airport use it)
+    widget: color
+    required: false
   - name: lat
     widget: number
     value_type: float
@@ -412,7 +416,7 @@ site:
     widget: string
     required: false
   - name: flights_list_url
-    label: Where to check flights (the airport's 'All flights' arrivals page)
+    label: 'Where to check flights (Alghero/Olbia: ''All flights'' page; Cagliari: live board)'
     widget: string
     required: false
 - name: center

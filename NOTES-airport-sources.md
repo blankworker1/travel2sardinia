@@ -1,6 +1,6 @@
 # To do: airport route sources for the admin dashboard
 
-**Status (18 Nov 2026):** Alghero and Olbia confirmed by Carl and added to `/admin` (Site settings → Airports → "Where to check flights"). Both use the same page format and are imported with `scripts/import_airport_page.py`. **Cagliari still to find.**
+**Status (18 Nov 2026):** Alghero and Olbia confirmed by Carl and added to `/admin` (Site settings → Airports → "Where to check flights"). Both use the same page format and are imported with `scripts/import_airport_page.py`. **Cagliari:** https://www.sogaer.it/en/live-flights-info is a live board (today + tomorrow, no days of the week). Its 17 routes are listed as "days to be confirmed" until the board saves (every 2 days for a week) or SOGAER's timetable fill them in.
 
 - Alghero: https://www.aeroportodialghero.it/voli/tutti-i-voli/?arr=AHO
 - Olbia: https://www.geasar.it/voli/tutti-i-voli/?arr=OLB

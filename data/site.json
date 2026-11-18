@@ -22,7 +22,8 @@
       "lon": 8.2908,
       "website": "https://www.aeroportodialghero.it",
       "short": "Alghero Aeroporto",
-      "flights_list_url": "https://www.aeroportodialghero.it/voli/tutti-i-voli/?arr=AHO"
+      "flights_list_url": "https://www.aeroportodialghero.it/voli/tutti-i-voli/?arr=AHO",
+      "color": "#2f6f8f"
     },
     {
       "code": "CAG",
@@ -31,7 +32,8 @@
       "lon": 9.0543,
       "website": "https://www.sogaer.it",
       "short": "Cagliari Aeroporto",
-      "flights_list_url": ""
+      "flights_list_url": "https://www.sogaer.it/en/live-flights-info",
+      "color": "#e07b1f"
     },
     {
       "code": "OLB",
@@ -40,7 +42,8 @@
       "lon": 9.5176,
       "website": "https://www.geasar.it",
       "short": "Olbia Aeroporto",
-      "flights_list_url": "https://www.geasar.it/voli/tutti-i-voli/?arr=OLB"
+      "flights_list_url": "https://www.geasar.it/voli/tutti-i-voli/?arr=OLB",
+      "color": "#3c8d5a"
     }
   ],
   "center": {

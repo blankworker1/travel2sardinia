@@ -250,7 +250,7 @@
     for (const ap of site.airports) {
       const rows = list.filter((r) => r.to === ap.code).sort((a, b) => cityName(a).localeCompare(cityName(b), locale()));
       if (!rows.length) continue;
-      html += `<h3>${esc(ap.name)} <span class="code">${ap.code}</span> <span class="count">${esc(t("flights_count", rows.length))}</span></h3><ul class="cards">`;
+      html += `<h3><i class="ap-dot" style="background:${esc(ap.color || "#2f6f8f")}"></i>${esc(ap.name)} <span class="code">${ap.code}</span> <span class="count">${esc(t("flights_count", rows.length))}</span></h3><ul class="cards">`;
       for (const r of rows) {
         const season = state.date ? seasonOn(r, state.date) : null;
         const flies = state.date ? !!season : null;
@@ -613,6 +613,8 @@
       maxZoom: 18, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(state.map);
     state.layers = L.layerGroup().addTo(state.map);
+    const Legend = L.Control.extend({ onAdd() { const d = L.DomUtil.create("div", "map-legend"); d.id = "map-legend"; return d; } });
+    new Legend({ position: "topright" }).addTo(state.map);
     // On tablets and computers the map is a way to choose a city; phones use the search box.
     if (window.matchMedia && window.matchMedia("(min-width: 700px) and (hover: hover), (min-width: 700px) and (pointer: coarse)").matches) {
       const Hint = L.Control.extend({ onAdd() { const d = L.DomUtil.create("div", "map-hint"); d.id = "map-hint"; d.textContent = t("map_hint"); return d; } });
@@ -622,42 +624,66 @@
     state.map.setView([c.lat, c.lon], 7);
   }
 
+  // Each Sardinian airport has its own colour; a departure city takes the colour of the airport it
+  // flies to, or the "several" colour when it flies to more than one.
+  const MULTI_COLOR = "#5b5450";
+  const airportColor = (code) => ((state.data.site.airports || []).find((a) => a.code === code) || {}).color || "#2f6f8f";
+  const originColor = (codes) => (codes.size === 1 ? airportColor([...codes][0]) : MULTI_COLOR);
+
+  function legendHTML() {
+    const aps = (state.data.site.airports || []).filter((a) => !state.dest || !state.dest.airports || state.dest.airports.includes(a.code));
+    return aps.map((a) => `<span class="lg"><i style="background:${esc(a.color || "#2f6f8f")}"></i>${esc(a.short || a.name)}</span>`).join("") +
+      `<span class="lg"><i style="background:${MULTI_COLOR}"></i>${esc(t("several_airports"))}</span>`;
+  }
+
   function renderMap(fit) {
     if (!state.map) return;
     const site = state.data.site;
     const g = state.layers;
     g.clearLayers();
+    if (has("#map-legend")) $("#map-legend").innerHTML = legendHTML();
     const apPos = Object.fromEntries(site.airports.map((a) => [a.code, [a.lat, a.lon]]));
     const routes = visibleRoutes().filter((r) => r.lat != null && r.lon != null && apPos[r.to]);
     const used = state.origin ? new Set(routes.map((r) => r.to)) : new Set(state.dest && state.dest.airports ? state.dest.airports : Object.keys(apPos));
 
-    // every origin city as a small clickable dot, so another city can be chosen from the map
-    const shown = new Set(routes.map((r) => r.from_iata));
-    for (const o of originIndex()) {
-      if (shown.has(o.iata)) continue;
-      const r = allRoutes().find((x) => x.from_iata === o.iata && x.lat != null);
-      if (!r) continue;
-      L.circleMarker([r.lat, r.lon], { radius: 4, color: "#8a8178", fillColor: "#fff", fillOpacity: 1, weight: 1.5, opacity: 0.8 })
-        .bindTooltip(`${o.city} (${o.iata}) · ${t("pick_on_map")}`, { direction: "top" })
-        .on("click", () => setOrigin(o.iata)).addTo(g);
+    // which Sardinian airports each departure city flies to (for its colour)
+    const reach = (list) => {
+      const m = new Map();
+      for (const r of list) { if (r.lat == null) continue; if (!m.has(r.from_iata)) m.set(r.from_iata, { r, to: new Set() }); m.get(r.from_iata).to.add(r.to); }
+      return m;
+    };
+    const allReach = reach(allRoutes().filter((r) => !state.dest || !state.dest.airports || state.dest.airports.includes(r.to)));
+    const shownReach = reach(routes);
+
+    // every other departure city as a small, faded clickable dot, so another city can be chosen from the map
+    for (const [iata, o] of allReach) {
+      if (shownReach.has(iata)) continue;
+      const c = originColor(o.to);
+      L.circleMarker([o.r.lat, o.r.lon], { radius: 4, color: c, fillColor: c, fillOpacity: 0.35, weight: 1.5, opacity: 0.7 })
+        .bindTooltip(`${cityName(o.r)} (${iata}) · ${t("pick_on_map")}`, { direction: "top" })
+        .on("click", () => setOrigin(iata)).addTo(g);
     }
+    // routes: each line in the colour of the airport it flies to
     for (const r of routes) {
-      L.polyline([[r.lat, r.lon], apPos[r.to]], { color: "#2f6f8f", weight: state.origin ? 2.5 : 1.5, opacity: 0.7 }).addTo(g);
-      L.circleMarker([r.lat, r.lon], { radius: state.origin ? 7 : 5, color: "#2f6f8f", fillColor: "#fff", fillOpacity: 1, weight: 2 })
-        .bindTooltip(`${cityName(r)} (${r.from_iata}) → ${r.to}`, { permanent: !!state.origin, direction: "top" })
-        .on("click", () => setOrigin(r.from_iata)).addTo(g);
+      L.polyline([[r.lat, r.lon], apPos[r.to]], { color: airportColor(r.to), weight: state.origin ? 2.5 : 1.5, opacity: state.origin ? 0.9 : 0.55 }).addTo(g);
+    }
+    for (const [iata, o] of shownReach) {
+      const c = originColor(o.to);
+      L.circleMarker([o.r.lat, o.r.lon], { radius: state.origin ? 7 : 5, color: "#fff", fillColor: c, fillOpacity: 1, weight: 1.5 })
+        .bindTooltip(`${cityName(o.r)} (${iata}) → ${[...o.to].join(", ")}`, { permanent: !!state.origin, direction: "top" })
+        .on("click", () => setOrigin(iata)).addTo(g);
     }
     const dests = state.dest ? [state.dest] : destinations();
     for (const a of site.airports) {
       const on = used.has(a.code);
       if (state.dest && (state.dest.airports || []).includes(a.code)) {
-        L.polyline([apPos[a.code], [state.dest.lat, state.dest.lon]], { color: "#c4573a", weight: 2, dashArray: "5 6", opacity: on ? 1 : 0.25 }).addTo(g);
+        L.polyline([apPos[a.code], [state.dest.lat, state.dest.lon]], { color: a.color || "#2f6f8f", weight: 2, dashArray: "5 6", opacity: on ? 0.9 : 0.25 }).addTo(g);
       }
-      L.circleMarker(apPos[a.code], { radius: 7, color: "#2b2622", fillColor: on ? "#d9a441" : "#e9dfc9", fillOpacity: 1, weight: 2 })
-        .bindTooltip(`${a.name} (${a.code})`).addTo(g);
+      L.circleMarker(apPos[a.code], { radius: 9, color: "#2b2622", fillColor: a.color || "#2f6f8f", fillOpacity: on ? 1 : 0.3, weight: 2, opacity: on ? 1 : 0.4 })
+        .bindTooltip(`${a.name} (${a.code})`, { permanent: !!state.dest && on, direction: "left", className: "ap-label" }).addTo(g);
     }
     for (const d of dests) {
-      const m = L.circleMarker([d.lat, d.lon], { radius: 9, color: "#2b2622", fillColor: "#c4573a", fillOpacity: 1, weight: 2 })
+      const m = L.circleMarker([d.lat, d.lon], { radius: 8, color: "#fff", fillColor: "#2b2622", fillOpacity: 1, weight: 2 })
         .bindTooltip(tx(d.name), { permanent: true, direction: "right", className: "dest-label" }).addTo(g);
       if (!state.dest) m.on("click", () => { location.href = new URL(`${d.id}/?${qs()}`, BASE).href; });
     }
@@ -665,7 +691,7 @@
     const island = [...Object.values(apPos), ...dests.map((d) => [d.lat, d.lon])];
     if (fit === "everything") {
       // "All routes" button: show every origin city so another one can be picked on the map
-      const pts = allRoutes().filter((r) => r.lat != null && (!state.dest || !state.dest.airports || state.dest.airports.includes(r.to))).map((r) => [r.lat, r.lon]);
+      const pts = [...allReach.values()].map((o) => [o.r.lat, o.r.lon]);
       state.map.fitBounds(L.latLngBounds([...island, ...pts]).pad(0.1));
     } else if (fit === "sardinia" || !routes.length) state.map.fitBounds(L.latLngBounds(island).pad(0.2));
     else if (fit) state.map.fitBounds(L.latLngBounds([...dests.map((d) => [d.lat, d.lon]), ...routes.map((r) => [r.lat, r.lon])]).pad(0.15));

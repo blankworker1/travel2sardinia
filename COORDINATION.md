@@ -5,6 +5,26 @@ The app is kept up to date by people, not scrapers. It's organised at two levels
 - **Island**: the network coordinator maintains flight routes, public holidays, the bus and train set-up and the list of towns, and helps new towns join (`/organisations/`).
 - **Town**: each town has its own **WhatsApp coordination group** of local businesses, authorities and cultural groups, and a **local coordinator**. The coordinator collects updates once a month and enters them in the town's section of the admin dashboard (`/admin`). Their page for local organisations is `/<town>/organisations/`.
 
+The next section is for the network coordinator; the rest is for local coordinators.
+
+## Updating flights (network coordinator)
+
+Twice a year (the timetables change on the last Sunday of March and of October), and whenever an airport announces new routes:
+
+1. **On your phone, open the airport's flight list:**
+   - Alghero: https://www.aeroportodialghero.it/voli/tutti-i-voli/?arr=AHO
+   - Olbia: https://www.geasar.it/voli/tutti-i-voli/?arr=OLB (the same site format, with a toggle to switch airport)
+   - Cagliari: https://www.sogaer.it/en/live-flights-info (a live board for today and tomorrow only; see below)
+2. **Filter** to *Arrivals* and *Type of flight: Line*, so charters are left out.
+3. **Scroll to the very bottom** so every flight has loaded.
+4. **Save the page:** in Chrome, tap ⋮ and then the download arrow ⬇. Android saves it as an `.mhtml` file.
+5. **Rename it to `.txt`:** in the Files app, go to Downloads, long-press the file, choose Rename and change `.mhtml` to `.txt`. Confirm the warning. (If renaming isn't allowed, use *Compress* to make a `.zip`.)
+6. **Send it in** (or run `python3 scripts/import_airport_page.py the-file.txt`). The routes are imported with their days, times and flight numbers.
+
+Saving the page is better than screenshots. The file has every flight exactly, including which days are highlighted, while screenshots can miss rows between them.
+
+**Cagliari** shows only today and tomorrow, with no days of the week. Save its board (Arrivals) every second day for a week (four saves cover eight days) to work out each route's days and times. Until then its routes show as "days to be confirmed". The full seasonal timetable can only come from SOGAER or the airlines.
+
 The rest of this guide is for local coordinators.
 
 ## Who's in the group
