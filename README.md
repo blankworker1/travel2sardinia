@@ -17,6 +17,10 @@ There are no prices and no bookings: every action is a link out to the provider 
 - **Timetables**: `.github/workflows/transit.yml` runs every Monday (or on demand). It downloads the GTFS feeds and runs `scripts/build_transit.py`, which writes `data/transit.json`.
 - **Hosting**: GitHub Pages, deployed by `.github/workflows/deploy.yml`.
 
+## Keeping it up to date
+
+Local businesses, authorities and cultural groups send updates through a WhatsApp coordination group. Once a month, the coordinator enters them in `/admin`. Every event can have a website link button. See [COORDINATION.md](COORDINATION.md) for the monthly cycle and ready-to-paste reminder messages in Italian and English.
+
 ## One-time setup
 
 1. **Pages**: go to Settings → Pages → Source and choose **GitHub Actions**.

@@ -16,7 +16,9 @@
       "end": "2027-01-01",
       "status": "fixed",
       "transport": "holiday_timetable",
-      "published": true
+      "published": true,
+      "organiser": "",
+      "url": ""
     },
     {
       "id": "epifania-2027",
@@ -30,7 +32,9 @@
       "end": "2027-01-06",
       "status": "fixed",
       "transport": "holiday_timetable",
-      "published": true
+      "published": true,
+      "organiser": "",
+      "url": ""
     },
     {
       "id": "santantonio-2027",
@@ -47,7 +51,9 @@
         "it": "Apertura ufficiale del Carnevale",
         "en": "Official opening of Carnival"
       },
-      "published": true
+      "published": true,
+      "organiser": "",
+      "url": ""
     },
     {
       "id": "karrasegare-2027",
@@ -67,7 +73,9 @@
         "2027-02-09"
       ],
       "demand": "high",
-      "published": true
+      "published": true,
+      "organiser": "",
+      "url": ""
     },
     {
       "id": "settimana-santa-2027",
@@ -80,7 +88,9 @@
       "start": "2027-03-21",
       "end": "2027-03-28",
       "status": "fixed",
-      "published": true
+      "published": true,
+      "organiser": "",
+      "url": ""
     },
     {
       "id": "pasqua-2027",
@@ -94,7 +104,9 @@
       "end": "2027-03-28",
       "status": "fixed",
       "transport": "holiday_timetable",
-      "published": true
+      "published": true,
+      "organiser": "",
+      "url": ""
     },
     {
       "id": "pasquetta-2027",
@@ -108,7 +120,9 @@
       "end": "2027-03-29",
       "status": "fixed",
       "transport": "holiday_timetable",
-      "published": true
+      "published": true,
+      "organiser": "",
+      "url": ""
     },
     {
       "id": "liberazione-2027",
@@ -122,7 +136,9 @@
       "end": "2027-04-25",
       "status": "fixed",
       "transport": "holiday_timetable",
-      "published": true
+      "published": true,
+      "organiser": "",
+      "url": ""
     },
     {
       "id": "sa-die-2027",
@@ -135,7 +151,9 @@
       "start": "2027-04-28",
       "end": "2027-04-28",
       "status": "fixed",
-      "published": true
+      "published": true,
+      "organiser": "",
+      "url": ""
     },
     {
       "id": "lavoratori-2027",
@@ -149,7 +167,9 @@
       "end": "2027-05-01",
       "status": "fixed",
       "transport": "holiday_timetable",
-      "published": true
+      "published": true,
+      "organiser": "",
+      "url": ""
     },
     {
       "id": "patroni-2027",
@@ -162,7 +182,9 @@
       "start": "2027-05-28",
       "end": "2027-05-28",
       "status": "fixed",
-      "published": true
+      "published": true,
+      "organiser": "",
+      "url": ""
     },
     {
       "id": "repubblica-2027",
@@ -176,7 +198,9 @@
       "end": "2027-06-02",
       "status": "fixed",
       "transport": "holiday_timetable",
-      "published": true
+      "published": true,
+      "organiser": "",
+      "url": ""
     },
     {
       "id": "santa-maria-mare-2027",
@@ -198,7 +222,9 @@
         "en": "Date to confirm with the Pro Loco"
       },
       "demand": "high",
-      "published": true
+      "published": true,
+      "organiser": "",
+      "url": ""
     },
     {
       "id": "ferragosto-2027",
@@ -213,7 +239,9 @@
       "status": "fixed",
       "transport": "holiday_timetable",
       "demand": "high",
-      "published": true
+      "published": true,
+      "organiser": "",
+      "url": ""
     },
     {
       "id": "regnos-altos-2027",
@@ -230,7 +258,9 @@
         "it": "Sa Costa, altarittos e processione dal Castello alla Cattedrale",
         "en": "Sa Costa quarter, flower altars, procession from the Castle to the Cathedral"
       },
-      "published": true
+      "published": true,
+      "organiser": "",
+      "url": ""
     },
     {
       "id": "ognissanti-2027",
@@ -244,7 +274,9 @@
       "end": "2027-11-01",
       "status": "fixed",
       "transport": "holiday_timetable",
-      "published": true
+      "published": true,
+      "organiser": "",
+      "url": ""
     },
     {
       "id": "immacolata-2027",
@@ -258,7 +290,9 @@
       "end": "2027-12-08",
       "status": "fixed",
       "transport": "holiday_timetable",
-      "published": true
+      "published": true,
+      "organiser": "",
+      "url": ""
     },
     {
       "id": "natale-2027",
@@ -272,7 +306,9 @@
       "end": "2027-12-25",
       "status": "fixed",
       "transport": "holiday_timetable",
-      "published": true
+      "published": true,
+      "organiser": "",
+      "url": ""
     },
     {
       "id": "santo-stefano-2027",
@@ -286,7 +322,9 @@
       "end": "2027-12-26",
       "status": "fixed",
       "transport": "holiday_timetable",
-      "published": true
+      "published": true,
+      "organiser": "",
+      "url": ""
     },
     {
       "id": "beer-fest-2027",
@@ -299,7 +337,9 @@
       "start": null,
       "end": null,
       "status": "tbc",
-      "published": true
+      "published": true,
+      "organiser": "",
+      "url": ""
     },
     {
       "id": "wine-festival-2027",
@@ -312,7 +352,9 @@
       "start": null,
       "end": null,
       "status": "tbc",
-      "published": true
+      "published": true,
+      "organiser": "",
+      "url": ""
     }
   ]
 }

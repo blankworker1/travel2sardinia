@@ -218,8 +218,10 @@
     const status = e.status === "pattern" ? `<span class="badge soft">${esc(t("status_pattern"))}</span>` : e.status === "tbc" ? `<span class="badge">${esc(t("status_tbc"))}</span>` : "";
     const kind = e.type === "holiday" ? `<span class="badge hol">${esc(t("holiday"))}</span>` : "";
     const main = e.highlight_days ? `<div class="meta">${esc(t("main_days"))}: ${e.highlight_days.map((d) => fmtDay(d)).join(", ")}</div>` : "";
+    const org = e.organiser ? `<div class="meta">${esc(t("organiser"))}: ${esc(e.organiser)}</div>` : "";
+    const link = /^https?:\/\//.test(e.url || "") ? `<div class="actions"><a class="btn ghost" href="${esc(e.url)}" target="_blank" rel="noopener">${esc(t("website"))}</a></div>` : "";
     return `<li class="event ${e.type}"><div><span class="when">${esc(range)}</span> ${kind}${status}</div>
-      <strong>${esc(tx(e.title))}</strong>${tx(e.note) ? `<div class="meta">${esc(tx(e.note))}</div>` : ""}${main}</li>`;
+      <strong>${esc(tx(e.title))}</strong>${tx(e.note) ? `<div class="meta">${esc(tx(e.note))}</div>` : ""}${main}${org}${link}</li>`;
   }
 
   function renderEvents() {
@@ -235,9 +237,16 @@
     const dated = all.filter((e) => e.start).sort((a, b) => a.start.localeCompare(b.start));
     const tbc = all.filter((e) => !e.start);
     $("#calendar-body").innerHTML = `<ul class="events">${dated.map(eventItem).join("")}</ul>` +
-      (tbc.length ? `<h3>${esc(t("tbc_title"))}</h3><ul class="events">${tbc.map((e) => `<li class="event"><strong>${esc(tx(e.title))}</strong>${e.approx ? ` <span class="meta">${esc(tx(e.approx))}</span>` : ""}</li>`).join("")}</ul>` : "");
+      (tbc.length ? `<h3>${esc(t("tbc_title"))}</h3><ul class="events">${tbc.map((e) => `<li class="event"><strong>${esc(tx(e.title))}</strong>${e.approx ? ` <span class="meta">${esc(tx(e.approx))}</span>` : ""}${/^https?:\/\//.test(e.url || "") ? `<div class="actions"><a class="btn ghost" href="${esc(e.url)}" target="_blank" rel="noopener">${esc(t("website"))}</a></div>` : ""}</li>`).join("")}</ul>` : "");
     $("#calendar-body").hidden = !state.showCal;
     $("#toggle-calendar").textContent = t(state.showCal ? "hide_calendar" : "show_calendar");
+  }
+
+  function renderContribute() {
+    const url = (state.data.site.links || {}).coordinator_contact_url;
+    const el = $("#contribute");
+    el.hidden = !url;
+    if (url) el.innerHTML = `${esc(t("contribute_text"))} <a href="${esc(url)}" target="_blank" rel="noopener">${esc(t("contribute_link"))}</a>`;
   }
 
   function renderInfo() {
@@ -294,6 +303,7 @@
     renderStays();
     renderEvents();
     renderInfo();
+    renderContribute();
     renderMap(fit === undefined ? "all" : fit);
   }
 

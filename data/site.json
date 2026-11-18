@@ -1,20 +1,45 @@
 {
-  "title": { "it": "Travel to Bosa", "en": "Travel to Bosa" },
+  "title": {
+    "it": "Travel to Bosa",
+    "en": "Travel to Bosa"
+  },
   "tagline": {
     "it": "Scegli una data: voli, collegamenti e posti dove dormire a Bosa.",
     "en": "Pick a date: flights, connections and places to stay in Bosa."
   },
-  "bosa": { "lat": 40.2981, "lon": 8.4979 },
+  "bosa": {
+    "lat": 40.2981,
+    "lon": 8.4979
+  },
   "links": {
     "hodlstay_base_url": "",
     "hodlstay_host_signup_url": "",
     "arst": "https://www.arst.sardegna.it",
     "trenitalia": "https://www.trenitalia.com",
-    "aspo": "https://www.aspo.it"
+    "aspo": "https://www.aspo.it",
+    "coordinator_contact_url": ""
   },
   "airports": [
-    { "code": "AHO", "name": "Alghero-Fertilia", "lat": 40.6321, "lon": 8.2908, "website": "https://www.aeroportodialghero.it" },
-    { "code": "CAG", "name": "Cagliari-Elmas", "lat": 39.2515, "lon": 9.0543, "website": "https://www.sogaer.it" },
-    { "code": "OLB", "name": "Olbia Costa Smeralda", "lat": 40.8987, "lon": 9.5176, "website": "https://www.geasar.it" }
+    {
+      "code": "AHO",
+      "name": "Alghero-Fertilia",
+      "lat": 40.6321,
+      "lon": 8.2908,
+      "website": "https://www.aeroportodialghero.it"
+    },
+    {
+      "code": "CAG",
+      "name": "Cagliari-Elmas",
+      "lat": 39.2515,
+      "lon": 9.0543,
+      "website": "https://www.sogaer.it"
+    },
+    {
+      "code": "OLB",
+      "name": "Olbia Costa Smeralda",
+      "lat": 40.8987,
+      "lon": 9.5176,
+      "website": "https://www.geasar.it"
+    }
   ]
 }

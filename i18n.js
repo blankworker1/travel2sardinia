@@ -48,6 +48,10 @@ window.I18N = {
     unverified: "da verificare",
     footer_info: "Piattaforma informativa: prezzi e prenotazioni sono sui siti dei fornitori.",
     footer_data: "Orari: dati aperti ARST, Trenitalia e ASPO. Mappa © OpenStreetMap.",
+    website: "Sito web",
+    organiser: "Organizzazione",
+    contribute_text: "Sei un'attività, un ente o un'associazione di Bosa?",
+    contribute_link: "Unisciti al gruppo di coordinamento",
     min: "min"
   },
   en: {
@@ -98,6 +102,10 @@ window.I18N = {
     unverified: "to be verified",
     footer_info: "An information platform: prices and bookings are on the providers' own sites.",
     footer_data: "Timetables: ARST, Trenitalia and ASPO open data. Map © OpenStreetMap.",
+    website: "Website",
+    organiser: "Organiser",
+    contribute_text: "Are you a Bosa business, authority or cultural group?",
+    contribute_link: "Join the coordination group",
     min: "min"
   }
 };

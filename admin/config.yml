@@ -130,6 +130,17 @@ collections:
           format: YYYY-MM-DD
           name: day
           label: Day
+      - name: organiser
+        label: Organiser
+        widget: string
+        required: false
+      - name: url
+        label: Website link (shown as a button)
+        widget: string
+        required: false
+        pattern:
+        - ^$|^https?://
+        - Must start with http:// or https://
       - widget: object
         fields:
         - name: it
@@ -387,6 +398,10 @@ collections:
       - name: aspo
         label: ASPO tickets
         widget: string
+      - name: coordinator_contact_url
+        label: Coordinator contact link for local organisations (e.g. https://wa.me/39… or mailto:)
+        widget: string
+        required: false
     - name: bosa
       label: Bosa map position
       widget: object
