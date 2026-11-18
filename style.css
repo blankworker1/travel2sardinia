@@ -224,6 +224,8 @@ footer { padding-bottom: 4.5rem; }
 .jbest { position: absolute; top: -.6rem; right: .8rem; }
 .jsteps { list-style: none; margin: 0; padding: 0; display: grid; gap: .55rem; }
 .jsteps li { display: grid; grid-template-columns: 1.8rem 1fr; gap: .4rem; align-items: start; }
+.jsteps .jleg + .jleg, .jsteps li:first-child + .jleg { position: relative; }
+.jsum .meta { font-weight: 600; color: var(--ink); }
 .jicon { font-size: 1.1rem; line-height: 1.4; text-align: center; }
 .jw { margin-top: .35rem; padding: .35rem .55rem; border-radius: 6px; font-size: .9rem; }
 .jw.ok { background: #e8f1e6; }

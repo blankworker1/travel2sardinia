@@ -638,6 +638,24 @@
     }).join(" → ");
   }
 
+  // One row per leg of the trip on land: both ends, operator, boarding stop, usual time.
+  const titleCase = (x) => x.toLowerCase().replace(/(^|[\s'-])(\p{L})/gu, (m, a, b) => a + b.toUpperCase());
+  function legRows(chain) {
+    const tr = state.data.transit;
+    return (chain || []).map((seg) => {
+      const s = tr.segments[seg] || {};
+      const [a, b] = seg.split("-");
+      const d = (s.trips || []).map((x) => x[1] - x[0]).sort((x, y) => x - y);
+      const typical = d.length ? d[Math.floor(d.length / 2)] : null;
+      const from = ((tr.matched_stops || {})[seg] || {}).from || [];
+      const meta = [s.operator, t(s.mode === "train" ? "mode_train" : "mode_bus"),
+        from.length === 1 && !placeName(a).toLowerCase().includes(from[0].toLowerCase()) ? t("board_at", titleCase(from[0])) : "",
+        typical != null ? `${t("about")} ${dur(typical)}` : ""].filter(Boolean).join(" · ");
+      return `<li class="jleg"><span class="jicon">${legIcon(s.mode)}</span><div><strong>${esc(placeName(a))} → ${esc(placeName(b))}</strong>
+        <div class="meta">${esc(meta)}</div></div></li>`;
+    }).join("");
+  }
+
   // landing time for a route on the chosen date, or for its next period
   function landingTime(r) {
     if (state.date) { const s = seasonOn(r, state.date); return s ? arrTime(r, s) : ""; }
@@ -691,16 +709,16 @@
         const airlines = [...new Set(o.routes.map((r) => r.airline))].join(", ");
         const g = o.ground;
         const groundLine = g.count
-          ? `${routeSteps(g.chain)} <span class="meta">· ${esc(t("about"))} ${dur(g.dur)} · ${esc(t(state.date && !g.fallback ? "connections_on_date" : "connections_day", g.count, hm(g.first), hm(g.last)))}</span>`
-          : `${routeSteps(g.chain)}`;
+          ? `${esc(t("on_land_total", dur(g.dur)))} · ${esc(t(state.date && !g.fallback ? "connections_on_date" : "connections_day", g.count, hm(g.first), hm(g.last)))}`
+          : "";
         const destUrl = (hash) => state.dest ? hash : new URL(`${dest.id}/?${qs()}${hash}`, BASE).href;
         html += `<div class="jopt" style="--ap:${esc(ap.color || "#2f6f8f")}">
           ${opts.length > 1 && i === 0 ? `<span class="badge ok jbest">${esc(t("quickest_on_land"))}</span>` : ""}
           <ol class="jsteps">
             <li><span class="jicon">✈</span><div><strong>${esc(cityName(o.routes[0]))} → ${esc(ap.name || o.airport)}</strong>
               <div class="meta">${esc(airlines)} · ${esc(o.routes.map(scheduleShort).filter(Boolean).join(" / ") || t("days_tbc"))}</div></div></li>
-            <li><span class="jicon">${(g.chain || []).some((seg) => (state.data.transit.segments[seg] || {}).mode === "train") ? "🚆" : "🚌"}</span><div><strong>${esc(placeName(o.airport))} → ${esc(tx(dest.name))}</strong>
-              <div class="meta">${groundLine}</div>${connectionCheck(o, dest)}</div></li>
+            ${legRows(g.chain)}
+            <li class="jsum"><span class="jicon">⏱</span><div>${groundLine ? `<div class="meta">${groundLine}</div>` : ""}${connectionCheck(o, dest)}</div></li>
             <li><span class="jicon">🛏</span><div><a href="${esc(destUrl("#stays"))}">${esc(t("s3_title", tx(dest.name)))}</a> · <a href="${esc(destUrl("#events"))}">${esc(t("whats_on"))}</a>
               ${state.dest ? "" : ` · <a class="btn small-btn" href="${esc(destUrl(""))}">${esc(t("open_dest", tx(dest.name)))}</a>`}</div></li>
           </ol></div>`;
