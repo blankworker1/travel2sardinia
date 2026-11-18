@@ -9,6 +9,14 @@ It works on two levels:
 
 There are no prices and no bookings: every action is a link out to the provider (airline search, ARST, Trenitalia, Hodlstay, the organiser's website).
 
+## The journey card
+
+When a city is chosen, a "Your journey" card shows the whole trip for each town: the flight (with the period that applies), the trip on land from each airport (usual route, journey time, number of connections a day, first and last), and links to stays and events. When more than one airport works, the quickest on land comes first.
+
+- **Connection check:** if the flight's landing time is known, the card shows the next connection, or warns plainly when the last one has already gone ("Plan a night in Cagliari or a taxi").
+- **On the map**, the trip on land follows the real route, in the airport's colour: train solid, bus dashed, and a dot where you change (Macomer, Alghero, Olbia, Ozieri-Chilivani). Change points are set in `data/transit-config.json` → `places`.
+- **Timetables not yet published:** operators publish their timetables at different times. Trenitalia's currently ends on 12 December 2026, when the rail timetable changes, and ARST's on 31 December 2026. For a date beyond that, the app says so and shows a typical weekday instead of reporting "no connection". The weekly timetable update picks up new ones automatically.
+
 ## Choosing a city
 
 - **Phones**: a search box. Typing part of a city, an airport code or a country (in Italian or English, accents optional) shows matching cities grouped by country.

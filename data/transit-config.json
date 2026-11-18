@@ -1,5 +1,5 @@
 {
-  "note": "Feeds and stop-name patterns used by scripts/build_transit.py. Patterns are case-insensitive regular expressions matched against GTFS stop names. After each run, check data/transit.json -> matched_stops and adjust patterns if a segment matched the wrong stops or none at all. Chains are grouped by destination id (see data/destinations.json).",
+  "note": "Feeds and stop-name patterns used by scripts/build_transit.py. Patterns are case-insensitive regular expressions matched against GTFS stop names. After each run, check data/transit.json -> matched_stops and adjust patterns if a segment matched the wrong stops or none at all. Chains are grouped by destination id (see data/destinations.json). 'places' gives the map position of each change point named in a segment id (airports and towns come from site.json and destinations.json).",
   "window_days": 400,
   "min_transfer_minutes": 10,
   "feeds": {
@@ -118,6 +118,28 @@
           "MACOMER-BOSA"
         ]
       ]
+    }
+  },
+  "places": {
+    "ALGHERO": {
+      "name": "Alghero",
+      "lat": 40.5585,
+      "lon": 8.318
+    },
+    "MACOMER": {
+      "name": "Macomer",
+      "lat": 40.2652,
+      "lon": 8.7745
+    },
+    "OLBIA": {
+      "name": "Olbia",
+      "lat": 40.9235,
+      "lon": 9.4965
+    },
+    "CHILIVANI": {
+      "name": "Ozieri-Chilivani",
+      "lat": 40.6108,
+      "lon": 8.9196
     }
   }
 }

@@ -111,7 +111,7 @@
   const isTransportHoliday = (date) => eventsBetween(date, date).some((e) => e.transport === "holiday_timetable");
 
   // ---------- transit routing ----------
-  const chainsFor = (airport) => (((state.data.transit.chains || {})[DEST]) || {})[airport] || [];
+  const chainsFor = (airport, destId = DEST) => (((state.data.transit.chains || {})[destId]) || {})[airport] || [];
 
   function serviceActive(tr, svc, date) {
     if (!tr.window_start) return false;
@@ -127,11 +127,11 @@
     return s.trips.filter((x) => serviceActive(tr, x[2], date)).map((x) => ({ seg, dep: x[0], arr: x[1], route: x[3], mode: s.mode, operator: s.operator }));
   }
 
-  function itineraries(airport, date, landedMin, limit) {
+  function itineraries(airport, date, landedMin, limit, destId = DEST) {
     const tr = state.data.transit;
     const gap = tr.min_transfer_minutes || 10;
     const results = [];
-    for (const chain of chainsFor(airport)) {
+    for (const chain of chainsFor(airport, destId)) {
       const legsByStep = chain.map((seg) => tripsOn(seg, date).sort((a, b) => a.dep - b.dep));
       if (legsByStep.some((l) => !l.length)) continue;
       for (const first of legsByStep[0].filter((x) => x.dep >= landedMin + AIRPORT_EXIT_MIN)) {
@@ -156,11 +156,31 @@
   const transitReady = () => { const tr = state.data.transit; return tr && tr.generated && tr.window_start; };
   const inWindow = (date) => { const tr = state.data.transit; return date >= tr.window_start && date <= addDays(tr.window_start, tr.window_days - 1); };
 
-  function typicalWeekday() {
+  // Last date each segment's timetable covers (operators publish theirs at different times).
+  const segEndCache = {};
+  function segEnd(seg) {
+    if (seg in segEndCache) return segEndCache[seg];
+    const tr = state.data.transit, s = tr.segments[seg];
+    let last = -1;
+    if (s) for (const idx of new Set(s.trips.map((x) => x[2]))) last = Math.max(last, (tr.services[idx] || "").lastIndexOf("1"));
+    return (segEndCache[seg] = last < 0 ? null : addDays(tr.window_start, last));
+  }
+  const chainsCovered = (airport, destId, date) => chainsFor(airport, destId).flat().every((seg) => segEnd(seg) && date <= segEnd(seg));
+
+  function typicalWeekday(airport, destId) {
     const tr = state.data.transit;
+    const ok = (d) => isoWeekday(d) === 3 && !isTransportHoliday(d) && inWindow(d) && (!airport || chainsCovered(airport, destId, d));
     let d = today() > tr.window_start ? today() : tr.window_start;
-    for (let i = 0; i < 60; i++, d = addDays(d, 1)) if (isoWeekday(d) === 3 && !isTransportHoliday(d) && inWindow(d)) return d;
+    for (let i = 0; i < 60; i++, d = addDays(d, 1)) if (ok(d)) return d;
+    d = today();   // nothing ahead yet: use the most recent published weekday
+    for (let i = 0; i < 120; i++) { d = addDays(d, -1); if (d < tr.window_start) break; if (ok(d)) return d; }
     return null;
+  }
+
+  // The day to use for a journey: the chosen date if its timetables are published, else a typical weekday.
+  function effectiveDay(airport, destId, date) {
+    if (date && inWindow(date) && chainsCovered(airport, destId, date)) return { day: date, fallback: false };
+    return { day: typicalWeekday(airport, destId), fallback: !!date };
   }
 
   // ---------- rendering ----------
@@ -168,8 +188,10 @@
   function placeName(code) {
     const ap = state.data.site.airports.find((a) => a.code === code);
     if (ap) return ap.short || ap.name;
-    const d = destinations().find((x) => x.id.toUpperCase() === code);
+    const d = (state.data.destinations.destinations || []).find((x) => x.id.toUpperCase() === code);
     if (d) return tx(d.name);
+    const pl = ((state.data.transitConfig || {}).places || {})[code];
+    if (pl) return pl.name;
     return code.charAt(0) + code.slice(1).toLowerCase();
   }
 
@@ -217,6 +239,16 @@
     const hol = state.date ? eventsBetween(state.date, state.date).filter((e) => e.type === "holiday" && e.transport === "holiday_timetable") : [];
     b.hidden = !hol.length;
     if (hol.length) b.textContent = `${hol.map((e) => tx(e.title)).join(" · ")} · ${t("holiday_warning")}`;
+  }
+
+  // One line for the journey card: the period on the chosen date (or the next one), and how many more.
+  function scheduleShort(r) {
+    if (isTbc(r)) return t("days_tbc");
+    const s = state.date ? (seasonOn(r, state.date) || null) : nextSeason(r);
+    if (!s) return state.date ? t("not_on_date") : "";
+    const one = scheduleText(Object.assign({}, r, { seasons: [s] }));
+    const more = (r.seasons || []).filter((x) => (hasDays(x) || isTbc(r)) && x.end >= today()).length - 1;
+    return more > 0 ? `${one} (${t("more_periods", more)})` : one;
   }
 
   function scheduleText(r) {
@@ -351,10 +383,11 @@
       return;
     }
 
-    if (!inWindow(state.date)) { body.innerHTML = `<p class="empty">${esc(t("transit_outside"))}</p>`; return; }
+    const eff = effectiveDay(airport, DEST, state.date);
+    if (!eff.day) { body.innerHTML = `<p class="empty">${esc(t("transit_outside"))}</p>`; return; }
     const time = $("#transfer-time").value || "12:00";
-    const its = itineraries(airport, state.date, toMin(time), 3);
-    let html = "";
+    const its = itineraries(airport, eff.day, toMin(time), 3);
+    let html = eff.fallback ? `<p class="notice">${esc(t("times_not_published", fmtDay(state.date)))}</p>` : "";
     if (isTransportHoliday(state.date)) html += `<p class="notice">${esc(t("holiday_warning"))}</p>`;
     if (!its.length) html += `<p class="empty">${esc(t("transit_none", time, destName()))}</p>`;
     html += '<ol class="itins">';
@@ -564,6 +597,120 @@
     $("#origin-clear").addEventListener("click", () => { setOrigin(""); $("#origin-input").focus(); });
   }
 
+  // ---------- the whole journey: flight → airport → town ----------
+  function nodePos(code, destId) {
+    const ap = state.data.site.airports.find((a) => a.code === code);
+    if (ap) return [ap.lat, ap.lon];
+    const d = (state.data.destinations.destinations || []).find((x) => x.id.toUpperCase() === code || x.id === destId && code === destId.toUpperCase());
+    if (d) return [d.lat, d.lon];
+    const pl = ((state.data.transitConfig || {}).places || {})[code];
+    return pl ? [pl.lat, pl.lon] : null;
+  }
+
+  const groundCache = new Map();
+  // Typical (or chosen-date) connections from an airport to a town: the usual route, how many, first/last, duration.
+  function groundSummary(airport, destId, date) {
+    const key = `${airport}|${destId}|${date || ""}`;
+    if (groundCache.has(key)) return groundCache.get(key);
+    let res = { its: [], chain: chainsFor(airport, destId)[0] || null, day: null, fallback: false };
+    if (transitReady() && chainsFor(airport, destId).length) {
+      const { day, fallback } = effectiveDay(airport, destId, date);
+      if (day) {
+        const its = itineraries(airport, day, -AIRPORT_EXIT_MIN, 0, destId);
+        const counts = {};
+        its.forEach((l) => { const k = l.map((x) => x.seg).join(">"); counts[k] = (counts[k] || 0) + 1; });
+        const top = Object.keys(counts).sort((a, b) => counts[b] - counts[a])[0];
+        const durs = its.map((l) => l[l.length - 1].arr - l[0].dep).sort((a, b) => a - b);
+        const firsts = its.map((l) => l[0].dep).sort((a, b) => a - b);
+        res = { its, day, fallback, chain: top ? top.split(">") : res.chain, count: its.length,
+                first: firsts[0], last: firsts[firsts.length - 1], dur: durs.length ? durs[Math.floor(durs.length / 2)] : null };
+      }
+    }
+    groundCache.set(key, res);
+    return res;
+  }
+
+  function routeSteps(chain) {
+    return (chain || []).map((seg) => {
+      const s = state.data.transit.segments[seg] || {};
+      const [, b] = seg.split("-");
+      return `${legIcon(s.mode)} ${esc(t(s.mode === "train" ? "by_train_to" : "by_bus_to", placeName(b)))}`;
+    }).join(" → ");
+  }
+
+  // landing time for a route on the chosen date, or for its next period
+  function landingTime(r) {
+    if (state.date) { const s = seasonOn(r, state.date); return s ? arrTime(r, s) : ""; }
+    return arrTime(r, nextSeason(r));
+  }
+
+  // With a date: only routes that fly that day (or whose days aren't confirmed yet).
+  const fliesOrMaybe = (r, date) => fliesOn(r, date) || (isTbc(r) && inPeriod(r, date));
+  function journeyOptions(dest, onlyDate) {
+    let routes = allRoutes().filter((r) => r.from_iata === state.origin && (!dest.airports || dest.airports.includes(r.to)));
+    if (onlyDate) routes = routes.filter((r) => fliesOrMaybe(r, state.date));
+    const byAirport = {};
+    routes.forEach((r) => (byAirport[r.to] = byAirport[r.to] || []).push(r));
+    return Object.entries(byAirport).map(([airport, rs]) => ({ airport, routes: rs, ground: groundSummary(airport, dest.id, state.date) }))
+      .sort((a, b) => (a.ground.dur ?? 1e9) - (b.ground.dur ?? 1e9));
+  }
+
+  function connectionCheck(opt, dest) {
+    const g = opt.ground;
+    if (!g.count) return `<div class="jw warn">${esc(t("no_ground_data"))}</div>`;
+    const times = [...new Set(opt.routes.map(landingTime).filter(Boolean))].sort();
+    const day = g.day;
+    const note = g.fallback ? `<div class="jw info">${esc(t("times_not_published", fmtDay(state.date)))}</div>` : "";
+    if (!times.length) return note + `<div class="jw info">${esc(t("check_landing", hm(g.last)))}</div>`;
+    return note + times.map((tm) => {
+      const its = itineraries(opt.airport, day, toMin(tm), 1, dest.id);
+      if (its.length) {
+        const l = its[0];
+        return `<div class="jw ok">✓ ${esc(t("lands_next", tm, hm(l[0].dep), hm(l[l.length - 1].arr), tx(dest.name)))}</div>`;
+      }
+      return `<div class="jw warn">⚠ ${esc(t("lands_too_late", tm, hm(g.last), tx(dest.name), placeName(opt.airport)))}</div>`;
+    }).join("");
+  }
+
+  function renderJourney() {
+    const box = $("#journey");
+    if (!box) return;
+    if (!state.origin) { box.hidden = true; return; }
+    const dests = state.dest ? [state.dest] : destinations();
+    let html = "";
+    for (const dest of dests) {
+      let opts = state.date ? journeyOptions(dest, true) : journeyOptions(dest);
+      if (state.date && !opts.length) {
+        opts = journeyOptions(dest);
+        if (opts.length) html += `<p class="notice">${esc(t("no_flight_on_date", originCity()))}</p>`;
+      }
+      if (!opts.length) continue;
+      if (!state.dest) html += `<h3 class="jdest">→ ${esc(tx(dest.name))}</h3>`;
+      opts.forEach((o, i) => {
+        const ap = state.data.site.airports.find((a) => a.code === o.airport) || {};
+        const airlines = [...new Set(o.routes.map((r) => r.airline))].join(", ");
+        const g = o.ground;
+        const groundLine = g.count
+          ? `${routeSteps(g.chain)} <span class="meta">· ${esc(t("about"))} ${dur(g.dur)} · ${esc(t(state.date && !g.fallback ? "connections_on_date" : "connections_day", g.count, hm(g.first), hm(g.last)))}</span>`
+          : `${routeSteps(g.chain)}`;
+        const destUrl = (hash) => state.dest ? hash : new URL(`${dest.id}/?${qs()}${hash}`, BASE).href;
+        html += `<div class="jopt" style="--ap:${esc(ap.color || "#2f6f8f")}">
+          ${opts.length > 1 && i === 0 ? `<span class="badge ok jbest">${esc(t("quickest_on_land"))}</span>` : ""}
+          <ol class="jsteps">
+            <li><span class="jicon">✈</span><div><strong>${esc(cityName(o.routes[0]))} → ${esc(ap.name || o.airport)}</strong>
+              <div class="meta">${esc(airlines)} · ${esc(o.routes.map(scheduleShort).filter(Boolean).join(" / ") || t("days_tbc"))}</div></div></li>
+            <li><span class="jicon">${(g.chain || []).some((seg) => (state.data.transit.segments[seg] || {}).mode === "train") ? "🚆" : "🚌"}</span><div><strong>${esc(placeName(o.airport))} → ${esc(tx(dest.name))}</strong>
+              <div class="meta">${groundLine}</div>${connectionCheck(o, dest)}</div></li>
+            <li><span class="jicon">🛏</span><div><a href="${esc(destUrl("#stays"))}">${esc(t("s3_title", tx(dest.name)))}</a> · <a href="${esc(destUrl("#events"))}">${esc(t("whats_on"))}</a>
+              ${state.dest ? "" : ` · <a class="btn small-btn" href="${esc(destUrl(""))}">${esc(t("open_dest", tx(dest.name)))}</a>`}</div></li>
+          </ol></div>`;
+      });
+    }
+    $("#journey-title").textContent = t("journey_title", originCity());
+    $("#journey-body").innerHTML = html || `<p class="empty">${esc(t("no_flights"))}</p>`;
+    box.hidden = false;
+  }
+
   // ---------- feedback (report an error) ----------
   // Goes to the town's feedback/coordinator link, else the island's. mailto: and wa.me links get the message prefilled.
   function feedbackChannel() {
@@ -674,11 +821,32 @@
         .on("click", () => setOrigin(iata)).addTo(g);
     }
     const dests = state.dest ? [state.dest] : destinations();
+    // the journey on land, following the real route: train solid, bus dashed, a dot where you change
+    const groundPairs = [];
+    for (const d of dests) {
+      const aps = state.origin ? [...used].filter((c) => !d.airports || d.airports.includes(c)) : (state.dest ? (d.airports || []) : []);
+      aps.forEach((c) => groundPairs.push([c, d]));
+    }
+    const changePoints = new Map();
+    for (const [code, d] of groundPairs) {
+      const chain = groundSummary(code, d.id, state.date).chain;
+      if (!chain) continue;
+      const dim = state.origin && !used.has(code);
+      chain.forEach((seg, i) => {
+        const [a, b] = seg.split("-");
+        const pa = nodePos(a, d.id), pb = nodePos(b, d.id);
+        if (!pa || !pb) return;
+        const mode = (state.data.transit.segments[seg] || {}).mode;
+        L.polyline([pa, pb], { color: airportColor(code), weight: 3, opacity: dim ? 0.3 : 0.95, dashArray: mode === "bus" ? "6 6" : null }).addTo(g);
+        if (i > 0) changePoints.set(a, pa);
+      });
+    }
+    for (const [code, pos] of changePoints) {
+      L.circleMarker(pos, { radius: 4, color: "#2b2622", fillColor: "#fff", fillOpacity: 1, weight: 1.5 })
+        .bindTooltip(t("change_at_place", placeName(code)), { direction: "top" }).addTo(g);
+    }
     for (const a of site.airports) {
       const on = used.has(a.code);
-      if (state.dest && (state.dest.airports || []).includes(a.code)) {
-        L.polyline([apPos[a.code], [state.dest.lat, state.dest.lon]], { color: a.color || "#2f6f8f", weight: 2, dashArray: "5 6", opacity: on ? 0.9 : 0.25 }).addTo(g);
-      }
       L.circleMarker(apPos[a.code], { radius: 9, color: "#2b2622", fillColor: a.color || "#2f6f8f", fillOpacity: on ? 1 : 0.3, weight: 2, opacity: on ? 1 : 0.4 })
         .bindTooltip(`${a.name} (${a.code})`, { permanent: !!state.dest && on, direction: "left", className: "ap-label" }).addTo(g);
     }
@@ -713,6 +881,7 @@
     renderBanner();
     renderFlights();
     if (has("#destinations-body")) renderDestinations();
+    renderJourney();
     if (has("#transfer-body")) renderTransfer();
     if (has("#stays-body")) renderStays();
     renderEvents();
@@ -753,15 +922,16 @@
     const d = params.get("date") || "";
     state.date = /^\d{4}-\d{2}-\d{2}$/.test(d) ? d : "";
 
-    const [site, flights, holidays, dests, tips, transit] = await Promise.all([
+    const [site, flights, holidays, dests, tips, transit, transitConfig] = await Promise.all([
       loadJSON("site", { airports: [], links: {} }),
       loadJSON("flights", { routes: [] }),
       loadJSON("holidays", { events: [] }),
       loadJSON("destinations", { destinations: [] }),
       loadJSON("info", { tips: [] }),
-      loadJSON("transit", { generated: null, segments: {}, services: [], chains: {} })
+      loadJSON("transit", { generated: null, segments: {}, services: [], chains: {} }),
+      loadJSON("transit-config", { places: {} })
     ]);
-    state.data = { site, flights, destinations: dests, transit, events: holidays.events || [], tips: tips.tips || [], year: holidays.year };
+    state.data = { site, flights, destinations: dests, transit, transitConfig, events: holidays.events || [], tips: tips.tips || [], year: holidays.year };
 
     if (DEST) {
       state.dest = (dests.destinations || []).find((x) => x.id === DEST) || { id: DEST, name: { it: DEST, en: DEST }, lat: 40.05, lon: 9.0 };
