@@ -1,11 +1,16 @@
 # Travel to Bosa
 
-A bilingual (Italian / English) **information** app for reaching Bosa, Sardinia. Pick a date and see:
+A bilingual (Italian / English) **information** app for reaching Bosa, Sardinia. It works on two levels:
 
-1. **Flights** to Sardinia's three airports: Alghero (AHO), Cagliari (CAG) and Olbia (OLB), with origin cities on a map.
-2. **Getting to Bosa** by bus and train from each airport, worked out from the public ARST, Trenitalia and ASPO timetables.
+- **Travellers**: anyone in a city with flights to Sardinia chooses their city and sees how to get to Bosa, where to stay and what's on through the year. A date is optional and adds exact connections.
+- **Local organisations**: businesses, authorities and cultural groups keep the content current through a WhatsApp coordination group. `/organisations/` is their entry page.
+
+The traveller app shows:
+
+1. **Flights** from the chosen city to Sardinia's three airports, Alghero (AHO), Cagliari (CAG) and Olbia (OLB), with the months and days they operate.
+2. **Getting to Bosa** by bus and train from each airport, worked out from the public ARST, Trenitalia and ASPO timetables. Without a date it shows the usual route and how often it runs; with a date, the exact connections.
 3. **Places to stay** in Bosa, with links to Hodlstay.
-4. **Events and holidays** in Bosa, with warnings about holiday timetables.
+4. **Events and holidays**: the year month by month, with the months that have flights from your city marked, plus warnings about holiday timetables.
 5. **Good to know**: local tips.
 
 There are no prices and no bookings: every action is a link out to the provider (airline search, ARST, Trenitalia, Hodlstay).
@@ -43,7 +48,7 @@ Entries with `"published": false` are hidden from the public site. In the admin,
 
 ## Language
 
-The `IT | EN` toggle switches the interface (`i18n.js`) and all the bilingual content fields (`{ "it": …, "en": … }`). The choice is saved in the browser and in the URL (`?lang=en`). Dates can be linked directly: `?date=2027-09-11`.
+The `IT | EN` toggle switches the interface (`i18n.js`) and all the bilingual content fields (`{ "it": …, "en": … }`). The choice is saved in the browser and in the URL (`?lang=en`). Links can carry a city and a date: `?from=STN&date=2027-09-11`.
 
 ## Local development
 

@@ -46,4 +46,6 @@ When entering an event, the coordinator:
 
 ## Joining
 
-The footer of the app shows "Join the coordination group" when a contact link is set in **Site settings → Links → Coordinator contact link**. Use a link to the coordinator (e.g. `https://wa.me/39…` or a `mailto:` address) rather than the group's invite link, so the coordinator can check who joins.
+Every page of the app has a footer link, **For organisations**, that leads to `/organisations/`. That bilingual page explains the app, who can take part, the monthly cycle and what to send. Point people there when you invite them.
+
+The page's **Contact the coordinator** button uses the link in **Site settings → Links → Coordinator contact link**. Use a link to the coordinator (e.g. `https://wa.me/39…` or a `mailto:` address) rather than the group's invite link, so the coordinator can check who joins. Until a link is set, the page says the contact will be published soon.

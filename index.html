@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Travel to Bosa</title>
-  <meta name="description" content="Voli, collegamenti e posti dove dormire a Bosa, Sardegna. Flights, connections and places to stay in Bosa, Sardinia.">
+  <meta name="description" content="Come arrivare a Bosa, dove dormire ed eventi dell'anno. How to get to Bosa, Sardinia, where to stay and what's on through the year.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%2214%22 fill=%22%23c4573a%22/%3E%3C/svg%3E">
   <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
   <link rel="stylesheet" href="style.css">
@@ -17,8 +17,15 @@
     </div>
     <div class="controls">
       <label class="field">
+        <span data-i18n="from">Da</span>
+        <select id="origin"></select>
+      </label>
+      <label class="field">
         <span data-i18n="date">Data</span>
-        <input type="date" id="date">
+        <span class="date-wrap">
+          <input type="date" id="date">
+          <button type="button" id="clear-date" class="clear" hidden aria-label="Clear date">×</button>
+        </span>
       </label>
       <div class="lang" role="group" aria-label="Lingua / Language">
         <button type="button" data-lang="it">IT</button>
@@ -39,11 +46,8 @@
 
   <main>
     <section id="flights" class="panel">
-      <div class="panel-head">
-        <h2 data-i18n="s1_title"></h2>
-        <select id="airport-filter" aria-label="Airport"></select>
-      </div>
-      <p class="intro" data-i18n="s1_intro"></p>
+      <h2 data-i18n="s1_title"></h2>
+      <p class="intro" id="flights-intro"></p>
       <div id="flights-body"></div>
     </section>
 
@@ -52,7 +56,7 @@
       <p class="intro" data-i18n="s2_intro"></p>
       <div class="row">
         <label class="field"><span data-i18n="airport"></span><select id="transfer-airport"></select></label>
-        <label class="field"><span data-i18n="arrival_time"></span><input type="time" id="transfer-time" value="12:00"></label>
+        <label class="field" id="transfer-time-field"><span data-i18n="arrival_time"></span><input type="time" id="transfer-time" value="12:00"></label>
       </div>
       <div id="transfer-body"></div>
     </section>
@@ -65,8 +69,9 @@
     <section id="events" class="panel">
       <h2 data-i18n="s4_title"></h2>
       <div id="events-body"></div>
-      <button type="button" id="toggle-calendar" class="link-btn"></button>
-      <div id="calendar-body" hidden></div>
+      <h3 id="year-title"></h3>
+      <p class="intro" id="year-intro"></p>
+      <div id="year-body"></div>
     </section>
 
     <section id="info" class="panel">
@@ -76,9 +81,9 @@
   </main>
 
   <footer>
+    <p class="orgs"><span data-i18n="orgs_q"></span> <a id="orgs-link" href="organisations/" data-i18n="orgs_link"></a></p>
     <p data-i18n="footer_info"></p>
     <p data-i18n="footer_data"></p>
-    <p id="contribute" class="contribute" hidden></p>
     <p><a href="admin/" class="admin-link">admin</a></p>
   </footer>
 
