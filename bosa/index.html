@@ -18,7 +18,14 @@
       <p id="tagline" class="tagline"></p>
     </div>
     <div class="controls">
-      <label class="field"><span data-i18n="from"></span><select id="origin"></select></label>
+      <div class="field origin-field">
+        <label for="origin-input" data-i18n="from"></label>
+        <div class="combo">
+          <input id="origin-input" type="text" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="origin-list">
+          <button type="button" id="origin-clear" class="clear" hidden aria-label="Clear">×</button>
+          <div id="origin-list" class="combo-list" role="listbox" hidden></div>
+        </div>
+      </div>
       <label class="field">
         <span data-i18n="date"></span>
         <span class="date-wrap"><input type="date" id="date"><button type="button" id="clear-date" class="clear" hidden aria-label="Clear date">×</button></span>

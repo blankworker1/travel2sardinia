@@ -9,6 +9,12 @@ It works on two levels:
 
 There are no prices and no bookings: every action is a link out to the provider (airline search, ARST, Trenitalia, Hodlstay, the organiser's website).
 
+## Choosing a city
+
+- **Phones**: a search box. Typing part of a city, an airport code or a country (in Italian or English, accents optional) shows matching cities grouped by country.
+- **Tablets and computers**: the search box, plus clicking any city on the map. "All routes" zooms out to show every city.
+- **No direct flight**: if nothing matches (e.g. "Birmingham"), the app says so, offers the countries that do have direct flights, and lists Italian airports with year-round flights to Sardinia for connecting.
+
 ## Domains
 
 - **travel2sardinia.com**: the main address (Settings → Pages → Custom domain).

@@ -2,7 +2,12 @@
 window.I18N = {
   it: {
     from: "Parto da",
-    all_cities: "Scegli la tua città…",
+    all_cities: "Scrivi la tua città o aeroporto…",
+    no_direct: (q) => `Nessun volo diretto da “${q}” nell'elenco.`,
+    which_country: "In che paese sei? Ecco le città con voli diretti:",
+    connect_via: "Oppure arriva con uno scalo in Italia, collegata alla Sardegna tutto l'anno:",
+    map_hint: "Clicca su una città per sceglierla",
+    pick_on_map: "Clicca per scegliere",
     date: "Data (facoltativa)",
     map_all: "Tutte le rotte",
     map_sardinia: "Sardegna",
@@ -89,7 +94,12 @@ window.I18N = {
   },
   en: {
     from: "Travelling from",
-    all_cities: "Choose your city…",
+    all_cities: "Type your city or airport…",
+    no_direct: (q) => `No direct flights from “${q}” in our list.`,
+    which_country: "Which country are you in? These cities have direct flights:",
+    connect_via: "Or connect through an Italian airport with year-round flights to Sardinia:",
+    map_hint: "Click a city to choose it",
+    pick_on_map: "Click to choose",
     date: "Date (optional)",
     map_all: "All routes",
     map_sardinia: "Sardinia",

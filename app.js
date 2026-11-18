@@ -160,6 +160,7 @@
 
   function renderStatic() {
     document.documentElement.lang = state.lang;
+    if (has("#map-hint")) $("#map-hint").textContent = t("map_hint");
     document.querySelectorAll("[data-i18n]").forEach((el) => { el.textContent = t(el.dataset.i18n, destName()); });
     document.querySelectorAll("[data-lang]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === state.lang)));
     const site = state.data.site;
@@ -178,18 +179,11 @@
       $("#orgs-link").href = `organisations/?lang=${state.lang}`;
     }
 
-    // origin picker: unique cities (with flights to this destination's airports) grouped by country
-    const byCountry = {};
-    for (const r of allRoutes().filter((r) => !state.dest || !state.dest.airports || state.dest.airports.includes(r.to))) {
-      const c = countryName(r.country || "");
-      (byCountry[c] = byCountry[c] || new Map()).set(r.from_iata, r.from_city);
-    }
-    const sel = $("#origin");
-    sel.innerHTML = `<option value="">${esc(t("all_cities"))}</option>` +
-      Object.keys(byCountry).sort((a, b) => a.localeCompare(b, locale())).map((c) =>
-        `<optgroup label="${esc(c)}">` + [...byCountry[c]].sort((a, b) => a[1].localeCompare(b[1], locale()))
-          .map(([iata, city]) => `<option value="${esc(iata)}">${esc(city)} (${esc(iata)})</option>`).join("") + "</optgroup>").join("");
-    sel.value = state.origin;
+    // origin search box (phones) — the map handles choosing on bigger screens
+    const inp = $("#origin-input");
+    inp.placeholder = t("all_cities");
+    if (document.activeElement !== inp) inp.value = state.origin ? `${originCity()} (${state.origin})` : "";
+    $("#origin-clear").hidden = !state.origin;
 
     if (has("#transfer-airport")) {
       const ta = $("#transfer-airport");
@@ -431,6 +425,114 @@
       `<li><strong>${esc(tx(x.title))}</strong>${x.verified === false ? ` <span class="badge soft">${esc(t("unverified"))}</span>` : ""}<p>${esc(tx(x.body))}</p></li>`).join("") + "</ul>";
   }
 
+  // ---------- origin search (combobox) ----------
+  const norm = (x) => String(x || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+  const nameIn = (code, lang) => { try { return new Intl.DisplayNames([lang], { type: "region" }).of(code); } catch (e) { return code; } };
+  const combo = { items: [], active: -1 };
+
+  function originIndex() {
+    const seen = new Map();
+    for (const r of allRoutes()) {
+      if (state.dest && state.dest.airports && !state.dest.airports.includes(r.to)) continue;
+      if (seen.has(r.from_iata)) continue;
+      const c = r.country || "";
+      seen.set(r.from_iata, {
+        iata: r.from_iata, city: r.from_city, country: c, countryLabel: countryName(c),
+        place: norm(`${r.from_city} ${r.from_iata}`),
+        countryWords: norm([c, c === "GB" ? "uk" : "", nameIn(c, "it"), nameIn(c, "en")].join(" ")).split(/[\s-]+/).filter(Boolean)
+      });
+    }
+    return [...seen.values()];
+  }
+
+  function yearRoundItalian(idx) {
+    const year = state.data.year || Number(today().slice(0, 4));
+    const ok = new Set(allRoutes().filter((r) => r.country === "IT" && (!state.dest || !state.dest.airports || state.dest.airports.includes(r.to)))
+      .filter((r) => { const m = routeMonths(r, year); return m.has(0) && m.has(6); }).map((r) => r.from_iata));
+    return idx.filter((o) => ok.has(o.iata));
+  }
+
+  function optionHTML(o, i) {
+    return `<div class="combo-opt" role="option" id="opt-${esc(o.iata)}" data-iata="${esc(o.iata)}" data-i="${i}" aria-selected="false">${esc(o.city)} <span class="code">${esc(o.iata)}</span></div>`;
+  }
+
+  function groupedHTML(list, offset) {
+    const groups = {};
+    list.forEach((o) => (groups[o.countryLabel] = groups[o.countryLabel] || []).push(o));
+    let html = "", i = offset || 0;
+    for (const c of Object.keys(groups).sort((a, b) => a.localeCompare(b, locale()))) {
+      html += `<div class="combo-group" role="presentation">${esc(c)}</div>`;
+      for (const o of groups[c].sort((a, b) => a.city.localeCompare(b.city, locale()))) { combo.items[i] = o; html += optionHTML(o, i++); }
+    }
+    return html;
+  }
+
+  function renderCombo(q) {
+    const box = $("#origin-list"), inp = $("#origin-input");
+    const idx = originIndex();
+    const words = norm(q).split(/\s+/).filter(Boolean);
+    const matches = words.length ? idx.filter((o) => words.every((w) => o.place.includes(w) || o.countryWords.some((cw) => cw.startsWith(w)))) : idx;
+    combo.items = []; combo.active = -1;
+    let html = "";
+    if (matches.length) {
+      html = groupedHTML(matches, 0);
+    } else {
+      // No direct flight from what they typed: offer countries, then Italian year-round connections.
+      const countries = [...new Set(idx.map((o) => o.country))].sort((a, b) => countryName(a).localeCompare(countryName(b), locale()));
+      html = `<div class="combo-msg">${esc(t("no_direct", q.trim()))}</div>
+        <div class="combo-msg small">${esc(t("which_country"))}</div>
+        <div class="chips">${countries.map((c) => `<button type="button" class="chip" data-country="${esc(c)}">${esc(countryName(c))}</button>`).join("")}</div>`;
+      const hubs = yearRoundItalian(idx);
+      if (hubs.length) html += `<div class="combo-msg small">${esc(t("connect_via"))}</div>` + groupedHTML(hubs, 0);
+    }
+    box.innerHTML = html;
+    box.hidden = false;
+    inp.setAttribute("aria-expanded", "true");
+    box.querySelectorAll("[data-iata]").forEach((el) => el.addEventListener("mousedown", (e) => { e.preventDefault(); chooseOrigin(el.dataset.iata); }));
+    box.querySelectorAll("[data-country]").forEach((el) => el.addEventListener("mousedown", (e) => {
+      e.preventDefault();
+      inp.value = countryName(el.dataset.country);
+      renderCombo(inp.value);
+    }));
+  }
+
+  function closeCombo() {
+    $("#origin-list").hidden = true;
+    $("#origin-input").setAttribute("aria-expanded", "false");
+    $("#origin-input").removeAttribute("aria-activedescendant");
+  }
+
+  function moveActive(step) {
+    if (!combo.items.length) return;
+    combo.active = (combo.active + step + combo.items.length) % combo.items.length;
+    document.querySelectorAll("#origin-list .combo-opt").forEach((el) => el.setAttribute("aria-selected", String(Number(el.dataset.i) === combo.active)));
+    const el = document.querySelector(`#origin-list .combo-opt[data-i="${combo.active}"]`);
+    if (el) { el.scrollIntoView({ block: "nearest" }); $("#origin-input").setAttribute("aria-activedescendant", el.id); }
+  }
+
+  function chooseOrigin(iata) {
+    closeCombo();
+    $("#origin-input").blur();
+    setOrigin(iata);
+  }
+
+  function initCombo() {
+    const inp = $("#origin-input");
+    inp.addEventListener("focus", () => { inp.select(); renderCombo(""); });
+    inp.addEventListener("input", () => renderCombo(inp.value));
+    inp.addEventListener("blur", () => setTimeout(() => { closeCombo(); renderStatic(); }, 120));
+    inp.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown") { e.preventDefault(); if ($("#origin-list").hidden) renderCombo(inp.value); moveActive(1); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); moveActive(-1); }
+      else if (e.key === "Enter") {
+        e.preventDefault();
+        const pick = combo.items[combo.active] || (combo.items.length === 1 ? combo.items[0] : null);
+        if (pick) chooseOrigin(pick.iata);
+      } else if (e.key === "Escape") { closeCombo(); inp.blur(); }
+    });
+    $("#origin-clear").addEventListener("click", () => { setOrigin(""); $("#origin-input").focus(); });
+  }
+
   // ---------- feedback (report an error) ----------
   // Goes to the town's feedback/coordinator link, else the island's. mailto: and wa.me links get the message prefilled.
   function feedbackChannel() {
@@ -480,6 +582,11 @@
       maxZoom: 18, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(state.map);
     state.layers = L.layerGroup().addTo(state.map);
+    // On tablets and computers the map is a way to choose a city; phones use the search box.
+    if (window.matchMedia && window.matchMedia("(min-width: 700px) and (hover: hover), (min-width: 700px) and (pointer: coarse)").matches) {
+      const Hint = L.Control.extend({ onAdd() { const d = L.DomUtil.create("div", "map-hint"); d.id = "map-hint"; d.textContent = t("map_hint"); return d; } });
+      new Hint({ position: "bottomleft" }).addTo(state.map);
+    }
     const c = state.dest || state.data.site.center || { lat: 40.05, lon: 9.0 };
     state.map.setView([c.lat, c.lon], 7);
   }
@@ -493,10 +600,21 @@
     const routes = visibleRoutes().filter((r) => r.lat != null && r.lon != null && apPos[r.to]);
     const used = state.origin ? new Set(routes.map((r) => r.to)) : new Set(state.dest && state.dest.airports ? state.dest.airports : Object.keys(apPos));
 
+    // every origin city as a small clickable dot, so another city can be chosen from the map
+    const shown = new Set(routes.map((r) => r.from_iata));
+    for (const o of originIndex()) {
+      if (shown.has(o.iata)) continue;
+      const r = allRoutes().find((x) => x.from_iata === o.iata && x.lat != null);
+      if (!r) continue;
+      L.circleMarker([r.lat, r.lon], { radius: 4, color: "#8a8178", fillColor: "#fff", fillOpacity: 1, weight: 1.5, opacity: 0.8 })
+        .bindTooltip(`${o.city} (${o.iata}) · ${t("pick_on_map")}`, { direction: "top" })
+        .on("click", () => setOrigin(o.iata)).addTo(g);
+    }
     for (const r of routes) {
       L.polyline([[r.lat, r.lon], apPos[r.to]], { color: "#2f6f8f", weight: state.origin ? 2.5 : 1.5, opacity: 0.7 }).addTo(g);
       L.circleMarker([r.lat, r.lon], { radius: state.origin ? 7 : 5, color: "#2f6f8f", fillColor: "#fff", fillOpacity: 1, weight: 2 })
-        .bindTooltip(`${r.from_city} (${r.from_iata}) → ${r.to}`, { permanent: !!state.origin, direction: "top" }).addTo(g);
+        .bindTooltip(`${r.from_city} (${r.from_iata}) → ${r.to}`, { permanent: !!state.origin, direction: "top" })
+        .on("click", () => setOrigin(r.from_iata)).addTo(g);
     }
     const dests = state.dest ? [state.dest] : destinations();
     for (const a of site.airports) {
@@ -514,7 +632,11 @@
     }
 
     const island = [...Object.values(apPos), ...dests.map((d) => [d.lat, d.lon])];
-    if (fit === "sardinia" || !routes.length) state.map.fitBounds(L.latLngBounds(island).pad(0.2));
+    if (fit === "everything") {
+      // "All routes" button: show every origin city so another one can be picked on the map
+      const pts = allRoutes().filter((r) => r.lat != null && (!state.dest || !state.dest.airports || state.dest.airports.includes(r.to))).map((r) => [r.lat, r.lon]);
+      state.map.fitBounds(L.latLngBounds([...island, ...pts]).pad(0.1));
+    } else if (fit === "sardinia" || !routes.length) state.map.fitBounds(L.latLngBounds(island).pad(0.2));
     else if (fit) state.map.fitBounds(L.latLngBounds([...dests.map((d) => [d.lat, d.lon]), ...routes.map((r) => [r.lat, r.lon])]).pad(0.15));
   }
 
@@ -602,13 +724,13 @@
 
     $("#date").addEventListener("change", (e) => setDate(e.target.value));
     $("#clear-date").addEventListener("click", () => setDate(""));
-    $("#origin").addEventListener("change", (e) => setOrigin(e.target.value));
+    initCombo();
     document.querySelectorAll("[data-lang]").forEach((b) => b.addEventListener("click", () => setLang(b.dataset.lang)));
     if (has("#transfer-airport")) {
       $("#transfer-airport").addEventListener("change", renderTransfer);
       $("#transfer-time").addEventListener("change", renderTransfer);
     }
-    $("#fit-all").addEventListener("click", () => renderMap("all"));
+    $("#fit-all").addEventListener("click", () => renderMap("everything"));
     if (has("#feedback")) {
       $("#feedback-open").addEventListener("click", () => {
         $("#feedback").showModal();
