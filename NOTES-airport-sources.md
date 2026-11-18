@@ -8,6 +8,7 @@ When they're confirmed, add each airport's source link(s) to `data/site.json` �
 
 | Airport | Operator | Link | What it is | Checked? |
 |---|---|---|---|---|
+| Alghero (AHO) | SOGEAAL | https://www.aeroportodialghero.it/voli/tutti-i-voli/?arr=AHO&date= | **Found by Carl, 18 Nov 2026.** Searchable list of every arriving flight: flight number, airline, origin, country, scheduled/charter, arrival time, date range, days of the week. Filters: type, country, airline. Best source so far | ☑ |
 | Alghero (AHO) | SOGEAAL | https://www.aeroportodialghero.it/public/Network/network_2026_ALGHERO.pdf | Summer 2026 route sheet: days of the week, start and end dates, scheduled vs charter | ☐ |
 | Alghero (AHO) | SOGEAAL | https://www.aeroportodialghero.it/public/Network/202510_Network_Winter_Aho.pdf | Winter 2025/26 route sheet (ended 28.03.26), useful as the pattern for the winter 2026/27 address | ☐ |
 | Alghero (AHO) | SOGEAAL | https://aeroportodialghero.it/en/flight-schedules.html | Destinations page; showed an older winter list (2024/25) when checked | ☐ |
