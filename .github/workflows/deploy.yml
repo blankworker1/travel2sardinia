@@ -27,6 +27,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
+      - name: Cache-bust scripts and styles (each deploy gets new file URLs)
+        run: |
+          v="${GITHUB_SHA::8}"
+          find . -name "*.html" -not -path "./.git/*" -not -path "./admin/*" -not -path "./templates/*" -print0 |
+            xargs -0 sed -i -E "s#(app\.js|i18n\.js|style\.css)\"#\1?v=${v}\"#g"
+          grep -rho 'app\.js?v=[0-9a-f]*' --include=index.html . | sort -u
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
