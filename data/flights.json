@@ -63,7 +63,7 @@
       "published": true
     },
     {
-      "id": "aho-blq-fr",
+      "id": "aho-blq-ryanair",
       "from_iata": "BLQ",
       "from_city": "Bologna",
       "from_city_en": "Bologna",
@@ -113,10 +113,10 @@
       ],
       "sample": false,
       "published": false,
-      "admin_note": "Imported from aeroportodialghero.it (saved page, 18 Nov 2026)"
+      "admin_note": "Imported from https://www.aeroportodialghero.it/voli/tutti-i-voli/?arr=AHO&date=&tipo=Linea (saved 2026-11-18)"
     },
     {
-      "id": "aho-goa-xz",
+      "id": "aho-goa-aeroitalia",
       "from_iata": "GOA",
       "from_city": "Genova",
       "from_city_en": "Genoa",
@@ -138,10 +138,10 @@
       ],
       "sample": false,
       "published": false,
-      "admin_note": "Imported from aeroportodialghero.it (saved page, 18 Nov 2026)"
+      "admin_note": "Imported from https://www.aeroportodialghero.it/voli/tutti-i-voli/?arr=AHO&date=&tipo=Linea (saved 2026-11-18)"
     },
     {
-      "id": "aho-bgy-fr",
+      "id": "aho-bgy-ryanair",
       "from_iata": "BGY",
       "from_city": "Milano Bergamo",
       "from_city_en": "Milan Bergamo",
@@ -191,10 +191,10 @@
       ],
       "sample": false,
       "published": false,
-      "admin_note": "Imported from aeroportodialghero.it (saved page, 18 Nov 2026)"
+      "admin_note": "Imported from https://www.aeroportodialghero.it/voli/tutti-i-voli/?arr=AHO&date=&tipo=Linea (saved 2026-11-18)"
     },
     {
-      "id": "aho-lin-az",
+      "id": "aho-lin-itaairways",
       "from_iata": "LIN",
       "from_city": "Milano Linate",
       "from_city_en": "Milan Linate",
@@ -230,10 +230,10 @@
       ],
       "sample": false,
       "published": false,
-      "admin_note": "Imported from aeroportodialghero.it (saved page, 18 Nov 2026)"
+      "admin_note": "Imported from https://www.aeroportodialghero.it/voli/tutti-i-voli/?arr=AHO&date=&tipo=Linea (saved 2026-11-18)"
     },
     {
-      "id": "aho-mxp-fr",
+      "id": "aho-mxp-ryanair",
       "from_iata": "MXP",
       "from_city": "Milano Malpensa",
       "from_city_en": "Milan Malpensa",
@@ -276,10 +276,10 @@
       ],
       "sample": false,
       "published": false,
-      "admin_note": "Imported from aeroportodialghero.it (saved page, 18 Nov 2026)"
+      "admin_note": "Imported from https://www.aeroportodialghero.it/voli/tutti-i-voli/?arr=AHO&date=&tipo=Linea (saved 2026-11-18)"
     },
     {
-      "id": "aho-nap-fr",
+      "id": "aho-nap-ryanair",
       "from_iata": "NAP",
       "from_city": "Napoli",
       "from_city_en": "Naples",
@@ -308,10 +308,10 @@
       ],
       "sample": false,
       "published": false,
-      "admin_note": "Imported from aeroportodialghero.it (saved page, 18 Nov 2026)"
+      "admin_note": "Imported from https://www.aeroportodialghero.it/voli/tutti-i-voli/?arr=AHO&date=&tipo=Linea (saved 2026-11-18)"
     },
     {
-      "id": "aho-psa-fr",
+      "id": "aho-psa-ryanair",
       "from_iata": "PSA",
       "from_city": "Pisa",
       "from_city_en": "Pisa",
@@ -361,10 +361,10 @@
       ],
       "sample": false,
       "published": false,
-      "admin_note": "Imported from aeroportodialghero.it (saved page, 18 Nov 2026)"
+      "admin_note": "Imported from https://www.aeroportodialghero.it/voli/tutti-i-voli/?arr=AHO&date=&tipo=Linea (saved 2026-11-18)"
     },
     {
-      "id": "aho-fco-xz",
+      "id": "aho-fco-aeroitalia",
       "from_iata": "FCO",
       "from_city": "Roma Fiumicino",
       "from_city_en": "Rome Fiumicino",
@@ -407,10 +407,10 @@
       ],
       "sample": false,
       "published": false,
-      "admin_note": "Imported from aeroportodialghero.it (saved page, 18 Nov 2026)"
+      "admin_note": "Imported from https://www.aeroportodialghero.it/voli/tutti-i-voli/?arr=AHO&date=&tipo=Linea (saved 2026-11-18)"
     },
     {
-      "id": "aho-trs-xz",
+      "id": "aho-trs-aeroitalia",
       "from_iata": "TRS",
       "from_city": "Trieste",
       "from_city_en": "Trieste",
@@ -439,7 +439,892 @@
       ],
       "sample": false,
       "published": false,
-      "admin_note": "Imported from aeroportodialghero.it (saved page, 18 Nov 2026)"
+      "admin_note": "Imported from https://www.aeroportodialghero.it/voli/tutti-i-voli/?arr=AHO&date=&tipo=Linea (saved 2026-11-18)"
+    },
+    {
+      "id": "olb-bcn-volotea",
+      "from_iata": "BCN",
+      "from_city": "Barcellona",
+      "from_city_en": "Barcelona",
+      "country": "ES",
+      "lat": 41.297,
+      "lon": 2.078,
+      "to": "OLB",
+      "airline": "Volotea",
+      "flight_no": "V71445",
+      "arr_time": "",
+      "seasons": [
+        {
+          "start": "2026-11-20",
+          "end": "2026-11-20",
+          "days": "5",
+          "arr_time": "13:50",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-11-23",
+          "end": "2026-11-23",
+          "days": "1",
+          "arr_time": "23:25",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-20",
+          "end": "2027-01-03",
+          "days": "7",
+          "arr_time": "10:40",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-21",
+          "end": "2027-01-06",
+          "days": "13",
+          "arr_time": "18:30",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-25",
+          "end": "2027-01-01",
+          "days": "5",
+          "arr_time": "19:40",
+          "flight_no": ""
+        },
+        {
+          "start": "2027-01-11",
+          "end": "2027-02-01",
+          "days": "1",
+          "arr_time": "22:25",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": false,
+      "admin_note": "Imported from https://www.geasar.it/voli/tutti-i-voli/?arr=OLB&date=&tipo=Linea (saved 2026-11-18)"
+    },
+    {
+      "id": "olb-bsl-easyjet",
+      "from_iata": "BSL",
+      "from_city": "Basilea-Mulhouse",
+      "from_city_en": "Basel-Mulhouse",
+      "country": "CH",
+      "lat": 47.59,
+      "lon": 7.529,
+      "to": "OLB",
+      "airline": "easyJet",
+      "flight_no": "DS1105",
+      "arr_time": "",
+      "seasons": [
+        {
+          "start": "2027-03-25",
+          "end": "2027-03-27",
+          "days": "4",
+          "arr_time": "09:30",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": false,
+      "admin_note": "Imported from https://www.geasar.it/voli/tutti-i-voli/?arr=OLB&date=&tipo=Linea (saved 2026-11-18)"
+    },
+    {
+      "id": "olb-ber-easyjet",
+      "from_iata": "BER",
+      "from_city": "Berlino",
+      "from_city_en": "Berlin",
+      "country": "DE",
+      "lat": 52.366,
+      "lon": 13.503,
+      "to": "OLB",
+      "airline": "easyJet",
+      "flight_no": "EC5055",
+      "arr_time": "",
+      "seasons": [
+        {
+          "start": "2027-03-14",
+          "end": "2027-03-27",
+          "days": "7",
+          "arr_time": "09:55",
+          "flight_no": ""
+        },
+        {
+          "start": "2027-03-17",
+          "end": "2027-03-27",
+          "days": "3",
+          "arr_time": "20:20",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": false,
+      "admin_note": "Imported from https://www.geasar.it/voli/tutti-i-voli/?arr=OLB&date=&tipo=Linea (saved 2026-11-18)"
+    },
+    {
+      "id": "olb-blq-volotea",
+      "from_iata": "BLQ",
+      "from_city": "Bologna",
+      "from_city_en": "Bologna",
+      "country": "IT",
+      "lat": 44.535,
+      "lon": 11.289,
+      "to": "OLB",
+      "airline": "Volotea",
+      "flight_no": "V71406",
+      "arr_time": "",
+      "seasons": [
+        {
+          "start": "2026-12-18",
+          "end": "2026-12-18",
+          "days": "5",
+          "arr_time": "10:00",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-19",
+          "end": "2027-01-02",
+          "days": "6",
+          "arr_time": "21:15",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-22",
+          "end": "2027-01-05",
+          "days": "2",
+          "arr_time": "18:15",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-24",
+          "end": "2026-12-31",
+          "days": "4",
+          "arr_time": "09:25",
+          "flight_no": ""
+        },
+        {
+          "start": "2027-01-09",
+          "end": "2027-01-30",
+          "days": "6",
+          "arr_time": "11:00",
+          "flight_no": ""
+        },
+        {
+          "start": "2027-01-12",
+          "end": "2027-03-27",
+          "days": "2",
+          "arr_time": "19:55",
+          "flight_no": ""
+        },
+        {
+          "start": "2027-02-06",
+          "end": "2027-03-27",
+          "days": "6",
+          "arr_time": "19:45",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": false,
+      "admin_note": "Imported from https://www.geasar.it/voli/tutti-i-voli/?arr=OLB&date=&tipo=Linea (saved 2026-11-18)"
+    },
+    {
+      "id": "olb-dus-eurowings",
+      "from_iata": "DUS",
+      "from_city": "Düsseldorf",
+      "from_city_en": "Düsseldorf",
+      "country": "DE",
+      "lat": 51.289,
+      "lon": 6.767,
+      "to": "OLB",
+      "airline": "Eurowings",
+      "flight_no": "EW9844",
+      "arr_time": "",
+      "seasons": [
+        {
+          "start": "2027-03-19",
+          "end": "2027-03-19",
+          "days": "5",
+          "arr_time": "17:25",
+          "flight_no": ""
+        },
+        {
+          "start": "2027-03-22",
+          "end": "2027-03-27",
+          "days": "1",
+          "arr_time": "08:15",
+          "flight_no": ""
+        },
+        {
+          "start": "2027-03-24",
+          "end": "2027-03-27",
+          "days": "3",
+          "arr_time": "15:25",
+          "flight_no": ""
+        },
+        {
+          "start": "2027-03-26",
+          "end": "2027-03-27",
+          "days": "5",
+          "arr_time": "19:45",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": false,
+      "admin_note": "Imported from https://www.geasar.it/voli/tutti-i-voli/?arr=OLB&date=&tipo=Linea (saved 2026-11-18)"
+    },
+    {
+      "id": "olb-goa-aeroitalia",
+      "from_iata": "GOA",
+      "from_city": "Genova",
+      "from_city_en": "Genoa",
+      "country": "IT",
+      "lat": 44.413,
+      "lon": 8.838,
+      "to": "OLB",
+      "airline": "Aeroitalia",
+      "flight_no": "XZ2422",
+      "arr_time": "",
+      "seasons": [
+        {
+          "start": "2026-12-24",
+          "end": "2027-01-06",
+          "days": "346",
+          "arr_time": "14:00",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": false,
+      "admin_note": "Imported from https://www.geasar.it/voli/tutti-i-voli/?arr=OLB&date=&tipo=Linea (saved 2026-11-18)"
+    },
+    {
+      "id": "olb-gva-easyjet",
+      "from_iata": "GVA",
+      "from_city": "Ginevra",
+      "from_city_en": "Geneva",
+      "country": "CH",
+      "lat": 46.238,
+      "lon": 6.109,
+      "to": "OLB",
+      "airline": "easyJet",
+      "flight_no": "DS1419",
+      "arr_time": "",
+      "seasons": [
+        {
+          "start": "2027-03-25",
+          "end": "2027-03-27",
+          "days": "4",
+          "arr_time": "07:55",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": false,
+      "admin_note": "Imported from https://www.geasar.it/voli/tutti-i-voli/?arr=OLB&date=&tipo=Linea (saved 2026-11-18)"
+    },
+    {
+      "id": "olb-mad-volotea",
+      "from_iata": "MAD",
+      "from_city": "Madrid",
+      "from_city_en": "Madrid",
+      "country": "ES",
+      "lat": 40.472,
+      "lon": -3.561,
+      "to": "OLB",
+      "airline": "Volotea",
+      "flight_no": "V73614",
+      "arr_time": "",
+      "seasons": [
+        {
+          "start": "2026-12-17",
+          "end": "2026-12-31",
+          "days": "4",
+          "arr_time": "20:40",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-21",
+          "end": "2027-01-06",
+          "days": "13",
+          "arr_time": "23:55",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-22",
+          "end": "2027-01-05",
+          "days": "2",
+          "arr_time": "00:05",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": false,
+      "admin_note": "Imported from https://www.geasar.it/voli/tutti-i-voli/?arr=OLB&date=&tipo=Linea (saved 2026-11-18)"
+    },
+    {
+      "id": "olb-bgy-ryanair",
+      "from_iata": "BGY",
+      "from_city": "Milano Bergamo",
+      "from_city_en": "Milan Bergamo",
+      "country": "IT",
+      "lat": 45.669,
+      "lon": 9.704,
+      "to": "OLB",
+      "airline": "Ryanair",
+      "flight_no": "FR6501",
+      "arr_time": "",
+      "seasons": [
+        {
+          "start": "2026-10-25",
+          "end": "2027-03-27",
+          "days": "5",
+          "arr_time": "07:10",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-10-25",
+          "end": "2027-03-27",
+          "days": "7",
+          "arr_time": "17:25",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-24",
+          "end": "2026-12-24",
+          "days": "4",
+          "arr_time": "17:15",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": false,
+      "admin_note": "Imported from https://www.geasar.it/voli/tutti-i-voli/?arr=OLB&date=&tipo=Linea (saved 2026-11-18)"
+    },
+    {
+      "id": "olb-bgy-volotea",
+      "from_iata": "BGY",
+      "from_city": "Milano Bergamo",
+      "from_city_en": "Milan Bergamo",
+      "country": "IT",
+      "lat": 45.669,
+      "lon": 9.704,
+      "to": "OLB",
+      "airline": "Volotea",
+      "flight_no": "V71316",
+      "arr_time": "",
+      "seasons": [
+        {
+          "start": "2026-12-19",
+          "end": "2027-01-02",
+          "days": "6",
+          "arr_time": "14:45",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-23",
+          "end": "2027-01-06",
+          "days": "3",
+          "arr_time": "13:50",
+          "flight_no": ""
+        },
+        {
+          "start": "2027-02-06",
+          "end": "2027-03-27",
+          "days": "6",
+          "arr_time": "14:50",
+          "flight_no": ""
+        },
+        {
+          "start": "2027-02-09",
+          "end": "2027-03-27",
+          "days": "2",
+          "arr_time": "16:15",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": false,
+      "admin_note": "Imported from https://www.geasar.it/voli/tutti-i-voli/?arr=OLB&date=&tipo=Linea (saved 2026-11-18)"
+    },
+    {
+      "id": "olb-lin-aeroitalia",
+      "from_iata": "LIN",
+      "from_city": "Milano Linate",
+      "from_city_en": "Milan Linate",
+      "country": "IT",
+      "lat": 45.445,
+      "lon": 9.277,
+      "to": "OLB",
+      "airline": "Aeroitalia",
+      "flight_no": "",
+      "arr_time": "",
+      "seasons": [
+        {
+          "start": "2026-10-25",
+          "end": "2027-03-27",
+          "days": "1234567",
+          "arr_time": "10:10",
+          "flight_no": "XZ2621"
+        },
+        {
+          "start": "2026-10-30",
+          "end": "2026-11-30",
+          "days": "1234567",
+          "arr_time": "14:50",
+          "flight_no": "XZ2623"
+        },
+        {
+          "start": "2026-11-01",
+          "end": "2026-11-30",
+          "days": "1234567",
+          "arr_time": "19:10",
+          "flight_no": "XZ2625"
+        },
+        {
+          "start": "2026-12-01",
+          "end": "2026-12-18",
+          "days": "123457",
+          "arr_time": "18:10",
+          "flight_no": "XZ2625"
+        },
+        {
+          "start": "2026-12-05",
+          "end": "2026-12-14",
+          "days": "126",
+          "arr_time": "14:10",
+          "flight_no": "XZ2623"
+        }
+      ],
+      "sample": false,
+      "published": false,
+      "admin_note": "Imported from https://www.geasar.it/voli/tutti-i-voli/?arr=OLB&date=&tipo=Linea (saved 2026-11-18)"
+    },
+    {
+      "id": "olb-mxp-easyjet",
+      "from_iata": "MXP",
+      "from_city": "Milano Malpensa",
+      "from_city_en": "Milan Malpensa",
+      "country": "IT",
+      "lat": 45.63,
+      "lon": 8.723,
+      "to": "OLB",
+      "airline": "easyJet",
+      "flight_no": "EC3583",
+      "arr_time": "",
+      "seasons": [
+        {
+          "start": "2026-10-25",
+          "end": "2026-12-18",
+          "days": "5",
+          "arr_time": "17:05",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-11-01",
+          "end": "2027-01-24",
+          "days": "7",
+          "arr_time": "16:15",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-25",
+          "end": "2026-12-25",
+          "days": "5",
+          "arr_time": "09:00",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": false,
+      "admin_note": "Imported from https://www.geasar.it/voli/tutti-i-voli/?arr=OLB&date=&tipo=Linea (saved 2026-11-18)"
+    },
+    {
+      "id": "olb-nap-volotea",
+      "from_iata": "NAP",
+      "from_city": "Napoli",
+      "from_city_en": "Naples",
+      "country": "IT",
+      "lat": 40.886,
+      "lon": 14.291,
+      "to": "OLB",
+      "airline": "Volotea",
+      "flight_no": "V71728",
+      "arr_time": "",
+      "seasons": [
+        {
+          "start": "2026-12-19",
+          "end": "2027-01-02",
+          "days": "6",
+          "arr_time": "18:30",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-22",
+          "end": "2027-01-05",
+          "days": "2",
+          "arr_time": "22:05",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": false,
+      "admin_note": "Imported from https://www.geasar.it/voli/tutti-i-voli/?arr=OLB&date=&tipo=Linea (saved 2026-11-18)"
+    },
+    {
+      "id": "olb-ory-volotea",
+      "from_iata": "ORY",
+      "from_city": "Parigi Orly",
+      "from_city_en": "Paris Orly",
+      "country": "FR",
+      "lat": 48.723,
+      "lon": 2.379,
+      "to": "OLB",
+      "airline": "Volotea",
+      "flight_no": "V72322",
+      "arr_time": "",
+      "seasons": [
+        {
+          "start": "2026-11-05",
+          "end": "2027-03-27",
+          "days": "4",
+          "arr_time": "14:45",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-11-08",
+          "end": "2027-03-27",
+          "days": "7",
+          "arr_time": "14:50",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": false,
+      "admin_note": "Imported from https://www.geasar.it/voli/tutti-i-voli/?arr=OLB&date=&tipo=Linea (saved 2026-11-18)"
+    },
+    {
+      "id": "olb-fco-aeroitalia",
+      "from_iata": "FCO",
+      "from_city": "Roma Fiumicino",
+      "from_city_en": "Rome Fiumicino",
+      "country": "IT",
+      "lat": 41.8,
+      "lon": 12.239,
+      "to": "OLB",
+      "airline": "Aeroitalia",
+      "flight_no": "",
+      "arr_time": "",
+      "seasons": [
+        {
+          "start": "2026-10-30",
+          "end": "2026-12-16",
+          "days": "1234567",
+          "arr_time": "17:00",
+          "flight_no": "XZ2615"
+        },
+        {
+          "start": "2026-11-01",
+          "end": "2027-03-27",
+          "days": "1234567",
+          "arr_time": "10:05",
+          "flight_no": "XZ2611"
+        },
+        {
+          "start": "2026-11-01",
+          "end": "2027-03-27",
+          "days": "1234567",
+          "arr_time": "22:45",
+          "flight_no": "XZ2617"
+        },
+        {
+          "start": "2026-12-17",
+          "end": "2027-01-07",
+          "days": "123467",
+          "arr_time": "13:55",
+          "flight_no": "XZ2613"
+        },
+        {
+          "start": "2026-12-17",
+          "end": "2027-01-07",
+          "days": "1234567",
+          "arr_time": "18:00",
+          "flight_no": "XZ2615"
+        }
+      ],
+      "sample": false,
+      "published": false,
+      "admin_note": "Imported from https://www.geasar.it/voli/tutti-i-voli/?arr=OLB&date=&tipo=Linea (saved 2026-11-18)"
+    },
+    {
+      "id": "olb-str-eurowings",
+      "from_iata": "STR",
+      "from_city": "Stoccarda",
+      "from_city_en": "Stuttgart",
+      "country": "DE",
+      "lat": 48.69,
+      "lon": 9.222,
+      "to": "OLB",
+      "airline": "Eurowings",
+      "flight_no": "EW2824",
+      "arr_time": "",
+      "seasons": [
+        {
+          "start": "2027-03-26",
+          "end": "2027-03-27",
+          "days": "5",
+          "arr_time": "15:20",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": false,
+      "admin_note": "Imported from https://www.geasar.it/voli/tutti-i-voli/?arr=OLB&date=&tipo=Linea (saved 2026-11-18)"
+    },
+    {
+      "id": "olb-trn-volotea",
+      "from_iata": "TRN",
+      "from_city": "Torino",
+      "from_city_en": "Turin",
+      "country": "IT",
+      "lat": 45.2,
+      "lon": 7.65,
+      "to": "OLB",
+      "airline": "Volotea",
+      "flight_no": "V71887",
+      "arr_time": "",
+      "seasons": [
+        {
+          "start": "2026-11-06",
+          "end": "2026-12-11",
+          "days": "5",
+          "arr_time": "18:40",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-11-09",
+          "end": "2026-12-14",
+          "days": "1",
+          "arr_time": "10:05",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-18",
+          "end": "2027-03-27",
+          "days": "15",
+          "arr_time": "11:35",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-19",
+          "end": "2027-01-02",
+          "days": "6",
+          "arr_time": "22:10",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-22",
+          "end": "2027-01-05",
+          "days": "2",
+          "arr_time": "14:10",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-23",
+          "end": "2027-01-06",
+          "days": "3",
+          "arr_time": "12:30",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": false,
+      "admin_note": "Imported from https://www.geasar.it/voli/tutti-i-voli/?arr=OLB&date=&tipo=Linea (saved 2026-11-18)"
+    },
+    {
+      "id": "olb-trs-aeroitalia",
+      "from_iata": "TRS",
+      "from_city": "Trieste",
+      "from_city_en": "Trieste",
+      "country": "IT",
+      "lat": 45.827,
+      "lon": 13.472,
+      "to": "OLB",
+      "airline": "Aeroitalia",
+      "flight_no": "XZ2914",
+      "arr_time": "",
+      "seasons": [
+        {
+          "start": "2026-12-24",
+          "end": "2026-12-24",
+          "days": "4",
+          "arr_time": "13:35",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-30",
+          "end": "2027-01-06",
+          "days": "3",
+          "arr_time": "09:40",
+          "flight_no": ""
+        },
+        {
+          "start": "2027-01-02",
+          "end": "2027-01-02",
+          "days": "6",
+          "arr_time": "14:10",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": false,
+      "admin_note": "Imported from https://www.geasar.it/voli/tutti-i-voli/?arr=OLB&date=&tipo=Linea (saved 2026-11-18)"
+    },
+    {
+      "id": "olb-vce-volotea",
+      "from_iata": "VCE",
+      "from_city": "Venezia",
+      "from_city_en": "Venice",
+      "country": "IT",
+      "lat": 45.505,
+      "lon": 12.352,
+      "to": "OLB",
+      "airline": "Volotea",
+      "flight_no": "V71214",
+      "arr_time": "",
+      "seasons": [
+        {
+          "start": "2026-11-06",
+          "end": "2026-12-11",
+          "days": "5",
+          "arr_time": "22:20",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-11-09",
+          "end": "2026-12-14",
+          "days": "1",
+          "arr_time": "13:55",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-18",
+          "end": "2026-12-28",
+          "days": "15",
+          "arr_time": "07:55",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-22",
+          "end": "2027-01-05",
+          "days": "2",
+          "arr_time": "10:20",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-23",
+          "end": "2027-01-06",
+          "days": "3",
+          "arr_time": "08:40",
+          "flight_no": ""
+        },
+        {
+          "start": "2027-01-01",
+          "end": "2027-01-01",
+          "days": "5",
+          "arr_time": "11:25",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": false,
+      "admin_note": "Imported from https://www.geasar.it/voli/tutti-i-voli/?arr=OLB&date=&tipo=Linea (saved 2026-11-18)"
+    },
+    {
+      "id": "olb-vrn-volotea",
+      "from_iata": "VRN",
+      "from_city": "Verona",
+      "from_city_en": "Verona",
+      "country": "IT",
+      "lat": 45.396,
+      "lon": 10.888,
+      "to": "OLB",
+      "airline": "Volotea",
+      "flight_no": "V71778",
+      "arr_time": "",
+      "seasons": [
+        {
+          "start": "2026-11-06",
+          "end": "2026-12-11",
+          "days": "5",
+          "arr_time": "16:40",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-11-09",
+          "end": "2026-12-14",
+          "days": "1",
+          "arr_time": "18:50",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-18",
+          "end": "2026-12-18",
+          "days": "5",
+          "arr_time": "23:15",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-19",
+          "end": "2027-01-02",
+          "days": "6",
+          "arr_time": "17:35",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-21",
+          "end": "2027-03-27",
+          "days": "1",
+          "arr_time": "14:05",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-22",
+          "end": "2027-01-05",
+          "days": "2",
+          "arr_time": "08:05",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-23",
+          "end": "2027-01-06",
+          "days": "3",
+          "arr_time": "09:45",
+          "flight_no": ""
+        },
+        {
+          "start": "2026-12-25",
+          "end": "2027-01-01",
+          "days": "5",
+          "arr_time": "23:35",
+          "flight_no": ""
+        },
+        {
+          "start": "2027-01-08",
+          "end": "2027-01-29",
+          "days": "5",
+          "arr_time": "22:50",
+          "flight_no": ""
+        },
+        {
+          "start": "2027-02-07",
+          "end": "2027-03-27",
+          "days": "7",
+          "arr_time": "15:00",
+          "flight_no": ""
+        }
+      ],
+      "sample": false,
+      "published": false,
+      "admin_note": "Imported from https://www.geasar.it/voli/tutti-i-voli/?arr=OLB&date=&tipo=Linea (saved 2026-11-18)"
     }
   ]
 }

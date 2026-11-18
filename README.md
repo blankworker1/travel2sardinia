@@ -57,6 +57,21 @@ scripts/                       timetable build, new town, admin config
 | `info.json` | Local tips |
 | `destination.json` | Hodlstay links and the coordinator's contact link |
 
+## Updating flights (Alghero and Olbia)
+
+Both airports publish every flight on one page, with a toggle to choose the airport: aeroportodialghero.it → Voli → Tutti i voli (Alghero), and the same page on geasar.it (Olbia).
+
+1. On a phone, open the list for the airport with **Arrivals** and **Type of flight: Line**. Scroll to the bottom so every flight loads.
+2. Save the page (Chrome: ⋮ → ⬇). Rename the `.mhtml` file to `.txt`.
+3. Import it:
+   ```sh
+   python3 scripts/import_airport_page.py saved-page.txt            # unpublished, to review in /admin
+   python3 scripts/import_airport_page.py saved-page.txt --publish  # or publish straight away
+   ```
+   This replaces that airport's previously imported routes and keeps everything else. It drops periods that have already ended, takes the arrival time (moving flights that land after midnight to the next day), and reports any new airport code to add to `data/airports-ref.json`.
+
+Do this at the start of each season (end of March, end of October) and when new routes are announced. Cagliari's site isn't in this format yet.
+
 ## Adding a town
 
 1. Run the script with the town's name, position and the airports people use to reach it:
