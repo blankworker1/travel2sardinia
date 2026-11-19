@@ -12,38 +12,38 @@
     "trenitalia": "https://www.trenitalia.com",
     "aspo": "https://www.aspo.it",
     "network_contact_url": "",
-    "feedback_url": ""
+    "feedback_url": "mailto: bosaland@gmail.com"
   },
   "airports": [
     {
       "code": "AHO",
       "name": "Alghero-Fertilia",
+      "short": "Alghero Aeroporto",
+      "color": "#2f6f8f",
       "lat": 40.6321,
       "lon": 8.2908,
       "website": "https://www.aeroportodialghero.it",
-      "short": "Alghero Aeroporto",
-      "flights_list_url": "https://www.aeroportodialghero.it/voli/tutti-i-voli/?arr=AHO",
-      "color": "#2f6f8f"
+      "flights_list_url": "https://www.aeroportodialghero.it/voli/tutti-i-voli/?arr=AHO"
     },
     {
       "code": "CAG",
       "name": "Cagliari-Elmas",
+      "short": "Cagliari Aeroporto",
+      "color": "#e07b1f",
       "lat": 39.2515,
       "lon": 9.0543,
       "website": "https://www.sogaer.it",
-      "short": "Cagliari Aeroporto",
-      "flights_list_url": "https://www.sogaer.it/en/live-flights-info",
-      "color": "#e07b1f"
+      "flights_list_url": "https://www.sogaer.it/en/live-flights-info"
     },
     {
       "code": "OLB",
       "name": "Olbia Costa Smeralda",
+      "short": "Olbia Aeroporto",
+      "color": "#3c8d5a",
       "lat": 40.8987,
       "lon": 9.5176,
       "website": "https://www.geasar.it",
-      "short": "Olbia Aeroporto",
-      "flights_list_url": "https://www.geasar.it/voli/tutti-i-voli/?arr=OLB",
-      "color": "#3c8d5a"
+      "flights_list_url": "https://www.geasar.it/voli/tutti-i-voli/?arr=OLB"
     }
   ],
   "center": {
