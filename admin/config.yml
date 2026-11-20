@@ -625,10 +625,14 @@ collections:
       format: YYYY-MM-DD
       name: updated
       label: Last updated
+    - name: source_url
+      label: Comune's promotion page
+      widget: string
+      required: false
     - name: stays
       label: Stays
       widget: list
-      summary: '{{fields.name}} · {{fields.area}}'
+      summary: '{{fields.name}} · {{fields.type}} · {{fields.area}}'
       fields:
       - name: id
         label: ID (unique)
@@ -638,15 +642,66 @@ collections:
         widget: string
       - name: type
         label: Type
+        hint: Imported stays get a type guessed from the name until the Comune's page for that type is imported.
         widget: select
         options:
-        - B&B
-        - Apartment
-        - Room
-        - House
-        - Other
+        - label: Albergo / Hotel
+          value: hotel
+        - label: Albergo residenziale / Residential hotel
+          value: resid_hotel
+        - label: Agriturismo / Farm stay
+          value: agriturismo
+        - label: B&B
+          value: bnb
+        - label: Casa vacanze (CAV) / Holiday home
+          value: cav
+        - label: Affittacamere / Guest rooms
+          value: affittacamere
+        - label: Residence
+          value: residence
+        - label: Campeggio / Campsite
+          value: camping
+        - label: Ostello / Hostel
+          value: hostel
+        - label: Casa per ferie / Holiday house
+          value: casa_ferie
+        - label: Locazione breve / Short let
+          value: short_let
+        - label: Boat & breakfast
+          value: boat
       - name: area
-        label: Area (e.g. Centro storico, Bosa Marina)
+        label: Area (e.g. Bosa, Bosa Marina, countryside)
+        hint: Filled in from the map position; set it here to override.
+        widget: string
+        required: false
+      - name: address
+        label: Address
+        widget: string
+        required: false
+      - name: email
+        label: Email (for the enquiry button)
+        widget: string
+        required: false
+      - name: website
+        label: Website or booking page
+        widget: string
+        required: false
+      - name: lat
+        label: Latitude (map position)
+        hint: Found automatically from the address. To place a stay by hand, copy the position from a map (e.g. 40.29812)
+          and it's kept.
+        widget: number
+        value_type: float
+        required: false
+      - name: lon
+        label: Longitude (map position)
+        widget: number
+        value_type: float
+        required: false
+      - name: source
+        label: Source
+        hint: '"comune" = imported from the Comune''s promotion page (refreshed on each import). Leave empty for stays added
+          by hand.'
         widget: string
         required: false
       - name: url

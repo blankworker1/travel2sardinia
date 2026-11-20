@@ -414,11 +414,37 @@
     body.innerHTML = html + "</ol>" + updated;
   }
 
+  // ---------- stays: town map + list with an email button ----------
+  const STAY_COLORS = { hotel: "#b5452f", resid_hotel: "#b5452f", bnb: "#2f6f8f", affittacamere: "#6a5a9e", cav: "#d58a1f",
+    short_let: "#d58a1f", casa_ferie: "#d58a1f", residence: "#8a6d3b", agriturismo: "#3c8d5a", camping: "#3c8d5a", hostel: "#6a5a9e", boat: "#2f6f8f" };
+  const stayColor = (s) => STAY_COLORS[s.type] || "#5b5450";
+  const stayType = (s) => t("stay_type")[s.type] || s.type || "";
+  const stayArea = (s) => s.area === "countryside" ? t("countryside") : s.area || "";
+  const publicStays = () => ((state.data.stays || {}).stays || []).filter(published);
+
+  // The address is only put together when the button is used, so it isn't sitting in the page as text.
+  const hideMail = (m) => btoa(unescape(encodeURIComponent(m.split("").reverse().join(""))));
+  const showMail = (h) => decodeURIComponent(escape(atob(h))).split("").reverse().join("");
+  function enquiry(s) {
+    const when = state.date ? fmtDay(state.date, { year: "numeric" }) : "";
+    const it = { subject: `Richiesta disponibilità${when && state.lang === "it" ? " – " + when : ""} (travel2sardegna)`,
+      body: `Buongiorno,\n\nvorrei sapere se ${s.name} ha disponibilità${state.date ? ` dal ${fmtDayIn("it", state.date)}` : ""} per ___ notti, ___ persone.\n\nGrazie e cordiali saluti,\n` };
+    const en = { subject: `Availability request${when ? " – " + fmtDayIn("en", state.date) : ""} (travel2sardinia)`,
+      body: `Hello,\n\nI'd like to know if ${s.name} has availability${state.date ? ` from ${fmtDayIn("en", state.date)}` : ""} for ___ nights, ___ people.\n\nThank you and kind regards,\n` };
+    const m = state.lang === "it" ? it : { subject: `${en.subject} / ${it.subject.replace(" (travel2sardegna)", "")}`, body: `${en.body}\n---\n${it.body}` };
+    return `mailto:${s.email}?subject=${encodeURIComponent(m.subject)}&body=${encodeURIComponent(m.body)}`;
+  }
+  function fmtDayIn(lang, d) {
+    try { return new Intl.DateTimeFormat(lang === "it" ? "it-IT" : "en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(parseDate(d)); } catch (e) { return d; }
+  }
+
   function renderStays() {
-    const stays = ((state.data.stays || {}).stays || []).filter(published);
+    const all = publicStays();
     const l = links();
     const body = $("#stays-body");
     const signup = l.hodlstay_host_signup_url;
+    if (all.length && all.some((s) => s.source === "comune")) return renderTownStays(all);
+    const stays = all;
     if (!stays.length) {
       body.innerHTML = `<p class="empty">${esc(t("no_stays", destName()))}</p>` +
         (signup ? `<a class="btn" href="${esc(signup)}" target="_blank" rel="noopener">${esc(t("become_host"))}</a>` : "");
@@ -432,6 +458,76 @@
         ${url ? `<div class="actions"><a class="btn" href="${esc(url)}" target="_blank" rel="noopener">${esc(t("view_hodlstay"))}</a></div>` : ""}</li>`;
     }).join("") + "</ul>" +
       (signup ? `<p><a class="link-btn" href="${esc(signup)}" target="_blank" rel="noopener">${esc(t("become_host"))}</a></p>` : "");
+  }
+
+  function renderTownStays(all) {
+    const src = (state.data.stays || {}).source_url;
+    const types = [...new Set(all.map((s) => s.type))].sort((a, b) => all.filter((s) => s.type === b).length - all.filter((s) => s.type === a).length);
+    const f = state.stayFilter && types.includes(state.stayFilter) ? state.stayFilter : "";
+    const list = all.filter((s) => !f || s.type === f);
+    $("#stays-intro").innerHTML = esc(t("stays_intro", all.length, destName())) +
+      (src ? ` <a href="${esc(src)}" target="_blank" rel="noopener">${esc(t("stays_source"))}</a>` : "");
+    $("#stays-filter").innerHTML = `<button type="button" class="chip${f ? "" : " on"}" data-type="">${esc(t("all_types"))} <b>${all.length}</b></button>` +
+      types.map((ty) => `<button type="button" class="chip${f === ty ? " on" : ""}" data-type="${esc(ty)}"><i class="tdot" style="background:${STAY_COLORS[ty] || "#5b5450"}"></i>${esc(t("stay_type")[ty] || ty)} <b>${all.filter((s) => s.type === ty).length}</b></button>`).join("");
+    document.querySelectorAll("#stays-filter .chip").forEach((b) => b.addEventListener("click", () => { state.stayFilter = b.dataset.type; renderStays(); }));
+
+    $("#stays-body").innerHTML = `<ul class="cards stays">` + list.map((s) => {
+      const where = [stayType(s), stayArea(s), s.address].filter(Boolean).map(esc).join(" · ");
+      const site = isUrl(s.website) ? `<a class="btn ghost small-btn" href="${esc(s.website)}" target="_blank" rel="noopener">${esc(t("website"))}</a>` : "";
+      const hodl = isUrl(s.url) ? `<a class="btn ghost small-btn" href="${esc(s.url)}" target="_blank" rel="noopener">${esc(t("view_hodlstay"))}</a>` : "";
+      const pin = s.lat != null ? `<button type="button" class="link-btn small" data-pin="${esc(s.id)}">${esc(t("show_on_map"))}</button>` : "";
+      return `<li class="card" id="stay-${esc(s.id)}"><div class="card-main"><strong><i class="tdot" style="background:${stayColor(s)}"></i>${esc(s.name)}</strong>
+        <div class="meta">${where}</div>${tx(s.notes) ? `<p>${esc(tx(s.notes))}</p>` : ""}${pin}</div>
+        <div class="actions">${s.email ? `<button type="button" class="btn small-btn" data-mail="${esc(hideMail(s.email))}" data-id="${esc(s.id)}">✉ ${esc(t("email_host"))}</button>` : ""}${site}${hodl}</div></li>`;
+    }).join("") + "</ul>" + moreStayOptions();
+    document.querySelectorAll("#stays-body [data-mail]").forEach((b) => b.addEventListener("click", () => {
+      const s = all.find((x) => x.id === b.dataset.id);
+      window.location.href = enquiry(Object.assign({}, s, { email: showMail(b.dataset.mail) }));
+    }));
+    document.querySelectorAll("#stays-body [data-pin]").forEach((b) => b.addEventListener("click", () => {
+      const mk = (state.stayMarkers || {})[b.dataset.pin];
+      if (!mk) return;
+      $("#stays-map").scrollIntoView({ behavior: "smooth", block: "center" });
+      state.stayMap.setView(mk.getLatLng(), 17); mk.openTooltip();
+    }));
+    renderStayMap(list);
+  }
+
+  function renderStayMap(list) {
+    if (!window.L || !has("#stays-map")) return;
+    $("#stays-map").hidden = false;   // visible before Leaflet measures it
+    if (!state.stayMap) {
+      state.stayMap = L.map("stays-map", { scrollWheelZoom: false });
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' }).addTo(state.stayMap);
+      state.stayLayer = L.layerGroup().addTo(state.stayMap);
+    }
+    state.stayLayer.clearLayers();
+    state.stayMarkers = {};
+    const placed = list.filter((s) => s.lat != null && s.lon != null);
+    for (const s of placed) {
+      const mk = L.circleMarker([s.lat, s.lon], { radius: 7, color: "#fff", weight: 2, fillColor: stayColor(s), fillOpacity: 0.95 })
+        .bindTooltip(`${esc(s.name)}<br><small>${esc(stayType(s))}</small>`, { direction: "top" })
+        .on("click", () => { const el = document.getElementById(`stay-${s.id}`); if (el) { el.scrollIntoView({ behavior: "smooth", block: "center" }); el.classList.add("flash"); setTimeout(() => el.classList.remove("flash"), 1600); } })
+        .addTo(state.stayLayer);
+      state.stayMarkers[s.id] = mk;
+    }
+    const d = state.dest || {};
+    state.stayMap.invalidateSize();
+    if (placed.length) state.stayMap.fitBounds(L.latLngBounds(placed.map((s) => [s.lat, s.lon])).pad(0.15), { maxZoom: 16 });
+    else state.stayMap.setView([d.lat || 40.2981, d.lon || 8.4979], 14);
+  }
+
+  function moreStayOptions() {
+    const l = links(), name = destName();
+    const ci = state.date, co = state.date ? addDays(state.date, 7) : "";
+    const air = `https://www.airbnb.com/s/${encodeURIComponent(name + ", Sardinia")}/homes` + (ci ? `?checkin=${ci}&checkout=${co}` : "");
+    const book = `https://www.booking.com/searchresults.html?ss=${encodeURIComponent(name + ", Sardinia, Italy")}` + (ci ? `&checkin=${ci}&checkout=${co}` : "");
+    const hodl = l.hodlstay_base_url;
+    return `<div class="more-stays"><span class="meta">${esc(t("more_options"))}</span>
+      <a class="btn ghost small-btn" href="${esc(air)}" target="_blank" rel="noopener">Airbnb</a>
+      <a class="btn ghost small-btn" href="${esc(book)}" target="_blank" rel="noopener">Booking.com</a>
+      ${isUrl(hodl) ? `<a class="btn ghost small-btn" href="${esc(hodl)}" target="_blank" rel="noopener">Hodlstay</a>` : ""}</div>`;
   }
 
   function eventItem(e, compact) {
@@ -759,11 +855,11 @@
       if (many) { sh += `<h3 class="jdest">${esc(name)}</h3>`; eh += `<h3 class="jdest">${esc(name)}</h3>`; }
 
       const stays = (dd.stays || []).filter(published);
+      const types = [...new Set(stays.map((s) => s.type))].sort((a, b) => stays.filter((s) => s.type === b).length - stays.filter((s) => s.type === a).length);
       sh += stays.length
-        ? `<ul class="cards">${stays.slice(0, 3).map((s) => `<li class="card"><div class="card-main"><strong>${esc(s.name)}</strong>
-            <div class="meta">${[s.type, s.area].filter(Boolean).map(esc).join(" · ")}</div></div></li>`).join("")}</ul>`
+        ? `<p>${esc(t("stays_count", stays.length, name))}</p><div class="chips static">${types.map((ty) => `<span class="chip"><i class="tdot" style="background:${STAY_COLORS[ty] || "#5b5450"}"></i>${esc(t("stay_type")[ty] || ty)} <b>${stays.filter((s) => s.type === ty).length}</b></span>`).join("")}</div>`
         : `<p class="empty">${esc(t("no_stays", name))}</p>`;
-      sh += `<p><a class="btn small-btn" href="${esc(destLink(dest, "#stays"))}">${esc(t("all_stays", name, stays.length))}</a></p>`;
+      sh += `<p><a class="btn small-btn" href="${esc(destLink(dest, "#stays"))}">${esc(t(stays.length ? "stays_map_link" : "all_stays", name, stays.length))}</a></p>`;
 
       const evs = (dd.events || []).filter((e) => published(e) && e.start);
       let list, head;

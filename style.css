@@ -61,7 +61,7 @@ main {
 .panel { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.1rem 1.2rem; }
 /* One column for the steps of the trip; Accommodation and Events sit side by side when there's room. */
 main > .panel { grid-column: 1 / -1; }
-main > #stays-card, main > #events-card, [data-page=destination] main > #stays, [data-page=destination] main > #events { grid-column: auto; }
+main > #stays-card, main > #events-card { grid-column: auto; }
 #origin-card .mapwrap { margin: .6rem -1.2rem .8rem; }
 #origin-card #map { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 #origin-card .controls { align-items: flex-end; }
@@ -241,3 +241,17 @@ footer { padding-bottom: 4.5rem; }
 .top { flex-wrap: nowrap; align-items: flex-start; }
 .top .brand { flex: 1 1 auto; min-width: 0; }
 .top .lang { flex: none; }
+
+/* stays: town map, type filter, list */
+.town-map { height: 340px; margin: .6rem -1.2rem .8rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+@media (min-width: 900px) { .town-map { height: 420px; } }
+.chips { display: flex; flex-wrap: wrap; gap: .4rem; margin: .4rem 0; }
+.chips .chip { display: inline-flex; align-items: center; gap: .35rem; }
+.chips .chip b { font-weight: 600; opacity: .7; }
+.chips .chip.on { background: var(--ink, #2a2522); color: #fff; border-color: var(--ink, #2a2522); }
+.chips.static .chip { cursor: default; }
+.tdot { display: inline-block; width: .7rem; height: .7rem; border-radius: 50%; margin-right: .35rem; vertical-align: baseline; border: 1px solid rgba(0,0,0,.15); }
+.cards.stays .card { scroll-margin: 6rem; transition: background .4s; }
+.cards.stays .card.flash { background: #fff4d6; }
+.link-btn.small { font-size: .85rem; padding: 0; margin-top: .3rem; }
+.more-stays { display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; margin-top: 1rem; }

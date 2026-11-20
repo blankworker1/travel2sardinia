@@ -19,7 +19,15 @@
         "CAG",
         "OLB"
       ],
-      "published": true
+      "published": true,
+      "areas": [
+        {
+          "name": "Bosa Marina",
+          "lat": 40.2878,
+          "lon": 8.4605,
+          "km": 1.4
+        }
+      ]
     }
   ]
 }

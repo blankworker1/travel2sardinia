@@ -86,6 +86,16 @@ python3 scripts/import_sogaer_board.py saved-page.txt
 
 Each save adds two days to `data/sources/CAG-board.json` (arrivals and departures), and the Cagliari routes are rebuilt from everything observed: new origins are added, and each flight gets the weekdays it was seen on. Until every weekday has been observed, routes stay "days to be confirmed" and show the days seen so far.
 
+## Updating stays
+
+A town's stays come from its Comune's public "Promozione turistica" page (Bosa: https://bosa.imposta-soggiorno.it/promozione), the hosts who chose to be promoted when registering for the tourist tax. Save the page in Italian (translation off) and run:
+
+```
+python3 scripts/import_comune_stays.py bosa saved-page.txt
+```
+
+New hosts are added, hosts no longer on the Comune's list are removed, and edits made in the admin (type, area, map position, notes, Hodlstay link, published) are kept. Saving the page for one type (`?tipo=3` for B&B, etc.) and importing it sets the type of those hosts; otherwise the type is guessed from the name. Phone numbers aren't copied: each stay has an **Email the host** button that opens a pre-written enquiry (with the travel date, in Italian, or in English and Italian). The workflow *Place stays on the map* finds each new address on OpenStreetMap; stays it can't place are listed without a dot until you add a position in the admin.
+
 ## Adding a town
 
 1. Run the script with the town's name, position and the airports people use to reach it:
