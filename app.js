@@ -584,7 +584,7 @@
   function renderInfo() {
     const tips = (state.data.tips || []).filter(published);
     $("#info-body").innerHTML = '<ul class="tips">' + tips.map((x) =>
-      `<li><strong>${esc(tx(x.title))}</strong>${x.verified === false ? ` <span class="badge soft">${esc(t("unverified"))}</span>` : ""}<p>${esc(tx(x.body))}</p></li>`).join("") + "</ul>";
+      `<li><strong>${esc(tx(x.title))}</strong>${x.verified === false ? ` <span class="badge soft">${esc(t("unverified"))}</span>` : ""}<p>${esc(tx(x.body))}${isUrl(x.url) ? ` <a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(t("more_info"))} ↗</a>` : ""}</p></li>`).join("") + "</ul>";
   }
 
   // ---------- origin search (combobox) ----------

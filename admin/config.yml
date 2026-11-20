@@ -375,6 +375,10 @@ collections:
           widget: text
         name: body
         label: Text
+      - name: url
+        label: Link for more information (optional)
+        widget: string
+        required: false
       - name: verified
         label: Verified
         widget: boolean
@@ -774,6 +778,10 @@ collections:
           widget: text
         name: body
         label: Text
+      - name: url
+        label: Link for more information (optional)
+        widget: string
+        required: false
       - name: verified
         label: Verified
         widget: boolean

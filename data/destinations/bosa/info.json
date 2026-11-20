@@ -1,6 +1,21 @@
 {
-  "updated": "2026-11-18",
+  "updated": "2026-11-20",
   "tips": [
+    {
+      "id": "tourist-tax",
+      "category": "town",
+      "title": {
+        "it": "Imposta di soggiorno",
+        "en": "Tourist tax"
+      },
+      "body": {
+        "it": "A Bosa si pagano €2,50 a persona per notte dal 1° aprile al 31 ottobre, ed €1,50 nel resto dell'anno e nei campeggi. Si paga alla struttura.",
+        "en": "Bosa charges €2.50 per person per night from 1 April to 31 October, and €1.50 the rest of the year and at campsites. You pay it to your host."
+      },
+      "url": "https://bosa.imposta-soggiorno.it/",
+      "verified": true,
+      "published": true
+    },
     {
       "id": "no-mainline-station",
       "category": "transport",
@@ -12,7 +27,7 @@
         "it": "I treni arrivano a Macomer; da lì si prosegue in autobus ARST fino a Bosa.",
         "en": "Trains run to Macomer; from there an ARST bus continues to Bosa."
       },
-      "verified": false,
+      "verified": true,
       "published": true
     }
   ]
