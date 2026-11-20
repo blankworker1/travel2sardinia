@@ -23,11 +23,13 @@
       "areas": [
         {
           "name": "Bosa Marina",
-          "lat": 40.2878,
-          "lon": 8.4605,
-          "km": 1.4
+          "lat": 40.2898,
+          "lon": 8.4838,
+          "km": 1.1
         }
-      ]
+      ],
+      "centre_lat": 40.2965,
+      "centre_lon": 8.5025
     }
   ]
 }

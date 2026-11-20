@@ -35,14 +35,19 @@ def main():
             continue
         data = json.loads(path.read_text())
         areas = d.get("areas") or []          # e.g. [{"name": "Bosa Marina", "lat": .., "lon": .., "km": 1.2}]
-        centre = (d["lat"], d["lon"])
+        centre = (d.get("centre_lat", d["lat"]), d.get("centre_lon", d["lon"]))   # the town itself, for "countryside"
         town = d["name"]["it"] if isinstance(d["name"], dict) else d["name"]
         for s in data.get("stays", []):
             if s.get("lat") is None and s.get("geo") != "not_found" and s.get("address"):
                 street = re.sub(r"\b(loc\.?|localit[aà])\s*", "", s["address"], flags=re.I)
                 street = re.split(r"\s+-\s+", street)[0]          # "Vico X 1 - Corso Y 69": take the first
+                street = re.sub(r",?\s*n[°.]\s*", " ", street).replace(" snc", "").replace(" SNC", "").strip(" ,")
+                bare = re.sub(r"\s*\d+\s*/?\s*\w?$", "", street).strip(" ,")   # without the house number
+                tries = [{"street": street, "city": town}, {"q": f"{street}, {town}"}]
+                tries += [{"q": f"{street}, {a['name']}"} for a in areas]
+                tries += [{"q": f"{bare}, {town}"}] + [{"q": f"{bare}, {a['name']}"} for a in areas] + [{"q": f"{s['name']}, {town}"}]
                 hit = None
-                for params in ({"street": street, "city": town}, {"q": f"{street}, {town}"}, {"q": f"{s['name']}, {town}"}):
+                for params in tries:
                     try:
                         hit = query(params)
                     except Exception as e:
@@ -57,11 +62,12 @@ def main():
                     s["geo"] = "not_found"
                 print(f"{d['id']}: {s['name']}: {'found' if hit else 'not found'}")
                 changed = True
-            if s.get("lat") is not None and not s.get("area"):
+            if s.get("lat") is not None and (not s.get("area") or s.get("area_auto")):
                 p = (s["lat"], s["lon"])
                 near = [a for a in areas if km(p, (a["lat"], a["lon"])) <= a.get("km", 1)]
-                s["area"] = near[0]["name"] if near else (town if km(p, centre) <= 1.5 else "countryside")
-                changed = True
+                area = near[0]["name"] if near else (town if km(p, centre) <= 1.5 else "countryside")
+                changed = changed or area != s.get("area") or not s.get("area_auto")
+                s["area"], s["area_auto"] = area, True
         path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n")
     print("changed" if changed else "nothing to do")
 
