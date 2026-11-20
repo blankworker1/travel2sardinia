@@ -13,7 +13,9 @@
       "published": true,
       "lat": 40.29557,
       "lon": 8.50276,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "agricampeggio-e-fattoria-didattica-mattagiana-di-katja-pinna",
@@ -24,7 +26,8 @@
       "email": "info@mattagiana.com",
       "website": "https://www.mattagiana.com",
       "source": "comune",
-      "published": true
+      "published": true,
+      "geo": "not_found"
     },
     {
       "id": "alba-casa-vacanze",
@@ -38,7 +41,9 @@
       "published": true,
       "lat": 40.29605,
       "lon": 8.50179,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "appartamento-amalia",
@@ -52,7 +57,9 @@
       "published": true,
       "lat": 40.28784,
       "lon": 8.484,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa Marina",
+      "area_auto": true
     },
     {
       "id": "appartamento-la-torre",
@@ -66,7 +73,9 @@
       "published": true,
       "lat": 40.28829,
       "lon": 8.48277,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa Marina",
+      "area_auto": true
     },
     {
       "id": "b-b-sa-rochitta",
@@ -77,7 +86,8 @@
       "email": "piera.81@tiscali.it",
       "website": "",
       "source": "comune",
-      "published": true
+      "published": true,
+      "geo": "not_found"
     },
     {
       "id": "b-b-alene",
@@ -91,7 +101,9 @@
       "published": true,
       "lat": 40.29564,
       "lon": 8.50105,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "b-b-i-gerani",
@@ -105,7 +117,9 @@
       "published": true,
       "lat": 40.29829,
       "lon": 8.49554,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "b-b-il-corallo",
@@ -116,7 +130,8 @@
       "email": "info@ilcorallobb.com",
       "website": "http://www.ilcorallobb.com/",
       "source": "comune",
-      "published": true
+      "published": true,
+      "geo": "not_found"
     },
     {
       "id": "b-b-la-casa-del-pescatore",
@@ -130,7 +145,9 @@
       "published": true,
       "lat": 40.29658,
       "lon": 8.50152,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "b-b-vista-fiume",
@@ -144,7 +161,9 @@
       "published": true,
       "lat": 40.29274,
       "lon": 8.49271,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa Marina",
+      "area_auto": true
     },
     {
       "id": "bainas",
@@ -158,7 +177,9 @@
       "published": true,
       "lat": 40.29309,
       "lon": 8.50459,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "bed-and-breakfast-il-rosmarino",
@@ -172,7 +193,9 @@
       "published": true,
       "lat": 40.27234,
       "lon": 8.50312,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "countryside",
+      "area_auto": true
     },
     {
       "id": "blu-bosa",
@@ -186,7 +209,9 @@
       "published": true,
       "lat": 40.29681,
       "lon": 8.50309,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "bomarosa-b-b",
@@ -200,7 +225,9 @@
       "published": true,
       "lat": 40.29671,
       "lon": 8.50103,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "canne-al-vento-b-b",
@@ -214,7 +241,9 @@
       "published": true,
       "lat": 40.29529,
       "lon": 8.5021,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "casa-di-angelo",
@@ -228,7 +257,9 @@
       "published": true,
       "lat": 40.29644,
       "lon": 8.50276,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "casa-di-bosa-marina",
@@ -242,7 +273,9 @@
       "published": true,
       "lat": 40.29248,
       "lon": 8.48314,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa Marina",
+      "area_auto": true
     },
     {
       "id": "casa-eleonora",
@@ -256,7 +289,9 @@
       "published": true,
       "lat": 40.29571,
       "lon": 8.50312,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "casa-malamida",
@@ -270,7 +305,9 @@
       "published": true,
       "lat": 40.29853,
       "lon": 8.49737,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "casa-mirto",
@@ -284,7 +321,9 @@
       "published": true,
       "lat": 40.29596,
       "lon": 8.50305,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "casa-pagio-di-paolo-francescone",
@@ -298,7 +337,9 @@
       "published": true,
       "lat": 40.29509,
       "lon": 8.50259,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "casa-portella",
@@ -312,7 +353,9 @@
       "published": true,
       "lat": 40.29662,
       "lon": 8.50296,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "casa-relax",
@@ -326,7 +369,9 @@
       "published": true,
       "lat": 40.29042,
       "lon": 8.50562,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "casa-su-mulinu-ezzu",
@@ -337,7 +382,8 @@
       "email": "casamulinuezzu@gmail.com",
       "website": "",
       "source": "comune",
-      "published": true
+      "published": true,
+      "geo": "not_found"
     },
     {
       "id": "casa-sul-corso",
@@ -348,7 +394,12 @@
       "email": "antomo66@libero.it",
       "website": "",
       "source": "comune",
-      "published": true
+      "published": true,
+      "lat": 40.29572,
+      "lon": 8.50189,
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "casa-sul-temo",
@@ -362,7 +413,9 @@
       "published": true,
       "lat": 40.29539,
       "lon": 8.50871,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "casa-vista-mare",
@@ -376,7 +429,9 @@
       "published": true,
       "lat": 40.29612,
       "lon": 8.50465,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "club-hotel-malaspina",
@@ -390,7 +445,9 @@
       "published": true,
       "lat": 40.28801,
       "lon": 8.48299,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa Marina",
+      "area_auto": true
     },
     {
       "id": "dimora-sant-ignazio",
@@ -404,7 +461,9 @@
       "published": true,
       "lat": 40.29644,
       "lon": 8.50276,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "dommo-asuletta",
@@ -418,7 +477,9 @@
       "published": true,
       "lat": 40.29642,
       "lon": 8.50142,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "giardini-malaspina",
@@ -432,7 +493,9 @@
       "published": true,
       "lat": 40.29878,
       "lon": 8.51099,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "hotel-al-gabbiano-di-deriu-pasqualino-sas",
@@ -443,7 +506,8 @@
       "email": "info@hotelalgabbiano.it",
       "website": "http://www.hotelalgabbiano.it/",
       "source": "comune",
-      "published": true
+      "published": true,
+      "geo": "not_found"
     },
     {
       "id": "hotel-isola-rossa-residenziale",
@@ -454,7 +518,8 @@
       "email": "info@isolarossabosa.it",
       "website": "http://www.isolarossabosa.it/",
       "source": "comune",
-      "published": true
+      "published": true,
+      "geo": "not_found"
     },
     {
       "id": "il-borgo-locazione-turistica-affitti-brevi",
@@ -468,7 +533,9 @@
       "published": true,
       "lat": 40.296,
       "lon": 8.50017,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "jacopo-schintu",
@@ -482,7 +549,9 @@
       "published": true,
       "lat": 40.30059,
       "lon": 8.48478,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "countryside",
+      "area_auto": true
     },
     {
       "id": "la-casa-arancione",
@@ -496,7 +565,9 @@
       "published": true,
       "lat": 40.29681,
       "lon": 8.50309,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "la-casetta-del-borgo",
@@ -510,7 +581,9 @@
       "published": true,
       "lat": 40.29568,
       "lon": 8.50477,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "la-dea-hestia",
@@ -524,7 +597,9 @@
       "published": true,
       "lat": 40.3038,
       "lon": 8.4856,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "countryside",
+      "area_auto": true
     },
     {
       "id": "la-torre-di-alice",
@@ -538,7 +613,9 @@
       "published": true,
       "lat": 40.29545,
       "lon": 8.50536,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "luxury-home-bosa-apartment",
@@ -552,7 +629,9 @@
       "published": true,
       "lat": 40.29588,
       "lon": 8.50122,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "luxury-home-garden-apartament-bosa-marina",
@@ -566,7 +645,9 @@
       "published": true,
       "lat": 40.28837,
       "lon": 8.48575,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa Marina",
+      "area_auto": true
     },
     {
       "id": "madalen-guest-house",
@@ -580,7 +661,9 @@
       "published": true,
       "lat": 40.29615,
       "lon": 8.50136,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "maurilio-rosario-galia",
@@ -594,7 +677,9 @@
       "published": true,
       "lat": 40.29858,
       "lon": 8.49691,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "naki",
@@ -608,7 +693,9 @@
       "published": true,
       "lat": 40.2962,
       "lon": 8.50272,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "nel-vicolo",
@@ -622,7 +709,9 @@
       "published": true,
       "lat": 40.29629,
       "lon": 8.50186,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "pessighette",
@@ -636,7 +725,9 @@
       "published": true,
       "lat": 40.27383,
       "lon": 8.51066,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "countryside",
+      "area_auto": true
     },
     {
       "id": "pierette-affitta-camere",
@@ -650,7 +741,9 @@
       "published": true,
       "lat": 40.29566,
       "lon": 8.50135,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "pietro-masala",
@@ -664,7 +757,9 @@
       "published": true,
       "lat": 40.28784,
       "lon": 8.484,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa Marina",
+      "area_auto": true
     },
     {
       "id": "queen-house",
@@ -678,7 +773,9 @@
       "published": true,
       "lat": 40.29613,
       "lon": 8.50253,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "regnos-altos-boutique-rooms",
@@ -692,7 +789,9 @@
       "published": true,
       "lat": 40.29571,
       "lon": 8.50312,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "residence-costa-del-corallo",
@@ -703,7 +802,8 @@
       "email": "costacorallo18@gmail.com",
       "website": "",
       "source": "comune",
-      "published": true
+      "published": true,
+      "geo": "not_found"
     },
     {
       "id": "s-ammentu-house",
@@ -717,7 +817,9 @@
       "published": true,
       "lat": 40.29571,
       "lon": 8.50312,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "sporting-hotel-stella-maris",
@@ -731,7 +833,9 @@
       "published": true,
       "lat": 40.29216,
       "lon": 8.48214,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa Marina",
+      "area_auto": true
     },
     {
       "id": "su-recreu",
@@ -745,7 +849,9 @@
       "published": true,
       "lat": 40.29194,
       "lon": 8.48197,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa Marina",
+      "area_auto": true
     },
     {
       "id": "sweethome",
@@ -759,7 +865,9 @@
       "published": true,
       "lat": 40.29247,
       "lon": 8.5058,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "tipicos-house",
@@ -773,7 +881,9 @@
       "published": true,
       "lat": 40.29704,
       "lon": 8.50177,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "wind-rose-bosa-spacious-comfortable-and-quiet",
@@ -787,7 +897,9 @@
       "published": true,
       "lat": 40.30049,
       "lon": 8.49719,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     },
     {
       "id": "yellow-house",
@@ -801,7 +913,9 @@
       "published": true,
       "lat": 40.29657,
       "lon": 8.5024,
-      "geo": "osm"
+      "geo": "osm",
+      "area": "Bosa",
+      "area_auto": true
     }
   ],
   "source_url": "https://bosa.imposta-soggiorno.it/promozione"
