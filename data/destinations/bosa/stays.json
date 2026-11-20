@@ -278,7 +278,10 @@
       "website": "https://www.lecasedibosa.com/",
       "source": "comune",
       "published": true,
-      "name_comune": "Casa di Bosa Marina"
+      "name_comune": "Casa di Bosa Marina",
+      "lat": 40.29248,
+      "lon": 8.48314,
+      "geo": "osm"
     },
     {
       "id": "casa-eleonora",
@@ -371,7 +374,10 @@
       "website": "https://www.lecasedibosa.com/",
       "source": "comune",
       "published": true,
-      "name_comune": "Casa Relax"
+      "name_comune": "Casa Relax",
+      "lat": 40.29044,
+      "lon": 8.505,
+      "geo": "osm"
     },
     {
       "id": "casa-su-mulinu-ezzu",
