@@ -478,7 +478,7 @@
       const pin = s.lat != null ? `<button type="button" class="link-btn small" data-pin="${esc(s.id)}">${esc(t("show_on_map"))}</button>` : "";
       return `<li class="card" id="stay-${esc(s.id)}"><div class="card-main"><strong><i class="tdot" style="background:${stayColor(s)}"></i>${esc(s.name)}</strong>
         <div class="meta">${where}</div>${tx(s.notes) ? `<p>${esc(tx(s.notes))}</p>` : ""}${pin}</div>
-        <div class="actions">${s.email ? `<button type="button" class="btn small-btn" data-mail="${esc(hideMail(s.email))}" data-id="${esc(s.id)}">✉ ${esc(t("email_host"))}</button>` : ""}${site}${hodl}</div></li>`;
+        <div class="actions">${site}${s.email ? `<button type="button" class="btn small-btn" data-mail="${esc(hideMail(s.email))}" data-id="${esc(s.id)}">✉ ${esc(t("email_host"))}</button>` : ""}${hodl}</div></li>`;
     }).join("") + "</ul>" + moreStayOptions();
     document.querySelectorAll("#stays-body [data-mail]").forEach((b) => b.addEventListener("click", () => {
       const s = all.find((x) => x.id === b.dataset.id);
@@ -519,15 +519,11 @@
   }
 
   function moreStayOptions() {
-    const l = links(), name = destName();
-    const ci = state.date, co = state.date ? addDays(state.date, 7) : "";
-    const air = `https://www.airbnb.com/s/${encodeURIComponent(name + ", Sardinia")}/homes` + (ci ? `?checkin=${ci}&checkout=${co}` : "");
-    const book = `https://www.booking.com/searchresults.html?ss=${encodeURIComponent(name + ", Sardinia, Italy")}` + (ci ? `&checkin=${ci}&checkout=${co}` : "");
-    const hodl = l.hodlstay_base_url;
+    const l = links();
+    const opts = [["Airbnb", l.airbnb_url], ["Booking.com", l.booking_url], ["Hodlstay", l.hodlstay_base_url]].filter(([, u]) => isUrl(u));
+    if (!opts.length) return "";
     return `<div class="more-stays"><span class="meta">${esc(t("more_options"))}</span>
-      <a class="btn ghost small-btn" href="${esc(air)}" target="_blank" rel="noopener">Airbnb</a>
-      <a class="btn ghost small-btn" href="${esc(book)}" target="_blank" rel="noopener">Booking.com</a>
-      ${isUrl(hodl) ? `<a class="btn ghost small-btn" href="${esc(hodl)}" target="_blank" rel="noopener">Hodlstay</a>` : ""}</div>`;
+      ${opts.map(([n, u]) => `<a class="btn ghost small-btn" href="${esc(u)}" target="_blank" rel="noopener">${n}</a>`).join("")}</div>`;
   }
 
   function eventItem(e, compact) {

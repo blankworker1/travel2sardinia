@@ -793,6 +793,15 @@ collections:
       label: Links
       widget: object
       fields:
+      - name: airbnb_url
+        label: Airbnb page for this town ("More options" under Accommodation)
+        hint: Use the plain link, without the tracking part after "?" (gclid, sid…).
+        widget: string
+        required: false
+      - name: booking_url
+        label: Booking.com page for this town
+        widget: string
+        required: false
       - name: hodlstay_base_url
         label: Hodlstay page for this town
         widget: string
