@@ -280,6 +280,55 @@
       "PL",
       50.078,
       19.785
+    ],
+    "PMO": [
+      "Palermo",
+      "Palermo",
+      "IT",
+      38.176,
+      13.091
+    ],
+    "FRL": [
+      "Forlì",
+      "Forlì",
+      "IT",
+      44.195,
+      12.07
+    ],
+    "SVQ": [
+      "Siviglia",
+      "Seville",
+      "ES",
+      37.418,
+      -5.893
+    ],
+    "BVA": [
+      "Parigi Beauvais",
+      "Paris Beauvais",
+      "FR",
+      49.454,
+      2.113
+    ],
+    "PSR": [
+      "Pescara",
+      "Pescara",
+      "IT",
+      42.432,
+      14.181
+    ],
+    "MLA": [
+      "Malta",
+      "Malta",
+      "MT",
+      35.857,
+      14.477
+    ],
+    "PEG": [
+      "Perugia",
+      "Perugia",
+      "IT",
+      43.096,
+      12.513
     ]
   },
   "airlines": {

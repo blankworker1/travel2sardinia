@@ -71,6 +71,8 @@
       .find((s) => s.start <= date && date <= s.end && String(s.days || "").includes(wd)) || null;
   }
   const fliesOn = (r, date) => !!seasonOn(r, date);
+  // Days not confirmed yet: it may fly on a weekday the airport board hasn't been checked on.
+  const maybeOn = (r, date) => isTbc(r) && inPeriod(r, date) && !fliesOn(r, date) && !String(r.days_observed || "").includes(String(isoWeekday(date)));
   // Arrival time: the period's own time first, then the route's general time.
   const arrTime = (r, s) => (s && s.arr_time) || r.arr_time || "";
   // With no date chosen: the next period still to come (else the first one).
@@ -243,7 +245,7 @@
 
   // One line for the journey card: the period on the chosen date (or the next one), and how many more.
   function scheduleShort(r) {
-    if (isTbc(r)) return t("days_tbc");
+    if (isTbc(r)) return scheduleText(r) || t("days_tbc");
     const s = state.date ? (seasonOn(r, state.date) || null) : nextSeason(r);
     if (!s) return state.date ? t("not_on_date") : "";
     const one = scheduleText(Object.assign({}, r, { seasons: [s] }));
@@ -252,6 +254,14 @@
   }
 
   function scheduleText(r) {
+    if (isTbc(r)) {   // one line: the period, the days seen so far, and that the rest is to confirm
+      const ss = (r.seasons || []).filter((x) => x.end >= today());
+      if (!ss.length) return "";
+      const span = Object.assign({}, ss[0], { start: ss.map((x) => x.start).sort()[0], end: ss.map((x) => x.end).sort().pop(), days: "1", arr_time: "" });
+      const when = scheduleText(Object.assign({}, r, { days_tbc: false, seasons: [span] })).split(" · ")[0];
+      const seen = [...new Set(ss.flatMap((x) => String(x.days || "").split("")).filter((d) => /[1-7]/.test(d)))].sort();
+      return [when, seen.length ? t("seen_on", seen.map(dayName).join(", ")) : t("days_tbc")].join(" · ");
+    }
     return [...(r.seasons || [])].filter((x) => (hasDays(x) || isTbc(r)) && x.end >= today()).sort((x, y) => x.start.localeCompare(y.start)).map((s) => {
       const a = parseDate(s.start), b = parseDate(s.end);
       const sameYear = a.getUTCFullYear() === b.getUTCFullYear();
@@ -291,7 +301,7 @@
         const when = flies ? state.date : nxt;
         const sky = `https://www.skyscanner.net/transport/flights/${r.from_iata.toLowerCase()}/${r.to.toLowerCase()}/` + (when ? when.slice(2).replace(/-/g, "") + "/" : "");
         const goo = `https://www.google.com/travel/flights?q=${encodeURIComponent(`Flights from ${r.from_iata} to ${r.to}` + (when ? ` on ${when}` : ""))}`;
-        const status = state.date && !flies && isTbc(r) && inPeriod(r, state.date)
+        const status = state.date && maybeOn(r, state.date)
           ? `<span class="badge soft">${esc(t("days_tbc_check"))}</span>`
           : state.date
           ? (flies ? `<span class="badge ok">${esc(t("flies_on_date"))}</span>` : `<span class="badge soft">${esc(t("not_on_date"))}</span>${nxt ? ` <span class="meta">${esc(t("next_flight", fmtDay(nxt)))}</span>` : ""}`)
@@ -658,13 +668,17 @@
   }
 
   // landing time for a route on the chosen date, or for its next period
-  function landingTime(r) {
-    if (state.date) { const s = seasonOn(r, state.date); return s ? arrTime(r, s) : ""; }
-    return arrTime(r, nextSeason(r));
+  // Every landing time of a route: on the chosen date, or (no date, days confirmed) the next period's.
+  function landingTimes(r) {
+    if (state.date) {
+      const wd = String(isoWeekday(state.date));
+      return (r.seasons || []).filter((s) => hasDays(s) && s.start <= state.date && state.date <= s.end && String(s.days).includes(wd)).map((s) => arrTime(r, s));
+    }
+    return isTbc(r) ? [] : [arrTime(r, nextSeason(r))];
   }
 
   // With a date: only routes that fly that day (or whose days aren't confirmed yet).
-  const fliesOrMaybe = (r, date) => fliesOn(r, date) || (isTbc(r) && inPeriod(r, date));
+  const fliesOrMaybe = (r, date) => fliesOn(r, date) || maybeOn(r, date);
   function journeyOptions(dest, onlyDate) {
     let routes = allRoutes().filter((r) => r.from_iata === state.origin && (!dest.airports || dest.airports.includes(r.to)));
     if (onlyDate) routes = routes.filter((r) => fliesOrMaybe(r, state.date));
@@ -677,7 +691,7 @@
   function connectionCheck(opt, dest) {
     const g = opt.ground;
     if (!g.count) return `<div class="jw warn">${esc(t("no_ground_data"))}</div>`;
-    const times = [...new Set(opt.routes.map(landingTime).filter(Boolean))].sort();
+    const times = [...new Set(opt.routes.flatMap(landingTimes).filter(Boolean))].sort();
     const day = g.day;
     const note = g.fallback ? `<div class="jw info">${esc(t("times_not_published", fmtDay(state.date)))}</div>` : "";
     if (!times.length) return note + `<div class="jw info">${esc(t("check_landing", hm(g.last)))}</div>`;
@@ -716,7 +730,7 @@
           ${opts.length > 1 && i === 0 ? `<span class="badge ok jbest">${esc(t("quickest_on_land"))}</span>` : ""}
           <ol class="jsteps">
             <li><span class="jicon">✈</span><div><strong>${esc(cityName(o.routes[0]))} → ${esc(ap.name || o.airport)}</strong>
-              <div class="meta">${esc(airlines)} · ${esc(o.routes.map(scheduleShort).filter(Boolean).join(" / ") || t("days_tbc"))}</div></div></li>
+              <div class="meta">${esc(airlines)} · ${esc([...new Set(o.routes.map(scheduleShort).filter(Boolean))].join(" / ") || t("days_tbc"))}</div></div></li>
             ${legRows(g.chain)}
             <li class="jsum"><span class="jicon">⏱</span><div>${groundLine ? `<div class="meta">${groundLine}</div>` : ""}${connectionCheck(o, dest)}</div></li>
           </ol></div>`;

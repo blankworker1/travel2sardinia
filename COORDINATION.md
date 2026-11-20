@@ -23,7 +23,7 @@ Twice a year (the timetables change on the last Sunday of March and of October),
 
 Saving the page is better than screenshots. The file has every flight exactly, including which days are highlighted, while screenshots can miss rows between them.
 
-**Cagliari** shows only today and tomorrow, with no days of the week. Save its board (Arrivals) every second day for a week (four saves cover eight days) to work out each route's days and times. Until then its routes show as "days to be confirmed". The full seasonal timetable can only come from SOGAER or the airlines.
+**Cagliari** shows only today and tomorrow, with no days of the week. Save its board every second day for a week (four saves cover eight days; one save holds both arrivals and departures) to work out each route's days and times. Until then its routes show as "days to be confirmed". The full seasonal timetable can only come from SOGAER or the airlines.
 
 The rest of this guide is for local coordinators.
 

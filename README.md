@@ -78,7 +78,13 @@ Both airports publish every flight on one page, with a toggle to choose the airp
    ```
    This replaces that airport's previously imported routes and keeps everything else. It drops periods that have already ended, takes the arrival time (moving flights that land after midnight to the next day), and reports any new airport code to add to `data/airports-ref.json`.
 
-Do this at the start of each season (end of March, end of October) and when new routes are announced. Cagliari's site isn't in this format yet.
+Do this at the start of each season (end of March, end of October) and when new routes are announced. Cagliari's site isn't in this format: it has a live board for today and tomorrow only. Save it the same way and run:
+
+```
+python3 scripts/import_sogaer_board.py saved-page.txt
+```
+
+Each save adds two days to `data/sources/CAG-board.json` (arrivals and departures), and the Cagliari routes are rebuilt from everything observed: new origins are added, and each flight gets the weekdays it was seen on. Until every weekday has been observed, routes stay "days to be confirmed" and show the days seen so far.
 
 ## Adding a town
 
