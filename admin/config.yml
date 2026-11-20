@@ -643,7 +643,12 @@ collections:
         widget: string
       - name: name
         label: Name
+        hint: A corrected name is kept when the Comune's list is imported again.
         widget: string
+      - name: name_comune
+        label: Name on the Comune's list
+        widget: hidden
+        required: false
       - name: type
         label: Type
         hint: Imported stays get a type guessed from the name until the Comune's page for that type is imported.

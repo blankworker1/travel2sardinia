@@ -6,6 +6,7 @@
       "name": "Affittacamere Sa Balza di Emanuele Masia",
       "type": "affittacamere",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "Corso Vittorio Emanuele II 45",
       "email": "e.masia@libero.it",
       "website": "http://sabalza.it/",
@@ -14,26 +15,28 @@
       "lat": 40.29557,
       "lon": 8.50276,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "Affittacamere Sa Balza di Emanuele Masia"
     },
     {
       "id": "agricampeggio-e-fattoria-didattica-mattagiana-di-katja-pinna",
       "name": "Agricampeggio e Fattoria Didattica Mattagiana di Katja Pinna",
       "type": "camping",
       "type_source": "guess",
+      "area": "",
       "address": "Località Buddesi SNC",
       "email": "info@mattagiana.com",
       "website": "https://www.mattagiana.com",
       "source": "comune",
       "published": true,
-      "geo": "not_found"
+      "geo": "not_found",
+      "name_comune": "Agricampeggio e Fattoria Didattica Mattagiana di Katja Pinna"
     },
     {
       "id": "alba-casa-vacanze",
       "name": "Alba casa vacanze",
       "type": "cav",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "Via della scuola 22",
       "email": "naima.saddiki@tiscali.it",
       "website": "",
@@ -42,14 +45,14 @@
       "lat": 40.29605,
       "lon": 8.50179,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "Alba casa vacanze"
     },
     {
       "id": "appartamento-amalia",
       "name": "Appartamento Amalia",
       "type": "cav",
       "type_source": "guess",
+      "area": "Bosa Marina",
       "address": "via ugo la malfa 26/21",
       "email": "farina.simona@gmail.com",
       "website": "",
@@ -58,14 +61,14 @@
       "lat": 40.28784,
       "lon": 8.484,
       "geo": "osm",
-      "area": "Bosa Marina",
-      "area_auto": true
+      "name_comune": "Appartamento Amalia"
     },
     {
       "id": "appartamento-la-torre",
       "name": "Appartamento La Torre",
       "type": "cav",
       "type_source": "guess",
+      "area": "Bosa Marina",
       "address": "Via Milano 17",
       "email": "fcubeddu@yahoo.com",
       "website": "https://www.vrbo.com/it-it/affitto-vacanze/p10985778?adultsCount=2&noDates=true&uni_id=6017004",
@@ -74,26 +77,28 @@
       "lat": 40.28829,
       "lon": 8.48277,
       "geo": "osm",
-      "area": "Bosa Marina",
-      "area_auto": true
+      "name_comune": "Appartamento La Torre"
     },
     {
       "id": "b-b-sa-rochitta",
       "name": "B & b sa Rochitta",
       "type": "bnb",
       "type_source": "guess",
+      "area": "",
       "address": "VIA LAMARMORA 19",
       "email": "piera.81@tiscali.it",
       "website": "",
       "source": "comune",
       "published": true,
-      "geo": "not_found"
+      "geo": "not_found",
+      "name_comune": "B & b sa Rochitta"
     },
     {
       "id": "b-b-alene",
       "name": "B&B Alene",
       "type": "bnb",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "VIA SANTA CROCE 68",
       "email": "alenebosa@gmail.com",
       "website": "http://www.bosabedandbreakfast.com",
@@ -102,106 +107,14 @@
       "lat": 40.29564,
       "lon": 8.50105,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
-    },
-    {
-      "id": "b-b-i-gerani",
-      "name": "B&B I Gerani",
-      "type": "bnb",
-      "type_source": "guess",
-      "address": "Via Azuni, 28",
-      "email": "annaelenafiorelli@gmail.com",
-      "website": "http://www.bosaigeranibeb.it/",
-      "source": "comune",
-      "published": true,
-      "lat": 40.29829,
-      "lon": 8.49554,
-      "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
-    },
-    {
-      "id": "b-b-il-corallo",
-      "name": "B&B Il Corallo",
-      "type": "bnb",
-      "type_source": "guess",
-      "address": "VIA GEN.IBBA-PIRAS 23",
-      "email": "info@ilcorallobb.com",
-      "website": "http://www.ilcorallobb.com/",
-      "source": "comune",
-      "published": true,
-      "geo": "not_found"
-    },
-    {
-      "id": "b-b-la-casa-del-pescatore",
-      "name": "b&b la casa del pescatore",
-      "type": "bnb",
-      "type_source": "guess",
-      "address": "Via Corte Intro 23",
-      "email": "bedlacasadelpescatore@gmail.com",
-      "website": "http://www.lacasadelpescatore.com/",
-      "source": "comune",
-      "published": true,
-      "lat": 40.29658,
-      "lon": 8.50152,
-      "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
-    },
-    {
-      "id": "b-b-vista-fiume",
-      "name": "B&B Vista Fiume",
-      "type": "bnb",
-      "type_source": "guess",
-      "address": "Lungo Temo Alcide de Gasperi n°85",
-      "email": "vistafiume.vacanze@gmail.com",
-      "website": "http://www.vistafiume.it",
-      "source": "comune",
-      "published": true,
-      "lat": 40.29274,
-      "lon": 8.49271,
-      "geo": "osm",
-      "area": "Bosa Marina",
-      "area_auto": true
-    },
-    {
-      "id": "bainas",
-      "name": "Bainas",
-      "type": "agriturismo",
-      "type_source": "guess",
-      "address": "S.PIETRO 31",
-      "email": "agriturbainas@tiscali.it",
-      "website": "",
-      "source": "comune",
-      "published": true,
-      "lat": 40.29309,
-      "lon": 8.50459,
-      "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
-    },
-    {
-      "id": "bed-and-breakfast-il-rosmarino",
-      "name": "Bed and breakfast Il Rosmarino",
-      "type": "bnb",
-      "type_source": "guess",
-      "address": "Loc. Abba Mala",
-      "email": "giovannisechi9@gmail.com",
-      "website": "",
-      "source": "comune",
-      "published": true,
-      "lat": 40.27234,
-      "lon": 8.50312,
-      "geo": "osm",
-      "area": "countryside",
-      "area_auto": true
+      "name_comune": "B&B Alene"
     },
     {
       "id": "blu-bosa",
-      "name": "Blu Bosa",
-      "type": "cav",
-      "type_source": "guess",
+      "name": "B&B Blue Bosa",
+      "type": "bnb",
+      "type_source": "admin",
+      "area": "Bosa",
       "address": "Via Montenegro 20",
       "email": "blu.bosa@gmail.com",
       "website": "",
@@ -210,14 +123,108 @@
       "lat": 40.29681,
       "lon": 8.50309,
       "geo": "osm",
+      "name_comune": "Blu Bosa"
+    },
+    {
+      "id": "b-b-i-gerani",
+      "name": "B&B I Gerani",
+      "type": "bnb",
+      "type_source": "guess",
       "area": "Bosa",
-      "area_auto": true
+      "address": "Via Azuni, 28",
+      "email": "annaelenafiorelli@gmail.com",
+      "website": "http://www.bosaigeranibeb.it/",
+      "source": "comune",
+      "published": true,
+      "lat": 40.29829,
+      "lon": 8.49554,
+      "geo": "osm",
+      "name_comune": "B&B I Gerani"
+    },
+    {
+      "id": "b-b-il-corallo",
+      "name": "B&B Il Corallo",
+      "type": "bnb",
+      "type_source": "guess",
+      "area": "",
+      "address": "VIA GEN.IBBA-PIRAS 23",
+      "email": "info@ilcorallobb.com",
+      "website": "http://www.ilcorallobb.com/",
+      "source": "comune",
+      "published": true,
+      "geo": "not_found",
+      "name_comune": "B&B Il Corallo"
+    },
+    {
+      "id": "b-b-la-casa-del-pescatore",
+      "name": "b&b la casa del pescatore",
+      "type": "bnb",
+      "type_source": "guess",
+      "area": "Bosa",
+      "address": "Via Corte Intro 23",
+      "email": "bedlacasadelpescatore@gmail.com",
+      "website": "http://www.lacasadelpescatore.com/",
+      "source": "comune",
+      "published": true,
+      "lat": 40.29658,
+      "lon": 8.50152,
+      "geo": "osm",
+      "name_comune": "b&b la casa del pescatore"
+    },
+    {
+      "id": "b-b-vista-fiume",
+      "name": "B&B Vista Fiume",
+      "type": "bnb",
+      "type_source": "guess",
+      "area": "Bosa Marina",
+      "address": "Lungo Temo Alcide de Gasperi n°85",
+      "email": "vistafiume.vacanze@gmail.com",
+      "website": "http://www.vistafiume.it",
+      "source": "comune",
+      "published": true,
+      "lat": 40.29274,
+      "lon": 8.49271,
+      "geo": "osm",
+      "name_comune": "B&B Vista Fiume"
+    },
+    {
+      "id": "bainas",
+      "name": "Bainas",
+      "type": "agriturismo",
+      "type_source": "guess",
+      "area": "Bosa",
+      "address": "S.PIETRO 31",
+      "email": "agriturbainas@tiscali.it",
+      "website": "",
+      "source": "comune",
+      "published": true,
+      "lat": 40.29309,
+      "lon": 8.50459,
+      "geo": "osm",
+      "name_comune": "Bainas"
+    },
+    {
+      "id": "bed-and-breakfast-il-rosmarino",
+      "name": "Bed and breakfast Il Rosmarino",
+      "type": "bnb",
+      "type_source": "guess",
+      "area": "countryside",
+      "address": "Loc. Abba Mala",
+      "email": "giovannisechi9@gmail.com",
+      "website": "",
+      "source": "comune",
+      "published": true,
+      "lat": 40.27234,
+      "lon": 8.50312,
+      "geo": "osm",
+      "name_comune": "Bed and breakfast Il Rosmarino"
     },
     {
       "id": "bomarosa-b-b",
       "name": "Bomarosa B&B",
       "type": "bnb",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "Via Efisio Cugia 25",
       "email": "bomarosabandb@gmail.com",
       "website": "http://www.bomarosa.it/",
@@ -226,14 +233,14 @@
       "lat": 40.29671,
       "lon": 8.50103,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "Bomarosa B&B"
     },
     {
       "id": "canne-al-vento-b-b",
       "name": "Canne al Vento b&b",
       "type": "bnb",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "via palestro 7",
       "email": "clamydia@hotmail.it",
       "website": "",
@@ -242,14 +249,14 @@
       "lat": 40.29529,
       "lon": 8.5021,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "Canne al Vento b&b"
     },
     {
       "id": "casa-di-angelo",
       "name": "Casa di Angelo",
       "type": "cav",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "SANT'IGNAZIO N. 28",
       "email": "vincenzoschintu@gmail.com",
       "website": "",
@@ -258,30 +265,27 @@
       "lat": 40.29644,
       "lon": 8.50276,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "Casa di Angelo"
     },
     {
-      "id": "casa-di-bosa-marina",
+      "id": "casa-sul-temo",
       "name": "Casa di Bosa Marina",
       "type": "cav",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "Via Colombo 72",
       "email": "reception@lecasedibosa.com",
       "website": "https://www.lecasedibosa.com/",
       "source": "comune",
       "published": true,
-      "lat": 40.29248,
-      "lon": 8.48314,
-      "geo": "osm",
-      "area": "Bosa Marina",
-      "area_auto": true
+      "name_comune": "Casa di Bosa Marina"
     },
     {
       "id": "casa-eleonora",
       "name": "Casa Eleonora",
       "type": "cav",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "Carmine 87",
       "email": "pinnakatja@gmail.com",
       "website": "",
@@ -290,14 +294,14 @@
       "lat": 40.29571,
       "lon": 8.50312,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "Casa Eleonora"
     },
     {
       "id": "casa-malamida",
       "name": "Casa Malamida",
       "type": "cav",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "VIA MARTINI N. 10",
       "email": "gio.muroni@tiscali.it",
       "website": "",
@@ -306,14 +310,14 @@
       "lat": 40.29853,
       "lon": 8.49737,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "Casa Malamida"
     },
     {
       "id": "casa-mirto",
       "name": "Casa Mirto",
       "type": "cav",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "vico Tendas, 1",
       "email": "info@casamirto.com",
       "website": "",
@@ -322,14 +326,14 @@
       "lat": 40.29596,
       "lon": 8.50305,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "Casa Mirto"
     },
     {
       "id": "casa-pagio-di-paolo-francescone",
       "name": "Casa Pagiò di Paolo Francescone",
       "type": "cav",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "Via Muraglia Vecchia 5",
       "email": "casapagio@gmail.com",
       "website": "http://casapagio.it",
@@ -338,14 +342,14 @@
       "lat": 40.29509,
       "lon": 8.50259,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "Casa Pagiò di Paolo Francescone"
     },
     {
       "id": "casa-portella",
       "name": "Casa Portella",
       "type": "cav",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "Via Portella 28",
       "email": "sardegnaexploraservice@gmail.com",
       "website": "",
@@ -354,42 +358,41 @@
       "lat": 40.29662,
       "lon": 8.50296,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "Casa Portella"
     },
     {
-      "id": "casa-relax",
+      "id": "casa-sul-temo-2",
       "name": "Casa Relax",
       "type": "cav",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "Via Barisone 14",
       "email": "reception@lecasedibosa.com",
       "website": "https://www.lecasedibosa.com/",
       "source": "comune",
       "published": true,
-      "lat": 40.29042,
-      "lon": 8.50562,
-      "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "Casa Relax"
     },
     {
       "id": "casa-su-mulinu-ezzu",
       "name": "Casa Su Mulinu Ezzu",
       "type": "cav",
       "type_source": "guess",
+      "area": "",
       "address": "Via Solferino 14",
       "email": "casamulinuezzu@gmail.com",
       "website": "",
       "source": "comune",
       "published": true,
-      "geo": "not_found"
+      "geo": "not_found",
+      "name_comune": "Casa Su Mulinu Ezzu"
     },
     {
       "id": "casa-sul-corso",
       "name": "Casa sul Corso",
       "type": "cav",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "Corso vittorio Emanuele II,n.66/A",
       "email": "antomo66@libero.it",
       "website": "",
@@ -398,14 +401,14 @@
       "lat": 40.29572,
       "lon": 8.50189,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "Casa sul Corso"
     },
     {
-      "id": "casa-sul-temo",
+      "id": "casa-sul-temo-2-2",
       "name": "Casa Sul Temo",
       "type": "cav",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "VIA ALLENDE 10A",
       "email": "reception@lecasedibosa.com",
       "website": "https://www.lecasedibosa.com/",
@@ -414,14 +417,14 @@
       "lat": 40.29539,
       "lon": 8.50871,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "Casa Sul Temo"
     },
     {
       "id": "casa-vista-mare",
       "name": "Casa Vista Mare",
       "type": "cav",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "via ultima costa 67",
       "email": "contact@bnbbosa.com",
       "website": "http://www.bnbbosa.com",
@@ -430,14 +433,14 @@
       "lat": 40.29612,
       "lon": 8.50465,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "Casa Vista Mare"
     },
     {
       "id": "club-hotel-malaspina",
       "name": "Club Hotel Malaspina",
       "type": "hotel",
       "type_source": "guess",
+      "area": "Bosa Marina",
       "address": "Via Genova 58",
       "email": "chmalaspina@mamashc.it",
       "website": "https://www.hotelmalaspina.com",
@@ -446,14 +449,14 @@
       "lat": 40.28801,
       "lon": 8.48299,
       "geo": "osm",
-      "area": "Bosa Marina",
-      "area_auto": true
+      "name_comune": "Club Hotel Malaspina"
     },
     {
       "id": "dimora-sant-ignazio",
       "name": "Dimora Sant'ignazio",
       "type": "cav",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "Sant'Ignazio, 28",
       "email": "dsignbosa@hotmail.com",
       "website": "",
@@ -462,14 +465,14 @@
       "lat": 40.29644,
       "lon": 8.50276,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "Dimora Sant'ignazio"
     },
     {
       "id": "dommo-asuletta",
       "name": "Dommo Asuletta",
       "type": "cav",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "BONARIA 21",
       "email": "william.gianna@yahoo.com",
       "website": "",
@@ -478,14 +481,14 @@
       "lat": 40.29642,
       "lon": 8.50142,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "Dommo Asuletta"
     },
     {
       "id": "giardini-malaspina",
       "name": "Giardini Malaspina",
       "type": "cav",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "Via A. Lamarmora 19",
       "email": "igiardinimalaspina@gmail.com",
       "website": "",
@@ -494,38 +497,42 @@
       "lat": 40.29878,
       "lon": 8.51099,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "Giardini Malaspina"
     },
     {
       "id": "hotel-al-gabbiano-di-deriu-pasqualino-sas",
       "name": "Hotel Al Gabbiano Di Deriu Pasqualino Sas",
       "type": "hotel",
       "type_source": "guess",
+      "area": "",
       "address": "VIALE MEDITERRANEO 5",
       "email": "info@hotelalgabbiano.it",
       "website": "http://www.hotelalgabbiano.it/",
       "source": "comune",
       "published": true,
-      "geo": "not_found"
+      "geo": "not_found",
+      "name_comune": "Hotel Al Gabbiano Di Deriu Pasqualino Sas"
     },
     {
       "id": "hotel-isola-rossa-residenziale",
       "name": "Hotel Isola Rossa Residenziale",
       "type": "resid_hotel",
       "type_source": "guess",
+      "area": "",
       "address": "LOC.CAMPU E MARE",
       "email": "info@isolarossabosa.it",
       "website": "http://www.isolarossabosa.it/",
       "source": "comune",
       "published": true,
-      "geo": "not_found"
+      "geo": "not_found",
+      "name_comune": "Hotel Isola Rossa Residenziale"
     },
     {
       "id": "il-borgo-locazione-turistica-affitti-brevi",
       "name": "IL BORGO - Locazione Turistica Affitti Brevi",
       "type": "short_let",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "VIA GIOBERTI 8",
       "email": "bnbilborgo@gmail.com",
       "website": "",
@@ -534,14 +541,14 @@
       "lat": 40.296,
       "lon": 8.50017,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "IL BORGO - Locazione Turistica Affitti Brevi"
     },
     {
       "id": "jacopo-schintu",
       "name": "jacopo schintu",
       "type": "cav",
       "type_source": "guess",
+      "area": "countryside",
       "address": "VIALE RIVIERA DEL CORALLO, 31",
       "email": "jacoposchintu98@tiscali.it",
       "website": "",
@@ -550,14 +557,14 @@
       "lat": 40.30059,
       "lon": 8.48478,
       "geo": "osm",
-      "area": "countryside",
-      "area_auto": true
+      "name_comune": "jacopo schintu"
     },
     {
       "id": "la-casa-arancione",
       "name": "La Casa Arancione",
       "type": "cav",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "Montenegro 157",
       "email": "maria.arca2015@gmail.com",
       "website": "",
@@ -566,14 +573,14 @@
       "lat": 40.29681,
       "lon": 8.50309,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "La Casa Arancione"
     },
     {
       "id": "la-casetta-del-borgo",
       "name": "La Casetta Del Borgo",
       "type": "cav",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "VIA SERRAVALLE 23",
       "email": "mannugiusy@gmail.com",
       "website": "",
@@ -582,14 +589,14 @@
       "lat": 40.29568,
       "lon": 8.50477,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "La Casetta Del Borgo"
     },
     {
       "id": "la-dea-hestia",
       "name": "La Dea Hestia",
       "type": "cav",
       "type_source": "guess",
+      "area": "countryside",
       "address": "Via Generale ibba Piras 06",
       "email": "deahestiabosa@gmail.com",
       "website": "",
@@ -598,14 +605,14 @@
       "lat": 40.3038,
       "lon": 8.4856,
       "geo": "osm",
-      "area": "countryside",
-      "area_auto": true
+      "name_comune": "La Dea Hestia"
     },
     {
       "id": "la-torre-di-alice",
       "name": "La Torre di Alice",
       "type": "cav",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "Via del Carmine 7",
       "email": "info@latorredialice.it",
       "website": "http://www.latorredialice.it/",
@@ -614,14 +621,14 @@
       "lat": 40.29545,
       "lon": 8.50536,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "La Torre di Alice"
     },
     {
       "id": "luxury-home-bosa-apartment",
       "name": "Luxury Home Bosa Apartment",
       "type": "cav",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "Piazza Costituzione 1A",
       "email": "luxuryhomebosa@gmail.com",
       "website": "",
@@ -630,14 +637,14 @@
       "lat": 40.29588,
       "lon": 8.50122,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "Luxury Home Bosa Apartment"
     },
     {
       "id": "luxury-home-garden-apartament-bosa-marina",
       "name": "Luxury Home Garden Apartament Bosa Marina",
       "type": "cav",
       "type_source": "guess",
+      "area": "Bosa Marina",
       "address": "via s'istagnone 13",
       "email": "ruggerom75@gmail.com",
       "website": "",
@@ -646,14 +653,14 @@
       "lat": 40.28837,
       "lon": 8.48575,
       "geo": "osm",
-      "area": "Bosa Marina",
-      "area_auto": true
+      "name_comune": "Luxury Home Garden Apartament Bosa Marina"
     },
     {
       "id": "madalen-guest-house",
       "name": "Madalen Guest House",
       "type": "affittacamere",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "VICO DELLA MADDALENA 1 - CORSO VITTORIO EMANUELE II 69",
       "email": "madalenbosa@gmail.com",
       "website": "http://www.madalenbosa.com",
@@ -662,14 +669,14 @@
       "lat": 40.29615,
       "lon": 8.50136,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "Madalen Guest House"
     },
     {
       "id": "maurilio-rosario-galia",
       "name": "Maurilio Rosario GALIA",
       "type": "cav",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "Via Martini 7",
       "email": "mgalia@tiscali.it",
       "website": "http://www.bosabedandbreakfast.com",
@@ -678,14 +685,14 @@
       "lat": 40.29858,
       "lon": 8.49691,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "Maurilio Rosario GALIA"
     },
     {
       "id": "naki",
       "name": "Naki",
       "type": "cav",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "Via Seminario 7",
       "email": "nakibosa@gmail.com",
       "website": "https://www.nakibosa.com",
@@ -694,14 +701,14 @@
       "lat": 40.2962,
       "lon": 8.50272,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "Naki"
     },
     {
       "id": "nel-vicolo",
       "name": "Nel Vicolo",
       "type": "cav",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "Via Bonaria 17",
       "email": "nelvicolo@tiscali.it",
       "website": "http://www.nelvicolo.it/italiano.htm",
@@ -710,14 +717,14 @@
       "lat": 40.29629,
       "lon": 8.50186,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "Nel Vicolo"
     },
     {
       "id": "pessighette",
       "name": "Pessighette",
       "type": "cav",
       "type_source": "guess",
+      "area": "countryside",
       "address": "Loc. Pessighette",
       "email": "info@pessighette.it",
       "website": "http://www.pessighette.it/",
@@ -726,14 +733,14 @@
       "lat": 40.27383,
       "lon": 8.51066,
       "geo": "osm",
-      "area": "countryside",
-      "area_auto": true
+      "name_comune": "Pessighette"
     },
     {
       "id": "pierette-affitta-camere",
       "name": "pierette affitta camere",
       "type": "affittacamere",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "piazza costituzione 1",
       "email": "info.insardegna@gmail.com",
       "website": "",
@@ -742,14 +749,14 @@
       "lat": 40.29566,
       "lon": 8.50135,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "pierette affitta camere"
     },
     {
       "id": "pietro-masala",
       "name": "Pietro Masala",
       "type": "cav",
       "type_source": "guess",
+      "area": "Bosa Marina",
       "address": "via Ugo La Malfa 21",
       "email": "isolasardinia@gmail.com",
       "website": "",
@@ -758,14 +765,14 @@
       "lat": 40.28784,
       "lon": 8.484,
       "geo": "osm",
-      "area": "Bosa Marina",
-      "area_auto": true
+      "name_comune": "Pietro Masala"
     },
     {
       "id": "queen-house",
       "name": "Queen House",
       "type": "cav",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "VIA CARMINE125 - VIA DEL SEMINARIO 2",
       "email": "info@bosaqueenhouse.it",
       "website": "",
@@ -774,14 +781,14 @@
       "lat": 40.29613,
       "lon": 8.50253,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "Queen House"
     },
     {
       "id": "regnos-altos-boutique-rooms",
       "name": "Regnos Altos boutique rooms",
       "type": "affittacamere",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "Carmine",
       "email": "regnosaltos2020@gmail.com",
       "website": "",
@@ -790,26 +797,28 @@
       "lat": 40.29571,
       "lon": 8.50312,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "Regnos Altos boutique rooms"
     },
     {
       "id": "residence-costa-del-corallo",
       "name": "Residence Costa Del Corallo",
       "type": "residence",
       "type_source": "guess",
+      "area": "",
       "address": "VIA LUNGO MARE MEDITERRANEO SNC",
       "email": "costacorallo18@gmail.com",
       "website": "",
       "source": "comune",
       "published": true,
-      "geo": "not_found"
+      "geo": "not_found",
+      "name_comune": "Residence Costa Del Corallo"
     },
     {
       "id": "s-ammentu-house",
       "name": "S'ammentu House",
       "type": "cav",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "CARMINE 55",
       "email": "sammentuhouse@gmail.com",
       "website": "",
@@ -818,14 +827,14 @@
       "lat": 40.29571,
       "lon": 8.50312,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "S'ammentu House"
     },
     {
       "id": "sporting-hotel-stella-maris",
       "name": "Sporting Hotel Stella Maris",
       "type": "hotel",
       "type_source": "guess",
+      "area": "Bosa Marina",
       "address": "Via Cristoforo Colombo 11/13",
       "email": "info@stellamarisbosa.it",
       "website": "http://www.stellamarisbosa.com/",
@@ -834,14 +843,14 @@
       "lat": 40.29216,
       "lon": 8.48214,
       "geo": "osm",
-      "area": "Bosa Marina",
-      "area_auto": true
+      "name_comune": "Sporting Hotel Stella Maris"
     },
     {
       "id": "su-recreu",
       "name": "Su Recreu",
       "type": "cav",
       "type_source": "guess",
+      "area": "Bosa Marina",
       "address": "Via Cristoforo Colombo 44",
       "email": "rosalia.acca@gmail.com",
       "website": "http://www.surecreu.it/",
@@ -850,14 +859,14 @@
       "lat": 40.29194,
       "lon": 8.48197,
       "geo": "osm",
-      "area": "Bosa Marina",
-      "area_auto": true
+      "name_comune": "Su Recreu"
     },
     {
       "id": "sweethome",
       "name": "SweetHome",
       "type": "cav",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "Via Gonario di Torres 7",
       "email": "vittorio.sotgiu@icloud.com",
       "website": "https://airbnb.com/h/sweethomebosa",
@@ -866,14 +875,14 @@
       "lat": 40.29247,
       "lon": 8.5058,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "SweetHome"
     },
     {
       "id": "tipicos-house",
       "name": "Tipico’s House",
       "type": "cav",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "Via Franzina 10",
       "email": "info@tipicoshouse.it",
       "website": "https://tipico-s-house.webnode.it/",
@@ -882,14 +891,14 @@
       "lat": 40.29704,
       "lon": 8.50177,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "Tipico’s House"
     },
     {
       "id": "wind-rose-bosa-spacious-comfortable-and-quiet",
       "name": "Wind Rose, Bosa: spacious, comfortable and quiet.",
       "type": "cav",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "Ogliastra 1A",
       "email": "piero.iemmolo@gmail.com",
       "website": "http://www.inasardinia.it",
@@ -898,14 +907,14 @@
       "lat": 40.30049,
       "lon": 8.49719,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "Wind Rose, Bosa: spacious, comfortable and quiet."
     },
     {
       "id": "yellow-house",
       "name": "Yellow House",
       "type": "cav",
       "type_source": "guess",
+      "area": "Bosa",
       "address": "Vico Passo Senza 6",
       "email": "matteo.sale@hotmail.it",
       "website": "",
@@ -914,8 +923,7 @@
       "lat": 40.29657,
       "lon": 8.5024,
       "geo": "osm",
-      "area": "Bosa",
-      "area_auto": true
+      "name_comune": "Yellow House"
     }
   ],
   "source_url": "https://bosa.imposta-soggiorno.it/promozione"

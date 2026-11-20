@@ -116,6 +116,10 @@ def main():
         for k in KEEP:
             if k in prev:
                 s[k] = prev[k]
+        # A name corrected in the admin is kept, unless the Comune's own name changes.
+        s["name_comune"] = e["name"]
+        if prev.get("name") and prev.get("name") != prev.get("name_comune", prev["name"]) and prev.get("name_comune") == e["name"]:
+            s["name"] = prev["name"]
         if prev.get("address") and prev["address"] != e["address"]:   # moved: find it on the map again
             for k in ("lat", "lon", "geo"):
                 s.pop(k, None)
