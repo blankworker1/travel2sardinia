@@ -1285,13 +1285,20 @@
           "days": "5",
           "arr_time": "09:15",
           "flight_no": "VY6114"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "1",
+          "arr_time": "22:50",
+          "flight_no": "VY6114"
         }
       ],
       "sample": false,
       "published": true,
-      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov. Days still to confirm: not every weekday has been observed yet.",
+      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Mon 23 Nov. Days still to confirm: not every weekday has been observed yet.",
       "days_tbc": true,
-      "days_observed": "56"
+      "days_observed": "1567"
     },
     {
       "id": "cag-bgy-ryanair",
@@ -1323,8 +1330,29 @@
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
+          "days": "7",
+          "arr_time": "08:35",
+          "flight_no": "FR3480"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "1",
+          "arr_time": "10:35",
+          "flight_no": "FR3200"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
           "days": "6",
           "arr_time": "17:15",
+          "flight_no": "FR3480"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "1",
+          "arr_time": "20:05",
           "flight_no": "FR3480"
         },
         {
@@ -1337,9 +1365,9 @@
       ],
       "sample": false,
       "published": true,
-      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Sat 21 Nov. Days still to confirm: not every weekday has been observed yet.",
+      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Sat 21 Nov, Sun 22 Nov, Mon 23 Nov. Days still to confirm: not every weekday has been observed yet.",
       "days_tbc": true,
-      "days_observed": "56"
+      "days_observed": "1567"
     },
     {
       "id": "cag-blq-ryanair",
@@ -1357,9 +1385,23 @@
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
+          "days": "1",
+          "arr_time": "07:20",
+          "flight_no": "FR18"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
           "days": "5",
           "arr_time": "07:20",
           "flight_no": "FR3966"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "7",
+          "arr_time": "07:25",
+          "flight_no": "FR18"
         },
         {
           "start": "2026-11-18",
@@ -1371,6 +1413,13 @@
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
+          "days": "7",
+          "arr_time": "17:25",
+          "flight_no": "FR3966"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
           "days": "5",
           "arr_time": "21:55",
           "flight_no": "FR18"
@@ -1378,9 +1427,9 @@
       ],
       "sample": false,
       "published": true,
-      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Sat 21 Nov. Days still to confirm: not every weekday has been observed yet.",
+      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Sat 21 Nov, Sun 22 Nov, Mon 23 Nov. Days still to confirm: not every weekday has been observed yet.",
       "days_tbc": true,
-      "days_observed": "56"
+      "days_observed": "1567"
     },
     {
       "id": "cag-bri-ryanair",
@@ -1401,13 +1450,20 @@
           "days": "6",
           "arr_time": "13:20",
           "flight_no": "FR8726"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "1",
+          "arr_time": "17:35",
+          "flight_no": "FR8726"
         }
       ],
       "sample": false,
       "published": true,
-      "admin_note": "From the SOGAER arrivals board, seen Sat 21 Nov. Days still to confirm: not every weekday has been observed yet.",
+      "admin_note": "From the SOGAER arrivals board, seen Sat 21 Nov, Mon 23 Nov. Days still to confirm: not every weekday has been observed yet.",
       "days_tbc": true,
-      "days_observed": "56"
+      "days_observed": "1567"
     },
     {
       "id": "cag-bsl-easyjet",
@@ -1421,19 +1477,20 @@
       "airline": "easyJet",
       "flight_no": "",
       "arr_time": "",
-      "days_tbc": true,
       "seasons": [
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
-          "days": "",
-          "arr_time": "",
-          "flight_no": ""
+          "days": "7",
+          "arr_time": "12:30",
+          "flight_no": "DS1109"
         }
       ],
       "sample": false,
       "published": true,
-      "admin_note": "Cagliari arrivals board 18–19 Nov 2026 (seen: DS1109 08:20). Days and dates to confirm (board samples / SOGAER)."
+      "admin_note": "From the SOGAER arrivals board, seen Sun 22 Nov. Days still to confirm: not every weekday has been observed yet.",
+      "days_tbc": true,
+      "days_observed": "1567"
     },
     {
       "id": "cag-bud-ryanair",
@@ -1451,6 +1508,13 @@
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
+          "days": "1",
+          "arr_time": "07:55",
+          "flight_no": "FR5248"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
           "days": "5",
           "arr_time": "08:15",
           "flight_no": "FR5248"
@@ -1458,9 +1522,9 @@
       ],
       "sample": false,
       "published": true,
-      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov. Days still to confirm: not every weekday has been observed yet.",
+      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Mon 23 Nov. Days still to confirm: not every weekday has been observed yet.",
       "days_tbc": true,
-      "days_observed": "56"
+      "days_observed": "1567"
     },
     {
       "id": "cag-bva-ryanair",
@@ -1478,6 +1542,13 @@
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
+          "days": "1",
+          "arr_time": "14:25",
+          "flight_no": "FR4832"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
           "days": "6",
           "arr_time": "14:40",
           "flight_no": "FR4832"
@@ -1492,9 +1563,9 @@
       ],
       "sample": false,
       "published": true,
-      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Sat 21 Nov. Days still to confirm: not every weekday has been observed yet.",
+      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Sat 21 Nov, Mon 23 Nov. Days still to confirm: not every weekday has been observed yet.",
       "days_tbc": true,
-      "days_observed": "56"
+      "days_observed": "1567"
     },
     {
       "id": "cag-cia-ryanair",
@@ -1512,6 +1583,20 @@
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
+          "days": "1",
+          "arr_time": "07:05",
+          "flight_no": "FR4324"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "7",
+          "arr_time": "13:10",
+          "flight_no": "FR4324"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
           "days": "5",
           "arr_time": "18:05",
           "flight_no": "FR4324"
@@ -1522,13 +1607,20 @@
           "days": "6",
           "arr_time": "19:05",
           "flight_no": "FR4324"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "7",
+          "arr_time": "21:25",
+          "flight_no": "FR4613"
         }
       ],
       "sample": false,
       "published": true,
-      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Sat 21 Nov. Days still to confirm: not every weekday has been observed yet.",
+      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Sat 21 Nov, Sun 22 Nov, Mon 23 Nov. Days still to confirm: not every weekday has been observed yet.",
       "days_tbc": true,
-      "days_observed": "56"
+      "days_observed": "1567"
     },
     {
       "id": "cag-crl-ryanair",
@@ -1549,13 +1641,27 @@
           "days": "5",
           "arr_time": "08:55",
           "flight_no": "FR4417"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "1",
+          "arr_time": "19:30",
+          "flight_no": "FR4417"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "7",
+          "arr_time": "20:05",
+          "flight_no": "FR4417"
         }
       ],
       "sample": false,
       "published": true,
-      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov. Days still to confirm: not every weekday has been observed yet.",
+      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Sun 22 Nov, Mon 23 Nov. Days still to confirm: not every weekday has been observed yet.",
       "days_tbc": true,
-      "days_observed": "56"
+      "days_observed": "1567"
     },
     {
       "id": "cag-cta-aeroitalia",
@@ -1573,16 +1679,16 @@
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
-          "days": "5",
+          "days": "57",
           "arr_time": "21:45",
           "flight_no": "XZ2379"
         }
       ],
       "sample": false,
       "published": true,
-      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov. Days still to confirm: not every weekday has been observed yet.",
+      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Sun 22 Nov. Days still to confirm: not every weekday has been observed yet.",
       "days_tbc": true,
-      "days_observed": "56"
+      "days_observed": "1567"
     },
     {
       "id": "cag-cta-airbaltic",
@@ -1596,19 +1702,20 @@
       "airline": "airBaltic",
       "flight_no": "",
       "arr_time": "",
-      "days_tbc": true,
       "seasons": [
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
-          "days": "",
-          "arr_time": "",
-          "flight_no": ""
+          "days": "7",
+          "arr_time": "11:25",
+          "flight_no": "BT7703"
         }
       ],
       "sample": false,
       "published": true,
-      "admin_note": "Cagliari arrivals board 18–19 Nov 2026 (seen: BT7702 11:10). Days and dates to confirm (board samples / SOGAER)."
+      "admin_note": "From the SOGAER arrivals board, seen Sun 22 Nov. Days still to confirm: not every weekday has been observed yet.",
+      "days_tbc": true,
+      "days_observed": "1567"
     },
     {
       "id": "cag-cta-ryanair",
@@ -1626,16 +1733,30 @@
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
+          "days": "7",
+          "arr_time": "09:55",
+          "flight_no": "FR375"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
           "days": "5",
           "arr_time": "12:50",
+          "flight_no": "FR375"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "1",
+          "arr_time": "23:00",
           "flight_no": "FR375"
         }
       ],
       "sample": false,
       "published": true,
-      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov. Days still to confirm: not every weekday has been observed yet.",
+      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Sun 22 Nov, Mon 23 Nov. Days still to confirm: not every weekday has been observed yet.",
       "days_tbc": true,
-      "days_observed": "56"
+      "days_observed": "1567"
     },
     {
       "id": "cag-fco-aeroitalia",
@@ -1653,65 +1774,65 @@
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
-          "days": "56",
+          "days": "1567",
           "arr_time": "08:10",
           "flight_no": "XZ2331"
         },
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
-          "days": "56",
+          "days": "1567",
           "arr_time": "10:10",
           "flight_no": "XZ2337"
         },
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
-          "days": "56",
+          "days": "1567",
           "arr_time": "12:10",
           "flight_no": "XZ2335"
         },
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
-          "days": "56",
+          "days": "1567",
           "arr_time": "14:10",
           "flight_no": "XZ2341"
         },
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
-          "days": "56",
+          "days": "1567",
           "arr_time": "16:30",
           "flight_no": "XZ2339"
         },
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
-          "days": "56",
+          "days": "1567",
           "arr_time": "18:30",
           "flight_no": "XZ2345"
         },
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
-          "days": "56",
+          "days": "1567",
           "arr_time": "20:50",
           "flight_no": "XZ2347"
         },
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
-          "days": "56",
+          "days": "1567",
           "arr_time": "22:45",
           "flight_no": "XZ2349"
         }
       ],
       "sample": false,
       "published": true,
-      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Sat 21 Nov. Days still to confirm: not every weekday has been observed yet.",
+      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Sat 21 Nov, Sun 22 Nov, Mon 23 Nov. Days still to confirm: not every weekday has been observed yet.",
       "days_tbc": true,
-      "days_observed": "56"
+      "days_observed": "1567"
     },
     {
       "id": "cag-frl-ryanair",
@@ -1732,13 +1853,20 @@
           "days": "5",
           "arr_time": "08:55",
           "flight_no": "FR2652"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "1",
+          "arr_time": "09:00",
+          "flight_no": "FR2652"
         }
       ],
       "sample": false,
       "published": true,
-      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov. Days still to confirm: not every weekday has been observed yet.",
+      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Mon 23 Nov. Days still to confirm: not every weekday has been observed yet.",
       "days_tbc": true,
-      "days_observed": "56"
+      "days_observed": "1567"
     },
     {
       "id": "cag-goa-ryanair",
@@ -1756,6 +1884,20 @@
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
+          "days": "7",
+          "arr_time": "13:25",
+          "flight_no": "FR4430"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "1",
+          "arr_time": "19:15",
+          "flight_no": "FR4430"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
           "days": "5",
           "arr_time": "21:35",
           "flight_no": "FR4430"
@@ -1763,9 +1905,9 @@
       ],
       "sample": false,
       "published": true,
-      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov. Days still to confirm: not every weekday has been observed yet.",
+      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Sun 22 Nov, Mon 23 Nov. Days still to confirm: not every weekday has been observed yet.",
       "days_tbc": true,
-      "days_observed": "56"
+      "days_observed": "1567"
     },
     {
       "id": "cag-gva-easyjet",
@@ -1792,7 +1934,7 @@
       "published": true,
       "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov. Days still to confirm: not every weekday has been observed yet.",
       "days_tbc": true,
-      "days_observed": "56"
+      "days_observed": "1567"
     },
     {
       "id": "cag-krk-ryanair",
@@ -1817,6 +1959,20 @@
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
+          "days": "1",
+          "arr_time": "16:10",
+          "flight_no": "FR4426"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "7",
+          "arr_time": "19:35",
+          "flight_no": "FR4426"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
           "days": "6",
           "arr_time": "21:55",
           "flight_no": "FR4426"
@@ -1824,9 +1980,9 @@
       ],
       "sample": false,
       "published": true,
-      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Sat 21 Nov. Days still to confirm: not every weekday has been observed yet.",
+      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Sat 21 Nov, Sun 22 Nov, Mon 23 Nov. Days still to confirm: not every weekday has been observed yet.",
       "days_tbc": true,
-      "days_observed": "56"
+      "days_observed": "1567"
     },
     {
       "id": "cag-lin-aeroitalia",
@@ -1844,65 +2000,65 @@
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
-          "days": "56",
+          "days": "1567",
           "arr_time": "09:50",
           "flight_no": "XZ2351"
         },
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
-          "days": "56",
+          "days": "1567",
           "arr_time": "11:40",
           "flight_no": "XZ2355"
         },
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
-          "days": "5",
+          "days": "57",
           "arr_time": "14:20",
           "flight_no": "XZ2359"
         },
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
-          "days": "6",
+          "days": "16",
           "arr_time": "17:30",
           "flight_no": "XZ2359"
         },
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
-          "days": "5",
+          "days": "57",
           "arr_time": "18:50",
           "flight_no": "XZ2361"
         },
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
-          "days": "6",
+          "days": "16",
           "arr_time": "19:55",
           "flight_no": "XZ2361"
         },
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
-          "days": "6",
+          "days": "16",
           "arr_time": "22:30",
           "flight_no": "XZ2363"
         },
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
-          "days": "5",
+          "days": "57",
           "arr_time": "22:50",
           "flight_no": "XZ2363"
         }
       ],
       "sample": false,
       "published": true,
-      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Sat 21 Nov. Days still to confirm: not every weekday has been observed yet.",
+      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Sat 21 Nov, Sun 22 Nov, Mon 23 Nov. Days still to confirm: not every weekday has been observed yet.",
       "days_tbc": true,
-      "days_observed": "56"
+      "days_observed": "1567"
     },
     {
       "id": "cag-mla-ryanair",
@@ -1923,13 +2079,20 @@
           "days": "6",
           "arr_time": "08:45",
           "flight_no": "FR7048"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "1",
+          "arr_time": "13:50",
+          "flight_no": "FR7048"
         }
       ],
       "sample": false,
       "published": true,
-      "admin_note": "From the SOGAER arrivals board, seen Sat 21 Nov. Days still to confirm: not every weekday has been observed yet.",
+      "admin_note": "From the SOGAER arrivals board, seen Sat 21 Nov, Mon 23 Nov. Days still to confirm: not every weekday has been observed yet.",
       "days_tbc": true,
-      "days_observed": "56"
+      "days_observed": "1567"
     },
     {
       "id": "cag-mxp-easyjet",
@@ -1956,7 +2119,7 @@
       "published": true,
       "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov. Days still to confirm: not every weekday has been observed yet.",
       "days_tbc": true,
-      "days_observed": "56"
+      "days_observed": "1567"
     },
     {
       "id": "cag-mxp-ryanair",
@@ -1974,9 +2137,30 @@
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
+          "days": "1",
+          "arr_time": "07:20",
+          "flight_no": "FR238"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "7",
+          "arr_time": "07:20",
+          "flight_no": "FR4561"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
           "days": "6",
           "arr_time": "08:05",
           "flight_no": "FR4561"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "7",
+          "arr_time": "16:55",
+          "flight_no": "FR238"
         },
         {
           "start": "2026-11-18",
@@ -1988,9 +2172,23 @@
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
+          "days": "1",
+          "arr_time": "17:50",
+          "flight_no": "FR4578"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
           "days": "6",
           "arr_time": "18:00",
           "flight_no": "FR4578"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "1",
+          "arr_time": "21:45",
+          "flight_no": "FR4561"
         },
         {
           "start": "2026-11-18",
@@ -2002,9 +2200,9 @@
       ],
       "sample": false,
       "published": true,
-      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Sat 21 Nov. Days still to confirm: not every weekday has been observed yet.",
+      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Sat 21 Nov, Sun 22 Nov, Mon 23 Nov. Days still to confirm: not every weekday has been observed yet.",
       "days_tbc": true,
-      "days_observed": "56"
+      "days_observed": "1567"
     },
     {
       "id": "cag-ory-easyjet",
@@ -2031,7 +2229,7 @@
       "published": true,
       "admin_note": "From the SOGAER arrivals board, seen Sat 21 Nov. Days still to confirm: not every weekday has been observed yet.",
       "days_tbc": true,
-      "days_observed": "56"
+      "days_observed": "1567"
     },
     {
       "id": "cag-peg-ryanair",
@@ -2052,13 +2250,20 @@
           "days": "6",
           "arr_time": "17:05",
           "flight_no": "FR1512"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "1",
+          "arr_time": "18:15",
+          "flight_no": "FR1512"
         }
       ],
       "sample": false,
       "published": true,
-      "admin_note": "From the SOGAER arrivals board, seen Sat 21 Nov. Days still to confirm: not every weekday has been observed yet.",
+      "admin_note": "From the SOGAER arrivals board, seen Sat 21 Nov, Mon 23 Nov. Days still to confirm: not every weekday has been observed yet.",
       "days_tbc": true,
-      "days_observed": "56"
+      "days_observed": "1567"
     },
     {
       "id": "cag-pmo-airbaltic",
@@ -2085,7 +2290,7 @@
       "published": true,
       "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov. Days still to confirm: not every weekday has been observed yet.",
       "days_tbc": true,
-      "days_observed": "56"
+      "days_observed": "1567"
     },
     {
       "id": "cag-pmo-ryanair",
@@ -2106,13 +2311,27 @@
           "days": "5",
           "arr_time": "07:10",
           "flight_no": "FR1010"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "1",
+          "arr_time": "10:10",
+          "flight_no": "FR1010"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "7",
+          "arr_time": "22:00",
+          "flight_no": "FR1010"
         }
       ],
       "sample": false,
       "published": true,
-      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov. Days still to confirm: not every weekday has been observed yet.",
+      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Sun 22 Nov, Mon 23 Nov. Days still to confirm: not every weekday has been observed yet.",
       "days_tbc": true,
-      "days_observed": "56"
+      "days_observed": "1567"
     },
     {
       "id": "cag-psa-ryanair",
@@ -2130,9 +2349,23 @@
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
-          "days": "5",
+          "days": "15",
           "arr_time": "07:10",
           "flight_no": "FR5708"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "7",
+          "arr_time": "07:15",
+          "flight_no": "FR5708"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "1",
+          "arr_time": "15:20",
+          "flight_no": "FR6101"
         },
         {
           "start": "2026-11-18",
@@ -2147,13 +2380,20 @@
           "days": "5",
           "arr_time": "17:05",
           "flight_no": "FR6101"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "7",
+          "arr_time": "18:20",
+          "flight_no": "FR6101"
         }
       ],
       "sample": false,
       "published": true,
-      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Sat 21 Nov. Days still to confirm: not every weekday has been observed yet.",
+      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Sat 21 Nov, Sun 22 Nov, Mon 23 Nov. Days still to confirm: not every weekday has been observed yet.",
       "days_tbc": true,
-      "days_observed": "56"
+      "days_observed": "1567"
     },
     {
       "id": "cag-psr-ryanair",
@@ -2171,6 +2411,13 @@
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
+          "days": "7",
+          "arr_time": "10:05",
+          "flight_no": "FR6406"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
           "days": "5",
           "arr_time": "22:45",
           "flight_no": "FR6406"
@@ -2178,9 +2425,9 @@
       ],
       "sample": false,
       "published": true,
-      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov. Days still to confirm: not every weekday has been observed yet.",
+      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Sun 22 Nov. Days still to confirm: not every weekday has been observed yet.",
       "days_tbc": true,
-      "days_observed": "56"
+      "days_observed": "1567"
     },
     {
       "id": "cag-stn-ryanair",
@@ -2201,13 +2448,20 @@
           "days": "5",
           "arr_time": "23:25",
           "flight_no": "FR2687"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "7",
+          "arr_time": "23:35",
+          "flight_no": "FR2687"
         }
       ],
       "sample": false,
       "published": true,
-      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov. Days still to confirm: not every weekday has been observed yet.",
+      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Sun 22 Nov. Days still to confirm: not every weekday has been observed yet.",
       "days_tbc": true,
-      "days_observed": "56"
+      "days_observed": "1567"
     },
     {
       "id": "cag-svq-ryanair",
@@ -2228,13 +2482,20 @@
           "days": "5",
           "arr_time": "14:40",
           "flight_no": "FR6710"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "1",
+          "arr_time": "15:05",
+          "flight_no": "FR6710"
         }
       ],
       "sample": false,
       "published": true,
-      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov. Days still to confirm: not every weekday has been observed yet.",
+      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Mon 23 Nov. Days still to confirm: not every weekday has been observed yet.",
       "days_tbc": true,
-      "days_observed": "56"
+      "days_observed": "1567"
     },
     {
       "id": "cag-trn-ryanair",
@@ -2259,6 +2520,13 @@
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
+          "days": "7",
+          "arr_time": "08:00",
+          "flight_no": "FR5514"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
           "days": "6",
           "arr_time": "09:55",
           "flight_no": "FR2415"
@@ -2273,6 +2541,20 @@
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
+          "days": "1",
+          "arr_time": "17:05",
+          "flight_no": "FR2415"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "7",
+          "arr_time": "20:30",
+          "flight_no": "FR2415"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
           "days": "6",
           "arr_time": "21:00",
           "flight_no": "FR5514"
@@ -2280,9 +2562,9 @@
       ],
       "sample": false,
       "published": true,
-      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Sat 21 Nov. Days still to confirm: not every weekday has been observed yet.",
+      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Sat 21 Nov, Sun 22 Nov, Mon 23 Nov. Days still to confirm: not every weekday has been observed yet.",
       "days_tbc": true,
-      "days_observed": "56"
+      "days_observed": "1567"
     },
     {
       "id": "cag-vce-ryanair",
@@ -2300,6 +2582,20 @@
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
+          "days": "7",
+          "arr_time": "07:20",
+          "flight_no": "FR2111"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "1",
+          "arr_time": "08:10",
+          "flight_no": "FR1551"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
           "days": "5",
           "arr_time": "10:55",
           "flight_no": "FR1551"
@@ -2309,6 +2605,13 @@
           "end": "2027-03-27",
           "days": "6",
           "arr_time": "13:05",
+          "flight_no": "FR1551"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "7",
+          "arr_time": "14:05",
           "flight_no": "FR1551"
         },
         {
@@ -2324,13 +2627,20 @@
           "days": "6",
           "arr_time": "22:05",
           "flight_no": "FR2111"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
+          "days": "7",
+          "arr_time": "22:20",
+          "flight_no": "FR2978"
         }
       ],
       "sample": false,
       "published": true,
-      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Sat 21 Nov. Days still to confirm: not every weekday has been observed yet.",
+      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Sat 21 Nov, Sun 22 Nov, Mon 23 Nov. Days still to confirm: not every weekday has been observed yet.",
       "days_tbc": true,
-      "days_observed": "56"
+      "days_observed": "1567"
     },
     {
       "id": "cag-vrn-ryanair",
@@ -2348,7 +2658,7 @@
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
-          "days": "5",
+          "days": "15",
           "arr_time": "09:25",
           "flight_no": "FR322"
         },
@@ -2362,6 +2672,13 @@
         {
           "start": "2026-11-18",
           "end": "2027-03-27",
+          "days": "7",
+          "arr_time": "17:20",
+          "flight_no": "FR322"
+        },
+        {
+          "start": "2026-11-18",
+          "end": "2027-03-27",
           "days": "6",
           "arr_time": "18:15",
           "flight_no": "FR481"
@@ -2369,9 +2686,9 @@
       ],
       "sample": false,
       "published": true,
-      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Sat 21 Nov. Days still to confirm: not every weekday has been observed yet.",
+      "admin_note": "From the SOGAER arrivals board, seen Fri 20 Nov, Sat 21 Nov, Sun 22 Nov, Mon 23 Nov. Days still to confirm: not every weekday has been observed yet.",
       "days_tbc": true,
-      "days_observed": "56"
+      "days_observed": "1567"
     }
   ]
 }
