@@ -23,7 +23,7 @@ jobs:
           python-version: "3.12"
       - name: Read calendars (links stay private)
         env:
-          ALL_SECRETS: ${{ toJSON(secrets) }}
+          ALL_SECRETS: "{}"
         run: python scripts/build_availability.py
       - name: Commit if changed
         run: |
