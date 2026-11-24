@@ -1,6 +1,7 @@
 name: Update availability
 
-# Reads hosts' calendar links (GitHub secrets named CAL_<TOWN>__<STAY_ID>) and writes booked dates.
+# Reads hosts' calendar links and writes booked dates. Each link is a GitHub secret CAL_1 … CAL_30
+# whose value is "<town>/<stay id> <link> [<link> …]", e.g. "bosa/bomarosa-b-b https://www.airbnb.com/calendar/ical/….ics"
 on:
   schedule:
     - cron: "17 */3 * * *"   # every 3 hours
@@ -8,6 +9,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: availability
@@ -23,7 +25,36 @@ jobs:
           python-version: "3.12"
       - name: Read calendars (links stay private)
         env:
-          ALL_SECRETS: "{}"
+          CAL_1: ${{ secrets.CAL_1 }}
+          CAL_2: ${{ secrets.CAL_2 }}
+          CAL_3: ${{ secrets.CAL_3 }}
+          CAL_4: ${{ secrets.CAL_4 }}
+          CAL_5: ${{ secrets.CAL_5 }}
+          CAL_6: ${{ secrets.CAL_6 }}
+          CAL_7: ${{ secrets.CAL_7 }}
+          CAL_8: ${{ secrets.CAL_8 }}
+          CAL_9: ${{ secrets.CAL_9 }}
+          CAL_10: ${{ secrets.CAL_10 }}
+          CAL_11: ${{ secrets.CAL_11 }}
+          CAL_12: ${{ secrets.CAL_12 }}
+          CAL_13: ${{ secrets.CAL_13 }}
+          CAL_14: ${{ secrets.CAL_14 }}
+          CAL_15: ${{ secrets.CAL_15 }}
+          CAL_16: ${{ secrets.CAL_16 }}
+          CAL_17: ${{ secrets.CAL_17 }}
+          CAL_18: ${{ secrets.CAL_18 }}
+          CAL_19: ${{ secrets.CAL_19 }}
+          CAL_20: ${{ secrets.CAL_20 }}
+          CAL_21: ${{ secrets.CAL_21 }}
+          CAL_22: ${{ secrets.CAL_22 }}
+          CAL_23: ${{ secrets.CAL_23 }}
+          CAL_24: ${{ secrets.CAL_24 }}
+          CAL_25: ${{ secrets.CAL_25 }}
+          CAL_26: ${{ secrets.CAL_26 }}
+          CAL_27: ${{ secrets.CAL_27 }}
+          CAL_28: ${{ secrets.CAL_28 }}
+          CAL_29: ${{ secrets.CAL_29 }}
+          CAL_30: ${{ secrets.CAL_30 }}
         run: python scripts/build_availability.py
       - name: Commit if changed
         run: |
@@ -37,4 +68,7 @@ jobs:
             git commit -m "Update availability"
             git pull --rebase -q
             git push
+            gh workflow run deploy.yml --ref main   # publish only when something changed
           fi
+        env:
+          GH_TOKEN: ${{ github.token }}

@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """Read hosts' calendar links (iCal) and write which nights each stay is booked.
 
-The links are private: they live only in GitHub secrets, one per stay, named
-  CAL_<TOWN>__<STAY_ID>      e.g. CAL_BOSA__BOMAROSA_B_B   (stay id in capitals, "-" → "_")
-A secret can hold several links (one per room or per platform), separated by spaces or new lines.
-The workflow passes every secret to this script as JSON (ALL_SECRETS); only CAL_ ones are read.
-Nothing but booked dates is written: no guest names, codes or links. Links are never printed.
+The links are private: they live only in GitHub secrets CAL_1 … CAL_30 (repository → Settings →
+Secrets and variables → Actions). Each holds one stay:
+  bosa/bomarosa-b-b https://www.airbnb.com/calendar/ical/123.ics
+with more links after it, separated by spaces or new lines, for more rooms or platforms.
+The stay id is shown in the admin (Bosa → Stays → ID). Links are never printed or saved.
+Nothing but booked dates is written: no guest names, codes or links.
 
 Output: data/destinations/<town>/availability.json
   {"updated": "...Z", "stays": {"<stay id>": {"checked": "...Z", "ok": true,
@@ -13,7 +14,7 @@ Output: data/destinations/<town>/availability.json
   Each room is a list of booked [first night, check-out day) ranges. A stay is free on a night
   if at least one of its rooms is free.
 
-Local test:  CAL_FILE=secrets.json python3 scripts/build_availability.py   (same JSON shape)
+Local test:  CAL_FILE=slots.json python3 scripts/build_availability.py   ({"CAL_1": "bosa/x https://…"})
 """
 import datetime as dt, json, os, re, sys, urllib.request
 from pathlib import Path
@@ -71,17 +72,21 @@ def booked_ranges(ics):
 
 def main():
     if os.environ.get("CAL_FILE"):
-        secrets = json.loads(Path(os.environ["CAL_FILE"]).read_text())
+        slots = json.loads(Path(os.environ["CAL_FILE"]).read_text())
     else:
-        secrets = json.loads(os.environ.get("ALL_SECRETS") or "{}")
+        slots = {k: v for k, v in os.environ.items() if re.fullmatch(r"CAL_\d+", k)}
     cals = {}
-    for name, value in secrets.items():
-        m = re.match(r"^CAL_([A-Z0-9]+)__([A-Z0-9_]+)$", name)
-        if m and value:
-            town, stay = m[1].lower(), m[2].lower().replace("_", "-")
-            cals.setdefault(town, {})[stay] = [u for u in re.split(r"[\s,]+", value.strip()) if u]
+    for name, value in sorted(slots.items()):
+        parts = [p for p in re.split(r"[\s,]+", (value or "").strip()) if p]
+        if not parts:
+            continue
+        m = re.fullmatch(r"([a-z0-9-]+)/([a-z0-9-]+)", parts[0].lower())
+        if not m:
+            print(f"{name}: should start with town/stay-id (e.g. bosa/bomarosa-b-b), skipped", file=sys.stderr)
+            continue
+        cals.setdefault(m[1], {}).setdefault(m[2], []).extend(parts[1:])
     if not cals:
-        print("No calendar links set (secrets named CAL_<TOWN>__<STAY_ID>). Nothing to do.")
+        print("No calendar links set yet (secrets CAL_1 … CAL_30). Nothing to do.")
         return
 
     for town, stays in cals.items():
