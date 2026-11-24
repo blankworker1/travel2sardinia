@@ -96,6 +96,17 @@ python3 scripts/import_comune_stays.py bosa saved-page.txt
 
 New hosts are added, hosts no longer on the Comune's list are removed, and edits made in the admin (type, area, map position, notes, Hodlstay link, published) are kept. Saving the page for one type (`?tipo=3` for B&B, etc.) and importing it sets the type of those hosts; otherwise the type is guessed from the name. Phone numbers aren't copied: each stay has an **Email the host** button that opens a pre-written enquiry (with the travel date, in Italian, or in English and Italian). The workflow *Place stays on the map* finds each new address on OpenStreetMap; stays it can't place are listed without a dot until you add a position in the admin.
 
+## Availability (hosts' calendars)
+
+A host who shares their calendar link (iCal, from Airbnb, Booking.com or a Google Calendar) gets **Free / Booked on the night of …** next to their stay when a traveller picks a date, plus a "free" filter. The links are private and never go into the repository:
+
+1. GitHub → this repository → **Settings → Secrets and variables → Actions → New repository secret**.
+2. **Name:** the next free slot, `CAL_1` … `CAL_30`.
+3. **Secret:** `bosa/<stay id>` then the link, e.g. `bosa/bomarosa-b-b https://www.airbnb.com/calendar/ical/123.ics`. More links (one per room or platform) go after it, separated by spaces. The stay id is shown in the admin (Bosa → Stays → ID).
+4. **Actions → Update availability → Run workflow.** About two minutes later the Bosa page shows it.
+
+The workflow then reads every calendar every 3 hours and keeps only booked dates (no guest names, codes or links). A stay not checked for 24 hours shows nothing rather than stale information. To remove a host, delete their secret; their entry disappears at the next run.
+
 ## Adding a town
 
 1. Run the script with the town's name, position and the airports people use to reach it:
