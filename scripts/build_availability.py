@@ -4,7 +4,8 @@
 The links are private: they live only in GitHub secrets CAL_1 … CAL_30 (repository → Settings →
 Secrets and variables → Actions). Each holds one stay:
   bosa/bomarosa-b-b https://www.airbnb.com/calendar/ical/123.ics
-with more links after it, separated by spaces or new lines, for more rooms or platforms.
+with more links after it, separated by spaces: one per room (free if any room is free).
+The same room on two platforms that aren't synced: join its links with "+" (booked if booked on either).
 The stay id is shown in the admin (Bosa → Stays → ID). Links are never printed or saved.
 Nothing but booked dates is written: no guest names, codes or links.
 
@@ -103,12 +104,23 @@ def main():
                 print(f"{town}/{stay}: no stay with this id in stays.json, skipped", file=sys.stderr)
                 continue
             rooms, failed = [], 0
-            for i, u in enumerate(urls, 1):
-                try:
-                    rooms.append(booked_ranges(fetch(u)))
-                except Exception as e:
-                    failed += 1
-                    print(f"{town}/{stay}: calendar {i} of {len(urls)} could not be read ({type(e).__name__})", file=sys.stderr)
+            for i, room in enumerate(urls, 1):
+                # One entry per room; "link1+link2" = the same room on two platforms (booked if booked on either).
+                ranges = []
+                for u in room.split("+"):
+                    try:
+                        ranges += booked_ranges(fetch(u))
+                    except Exception as e:
+                        failed += 1
+                        print(f"{town}/{stay}: a calendar of room {i} could not be read ({type(e).__name__})", file=sys.stderr)
+                ranges.sort()
+                merged = []
+                for a, b in ranges:
+                    if merged and a <= merged[-1][1]:
+                        merged[-1][1] = max(merged[-1][1], b)
+                    else:
+                        merged.append([a, b])
+                rooms.append(merged)
             if failed:   # keep the last good result rather than show a half-read stay as free
                 prev = old.get(stay)
                 out[stay] = dict(prev, ok=False) if prev else {"checked": None, "ok": False, "rooms": []}

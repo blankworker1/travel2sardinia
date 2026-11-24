@@ -102,7 +102,7 @@ A host who shares their calendar link (iCal, from Airbnb, Booking.com or a Googl
 
 1. GitHub → this repository → **Settings → Secrets and variables → Actions → New repository secret**.
 2. **Name:** the next free slot, `CAL_1` … `CAL_30`.
-3. **Secret:** `bosa/<stay id>` then the link, e.g. `bosa/bomarosa-b-b https://www.airbnb.com/calendar/ical/123.ics`. More links (one per room or platform) go after it, separated by spaces. The stay id is shown in the admin (Bosa → Stays → ID).
+3. **Secret:** `bosa/<stay id>` then the link, e.g. `bosa/bomarosa-b-b https://www.airbnb.com/calendar/ical/123.ics`. More rooms: one link per room, separated by spaces (the stay shows free if any room is free). The same room on two platforms that don't sync with each other: join its two links with `+` (booked if booked on either). The stay id is shown in the admin (Bosa → Stays → ID).
 4. **Actions → Update availability → Run workflow.** About two minutes later the Bosa page shows it.
 
 The workflow then reads every calendar every 3 hours and keeps only booked dates (no guest names, codes or links). A stay not checked for 24 hours shows nothing rather than stale information. To remove a host, delete their secret; their entry disappears at the next run.
