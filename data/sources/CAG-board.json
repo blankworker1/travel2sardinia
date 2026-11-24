@@ -1545,6 +1545,481 @@
      "flight": "VY6115"
     }
    ]
+  },
+  "2026-11-24": {
+   "saved": "Tue, 24 Nov 2026 07:59:57 GMT",
+   "arrivals": [
+    {
+     "time": "08:10",
+     "place": "Rome Fiumicino",
+     "flight": "XZ2331"
+    },
+    {
+     "time": "08:50",
+     "place": "Milan Malpensa",
+     "flight": "FR5290"
+    },
+    {
+     "time": "08:45",
+     "place": "Geneva",
+     "flight": "DS1423"
+    },
+    {
+     "time": "09:25",
+     "place": "Bergamo",
+     "flight": "FR3200"
+    },
+    {
+     "time": "09:50",
+     "place": "Milan Linate",
+     "flight": "XZ2351"
+    },
+    {
+     "time": "10:10",
+     "place": "Rome Fiumicino",
+     "flight": "XZ2337"
+    },
+    {
+     "time": "11:30",
+     "place": "Venice",
+     "flight": "FR2978"
+    },
+    {
+     "time": "11:40",
+     "place": "Milan Linate",
+     "flight": "XZ2355"
+    },
+    {
+     "time": "12:05",
+     "place": "Rome Ciampino",
+     "flight": "FR4613"
+    },
+    {
+     "time": "12:10",
+     "place": "Rome Fiumicino",
+     "flight": "XZ2335"
+    },
+    {
+     "time": "13:10",
+     "place": "Verona",
+     "flight": "FR322"
+    },
+    {
+     "time": "13:40",
+     "place": "Paris Orly",
+     "flight": "EC4893"
+    },
+    {
+     "time": "14:10",
+     "place": "Rome Fiumicino",
+     "flight": "XZ2341"
+    },
+    {
+     "time": "16:30",
+     "place": "Rome Fiumicino",
+     "flight": "XZ2339"
+    },
+    {
+     "time": "16:40",
+     "place": "Milan Malpensa",
+     "flight": "FR4578"
+    },
+    {
+     "time": "17:30",
+     "place": "Milan Linate",
+     "flight": "XZ2359"
+    },
+    {
+     "time": "18:30",
+     "place": "Rome Fiumicino",
+     "flight": "XZ2345"
+    },
+    {
+     "time": "19:25",
+     "place": "Milan Malpensa",
+     "flight": "FR4561"
+    },
+    {
+     "time": "19:55",
+     "place": "Milan Linate",
+     "flight": "XZ2361"
+    },
+    {
+     "time": "20:00",
+     "place": "Rome Ciampino",
+     "flight": "FR4324"
+    },
+    {
+     "time": "20:35",
+     "place": "London Stansted",
+     "flight": "FR2687"
+    },
+    {
+     "time": "20:50",
+     "place": "Rome Fiumicino",
+     "flight": "XZ2347"
+    },
+    {
+     "time": "22:30",
+     "place": "Milan Linate",
+     "flight": "XZ2363"
+    },
+    {
+     "time": "22:45",
+     "place": "Rome Fiumicino",
+     "flight": "XZ2349"
+    }
+   ],
+   "departures": [
+    {
+     "time": "06:00",
+     "place": "Bergamo",
+     "flight": "FR3201"
+    },
+    {
+     "time": "06:20",
+     "place": "Milan Linate",
+     "flight": "XZ2350"
+    },
+    {
+     "time": "06:30",
+     "place": "Rome Fiumicino",
+     "flight": "XZ2332"
+    },
+    {
+     "time": "08:00",
+     "place": "Milan Linate",
+     "flight": "XZ2354"
+    },
+    {
+     "time": "09:00",
+     "place": "Rome Fiumicino",
+     "flight": "XZ2334"
+    },
+    {
+     "time": "09:15",
+     "place": "Milan Malpensa",
+     "flight": "FR5291"
+    },
+    {
+     "time": "09:20",
+     "place": "Geneva",
+     "flight": "DS1424"
+    },
+    {
+     "time": "09:50",
+     "place": "Verona",
+     "flight": "FR321"
+    },
+    {
+     "time": "11:00",
+     "place": "Rome Fiumicino",
+     "flight": "XZ2338"
+    },
+    {
+     "time": "11:55",
+     "place": "Venice",
+     "flight": "FR2979"
+    },
+    {
+     "time": "12:30",
+     "place": "Rome Ciampino",
+     "flight": "FR4612"
+    },
+    {
+     "time": "12:55",
+     "place": "Milan Linate",
+     "flight": "XZ2358"
+    },
+    {
+     "time": "13:00",
+     "place": "Rome Fiumicino",
+     "flight": "XZ2340"
+    },
+    {
+     "time": "14:10",
+     "place": "Paris Orly",
+     "flight": "EC4894"
+    },
+    {
+     "time": "14:45",
+     "place": "London Stansted",
+     "flight": "FR2686"
+    },
+    {
+     "time": "15:10",
+     "place": "Rome Fiumicino",
+     "flight": "XZ2342"
+    },
+    {
+     "time": "16:10",
+     "place": "Milan Linate",
+     "flight": "XZ2360"
+    },
+    {
+     "time": "17:05",
+     "place": "Milan Malpensa",
+     "flight": "FR4577"
+    },
+    {
+     "time": "17:30",
+     "place": "Rome Fiumicino",
+     "flight": "XZ2344"
+    },
+    {
+     "time": "19:00",
+     "place": "Milan Linate",
+     "flight": "XZ2362"
+    },
+    {
+     "time": "19:40",
+     "place": "Rome Fiumicino",
+     "flight": "XZ2346"
+    },
+    {
+     "time": "19:50",
+     "place": "Milan Malpensa",
+     "flight": "FR4562"
+    },
+    {
+     "time": "20:25",
+     "place": "Rome Ciampino",
+     "flight": "FR4323"
+    },
+    {
+     "time": "21:00",
+     "place": "Venice",
+     "flight": "FR3934"
+    },
+    {
+     "time": "21:40",
+     "place": "Rome Fiumicino",
+     "flight": "XZ2348"
+    }
+   ]
+  },
+  "2026-11-25": {
+   "saved": "Tue, 24 Nov 2026 07:59:57 GMT",
+   "partial": true,
+   "arrivals": [
+    {
+     "time": "00:25",
+     "place": "Venice",
+     "flight": "FR3935"
+    },
+    {
+     "time": "07:30",
+     "place": "Bergamo",
+     "flight": "FR3200"
+    },
+    {
+     "time": "08:10",
+     "place": "Rome Fiumicino",
+     "flight": "XZ2331"
+    },
+    {
+     "time": "09:50",
+     "place": "Milan Linate",
+     "flight": "XZ2351"
+    },
+    {
+     "time": "10:10",
+     "place": "Milan Malpensa",
+     "flight": "FR4578"
+    },
+    {
+     "time": "10:10",
+     "place": "Rome Fiumicino",
+     "flight": "XZ2337"
+    },
+    {
+     "time": "11:40",
+     "place": "Milan Linate",
+     "flight": "XZ2355"
+    },
+    {
+     "time": "12:10",
+     "place": "Rome Fiumicino",
+     "flight": "XZ2335"
+    },
+    {
+     "time": "12:35",
+     "place": "Barcelona",
+     "flight": "VY6114"
+    },
+    {
+     "time": "13:05",
+     "place": "Venice",
+     "flight": "FR1551"
+    },
+    {
+     "time": "13:55",
+     "place": "Verona",
+     "flight": "FR322"
+    },
+    {
+     "time": "14:10",
+     "place": "Rome Fiumicino",
+     "flight": "XZ2341"
+    },
+    {
+     "time": "14:20",
+     "place": "Rome Ciampino",
+     "flight": "FR4324"
+    },
+    {
+     "time": "16:30",
+     "place": "Rome Fiumicino",
+     "flight": "XZ2339"
+    },
+    {
+     "time": "17:30",
+     "place": "Milan Linate",
+     "flight": "XZ2359"
+    },
+    {
+     "time": "18:30",
+     "place": "Rome Fiumicino",
+     "flight": "XZ2345"
+    },
+    {
+     "time": "18:35",
+     "place": "Milan Malpensa",
+     "flight": "FR5290"
+    },
+    {
+     "time": "19:55",
+     "place": "Milan Linate",
+     "flight": "XZ2361"
+    },
+    {
+     "time": "20:50",
+     "place": "Rome Fiumicino",
+     "flight": "XZ2347"
+    },
+    {
+     "time": "22:30",
+     "place": "Milan Linate",
+     "flight": "XZ2363"
+    },
+    {
+     "time": "22:45",
+     "place": "Rome Fiumicino",
+     "flight": "XZ2349"
+    },
+    {
+     "time": "23:55",
+     "place": "Venice",
+     "flight": "FR2978"
+    }
+   ],
+   "departures": [
+    {
+     "time": "06:20",
+     "place": "Milan Linate",
+     "flight": "XZ2350"
+    },
+    {
+     "time": "06:30",
+     "place": "Rome Fiumicino",
+     "flight": "XZ2332"
+    },
+    {
+     "time": "06:40",
+     "place": "Milan Malpensa",
+     "flight": "FR4577"
+    },
+    {
+     "time": "07:55",
+     "place": "Bergamo",
+     "flight": "FR3201"
+    },
+    {
+     "time": "08:00",
+     "place": "Milan Linate",
+     "flight": "XZ2354"
+    },
+    {
+     "time": "09:00",
+     "place": "Rome Fiumicino",
+     "flight": "XZ2334"
+    },
+    {
+     "time": "10:35",
+     "place": "Verona",
+     "flight": "FR321"
+    },
+    {
+     "time": "11:00",
+     "place": "Rome Fiumicino",
+     "flight": "XZ2338"
+    },
+    {
+     "time": "12:55",
+     "place": "Milan Linate",
+     "flight": "XZ2358"
+    },
+    {
+     "time": "13:00",
+     "place": "Rome Fiumicino",
+     "flight": "XZ2340"
+    },
+    {
+     "time": "13:20",
+     "place": "Barcelona",
+     "flight": "VY6115"
+    },
+    {
+     "time": "13:30",
+     "place": "Venice",
+     "flight": "FR1552"
+    },
+    {
+     "time": "14:45",
+     "place": "Rome Ciampino",
+     "flight": "FR4323"
+    },
+    {
+     "time": "15:10",
+     "place": "Rome Fiumicino",
+     "flight": "XZ2342"
+    },
+    {
+     "time": "16:10",
+     "place": "Milan Linate",
+     "flight": "XZ2360"
+    },
+    {
+     "time": "17:30",
+     "place": "Rome Fiumicino",
+     "flight": "XZ2344"
+    },
+    {
+     "time": "19:00",
+     "place": "Milan Malpensa",
+     "flight": "FR5291"
+    },
+    {
+     "time": "19:00",
+     "place": "Milan Linate",
+     "flight": "XZ2362"
+    },
+    {
+     "time": "19:40",
+     "place": "Rome Fiumicino",
+     "flight": "XZ2346"
+    },
+    {
+     "time": "20:30",
+     "place": "Venice",
+     "flight": "FR2979"
+    },
+    {
+     "time": "21:40",
+     "place": "Rome Fiumicino",
+     "flight": "XZ2348"
+    }
+   ]
   }
  }
 }
