@@ -1,0 +1,40 @@
+name: Update availability
+
+# Reads hosts' calendar links (GitHub secrets named CAL_<TOWN>__<STAY_ID>) and writes booked dates.
+on:
+  schedule:
+    - cron: "17 */3 * * *"   # every 3 hours
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: availability
+  cancel-in-progress: false
+
+jobs:
+  availability:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Read calendars (links stay private)
+        env:
+          ALL_SECRETS: ${{ toJSON(secrets) }}
+        run: python scripts/build_availability.py
+      - name: Commit if changed
+        run: |
+          git add -N data/destinations || true
+          if git diff --quiet data/destinations; then
+            echo "No change."
+          else
+            git config user.name "travel2sardinia-bot"
+            git config user.email "actions@users.noreply.github.com"
+            git add data/destinations
+            git commit -m "Update availability"
+            git pull --rebase -q
+            git push
+          fi

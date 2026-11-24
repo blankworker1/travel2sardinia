@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
   workflow_run:
-    workflows: ["Update timetables", "Place stays on the map"]
+    workflows: ["Update timetables", "Place stays on the map", "Update availability"]
     types: [completed]
   workflow_dispatch:
 

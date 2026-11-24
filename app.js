@@ -460,14 +460,35 @@
       (signup ? `<p><a class="link-btn" href="${esc(signup)}" target="_blank" rel="noopener">${esc(t("become_host"))}</a></p>` : "");
   }
 
+  // ---------- availability from hosts' calendars ----------
+  // "free" | "booked" | "" (no calendar, or not checked in the last 24 hours) for the night of `date`.
+  function availOn(a, date) {
+    if (!a || !date || !a.checked) return "";
+    if (Date.now() - Date.parse(a.checked) > 24 * 3600e3) return "";
+    if (!a.rooms || !a.rooms.length) return "";
+    const roomFree = (r) => !r.some(([s, e]) => s <= date && date < e);
+    return a.rooms.some(roomFree) ? "free" : "booked";
+  }
+  function agoText(iso) {
+    const h = Math.max(0, Math.round((Date.now() - Date.parse(iso)) / 3600e3));
+    return h < 1 ? t("checked_now") : t("checked_ago", h);
+  }
+
   function renderTownStays(all) {
     const src = (state.data.stays || {}).source_url;
     const types = [...new Set(all.map((s) => s.type))].sort((a, b) => all.filter((s) => s.type === b).length - all.filter((s) => s.type === a).length);
-    const f = state.stayFilter && types.includes(state.stayFilter) ? state.stayFilter : "";
-    const list = all.filter((s) => !f || s.type === f);
+    const av = state.data.avail || {};
+    const status = (s) => availOn(av[s.id], state.date);
+    const anyCal = state.date && all.some((s) => status(s));
+    const f = state.stayFilter === "free" ? (anyCal ? "free" : "") : state.stayFilter && types.includes(state.stayFilter) ? state.stayFilter : "";
+    const rank = (s) => ({ free: 0, "": 1, booked: 2 })[status(s)];
+    const list = all.filter((s) => !f || (f === "free" ? status(s) === "free" : s.type === f))
+      .sort((a, b) => (state.date ? rank(a) - rank(b) : 0) || a.name.localeCompare(b.name));
+    const nFree = anyCal ? all.filter((s) => status(s) === "free").length : 0;
     $("#stays-intro").innerHTML = esc(t("stays_intro", all.length, destName())) +
       (src ? ` <a href="${esc(src)}" target="_blank" rel="noopener">${esc(t("stays_source"))}</a>` : "");
     $("#stays-filter").innerHTML = `<button type="button" class="chip${f ? "" : " on"}" data-type="">${esc(t("all_types"))} <b>${all.length}</b></button>` +
+      (anyCal ? `<button type="button" class="chip free${f === "free" ? " on" : ""}" data-type="free">✓ ${esc(t("free_on", fmtDay(state.date)))} <b>${nFree}</b></button>` : "") +
       types.map((ty) => `<button type="button" class="chip${f === ty ? " on" : ""}" data-type="${esc(ty)}"><i class="tdot" style="background:${STAY_COLORS[ty] || "#5b5450"}"></i>${esc(t("stay_type")[ty] || ty)} <b>${all.filter((s) => s.type === ty).length}</b></button>`).join("");
     document.querySelectorAll("#stays-filter .chip").forEach((b) => b.addEventListener("click", () => { state.stayFilter = b.dataset.type; renderStays(); }));
 
@@ -476,8 +497,11 @@
       const site = isUrl(s.website) ? `<a class="btn ghost small-btn" href="${esc(s.website)}" target="_blank" rel="noopener">${esc(t("website"))}</a>` : "";
       const hodl = isUrl(s.url) ? `<a class="btn ghost small-btn" href="${esc(s.url)}" target="_blank" rel="noopener">${esc(t("view_hodlstay"))}</a>` : "";
       const pin = s.lat != null ? `<button type="button" class="link-btn small" data-pin="${esc(s.id)}">${esc(t("show_on_map"))}</button>` : "";
-      return `<li class="card" id="stay-${esc(s.id)}"><div class="card-main"><strong><i class="tdot" style="background:${stayColor(s)}"></i>${esc(s.name)}</strong>
-        <div class="meta">${where}</div>${tx(s.notes) ? `<p>${esc(tx(s.notes))}</p>` : ""}${pin}</div>
+      const st = status(s), a = av[s.id];
+      const badge = st ? `<div class="avail ${st}">${esc(t(st === "free" ? "avail_free" : "avail_booked", fmtDay(state.date)))} <span class="meta">· ${esc(agoText(a.checked))} · ${esc(t("avail_confirm"))}</span></div>`
+        : (state.date ? "" : (a && a.ok && a.checked ? `<div class="meta avail-hint">${esc(t("avail_pick_date"))}</div>` : ""));
+      return `<li class="card${st === "booked" ? " is-booked" : ""}" id="stay-${esc(s.id)}"><div class="card-main"><strong><i class="tdot" style="background:${stayColor(s)}"></i>${esc(s.name)}</strong>
+        <div class="meta">${where}</div>${badge}${tx(s.notes) ? `<p>${esc(tx(s.notes))}</p>` : ""}${pin}</div>
         <div class="actions">${site}${s.email ? `<button type="button" class="btn small-btn" data-mail="${esc(hideMail(s.email))}" data-id="${esc(s.id)}">✉ ${esc(t("email_host"))}</button>` : ""}${hodl}</div></li>`;
     }).join("") + "</ul>" + moreStayOptions();
     document.querySelectorAll("#stays-body [data-mail]").forEach((b) => b.addEventListener("click", () => {
@@ -506,7 +530,8 @@
     state.stayMarkers = {};
     const placed = list.filter((s) => s.lat != null && s.lon != null);
     for (const s of placed) {
-      const mk = L.circleMarker([s.lat, s.lon], { radius: 7, color: "#fff", weight: 2, fillColor: stayColor(s), fillOpacity: 0.95 })
+      const st = availOn((state.data.avail || {})[s.id], state.date);
+      const mk = L.circleMarker([s.lat, s.lon], { radius: st === "free" ? 9 : 7, color: st === "free" ? "#1f7a3a" : "#fff", weight: st === "free" ? 3 : 2, fillColor: stayColor(s), fillOpacity: st === "booked" ? 0.3 : 0.95 })
         .bindTooltip(`${esc(s.name)}<br><small>${esc(stayType(s))}</small>`, { direction: "top" })
         .on("click", () => { const el = document.getElementById(`stay-${s.id}`); if (el) { el.scrollIntoView({ behavior: "smooth", block: "center" }); el.classList.add("flash"); setTimeout(() => el.classList.remove("flash"), 1600); } })
         .addTo(state.stayLayer);
@@ -1108,24 +1133,27 @@
       // The home page shows each town's stays and events in its own cards.
       state.data.destData = {};
       await Promise.all((dests.destinations || []).filter(published).map(async (d) => {
-        const [events, stays] = await Promise.all([
+        const [events, stays, avail] = await Promise.all([
           loadJSON(`destinations/${d.id}/events`, { events: [] }),
-          loadJSON(`destinations/${d.id}/stays`, { stays: [] })
+          loadJSON(`destinations/${d.id}/stays`, { stays: [] }),
+          loadJSON(`destinations/${d.id}/availability`, { stays: {} })
         ]);
-        state.data.destData[d.id] = { events: events.events || [], stays: stays.stays || [] };
+        state.data.destData[d.id] = { events: events.events || [], stays: stays.stays || [], avail: avail.stays || {} };
       }));
     }
 
     if (DEST) {
       state.dest = (dests.destinations || []).find((x) => x.id === DEST) || { id: DEST, name: { it: DEST, en: DEST }, lat: 40.05, lon: 9.0 };
-      const [destSettings, events, stays, info] = await Promise.all([
+      const [destSettings, events, stays, info, avail] = await Promise.all([
         loadJSON(`destinations/${DEST}/destination`, { links: {} }),
         loadJSON(`destinations/${DEST}/events`, { events: [] }),
         loadJSON(`destinations/${DEST}/stays`, { stays: [] }),
-        loadJSON(`destinations/${DEST}/info`, { tips: [] })
+        loadJSON(`destinations/${DEST}/info`, { tips: [] }),
+        loadJSON(`destinations/${DEST}/availability`, { stays: {} })
       ]);
       state.data.destSettings = destSettings;
       state.data.stays = stays;
+      state.data.avail = avail.stays || {};
       state.data.events = state.data.events.concat(events.events || []);
       state.data.tips = (info.tips || []).concat(state.data.tips);
       state.data.year = events.year || state.data.year;
