@@ -736,6 +736,124 @@ collections:
         label: Published
         widget: boolean
         default: false
+  - name: bosa_taxis
+    label: 'Bosa: taxis and transfers'
+    file: data/destinations/bosa/taxis.json
+    format: json
+    fields:
+    - widget: datetime
+      date_format: YYYY-MM-DD
+      time_format: false
+      format: YYYY-MM-DD
+      name: updated
+      label: Last updated
+    - name: fares
+      label: Indicative fares
+      widget: list
+      collapsed: true
+      summary: '{{fields.from.it}} · {{fields.price}}'
+      fields:
+      - name: from
+        label: From
+        widget: object
+        fields:
+        - name: it
+          label: Italiano
+          widget: string
+        - name: en
+          label: English
+          widget: string
+      - name: price
+        label: Price (e.g. €80–120)
+        widget: string
+      - name: time
+        label: Time
+        widget: object
+        fields:
+        - name: it
+          label: Italiano
+          widget: string
+        - name: en
+          label: English
+          widget: string
+    - name: note
+      label: Note under the fares
+      widget: object
+      fields:
+      - name: it
+        label: Italiano
+        widget: text
+      - name: en
+        label: English
+        widget: text
+    - name: taxis
+      label: Taxi and private hire (NCC)
+      widget: list
+      collapsed: true
+      summary: '{{fields.name}} · {{fields.base}} · {{fields.phone}}'
+      fields:
+      - name: id
+        label: ID (unique)
+        widget: string
+      - name: name
+        label: Name
+        widget: string
+      - name: kind
+        label: Type
+        widget: select
+        options:
+        - label: Taxi
+          value: taxi
+        - label: NCC (noleggio con conducente / private hire)
+          value: ncc
+      - name: base
+        label: Based in (e.g. Bosa, Alghero)
+        widget: string
+      - name: address
+        label: Address
+        widget: string
+        required: false
+      - name: phone
+        label: Phone (with +39)
+        widget: string
+        required: false
+      - name: whatsapp
+        label: WhatsApp number (with +39), if different
+        widget: string
+        required: false
+      - name: website
+        label: Website
+        widget: string
+        required: false
+      - name: email
+        label: Email
+        widget: string
+        required: false
+      - name: notes
+        label: Notes (e.g. airports served, minibus, card payment)
+        widget: object
+        required: false
+        fields:
+        - name: it
+          label: Italiano
+          widget: text
+          required: false
+        - name: en
+          label: English
+          widget: text
+          required: false
+      - name: verified
+        label: Checked (phoned or confirmed by the service)
+        widget: boolean
+        required: false
+      - name: published
+        label: Published
+        widget: boolean
+        default: true
+      - name: source
+        label: Source (for the coordinator)
+        widget: string
+        required: false
   - name: bosa_info
     label: 'Bosa: local tips'
     file: data/destinations/bosa/info.json

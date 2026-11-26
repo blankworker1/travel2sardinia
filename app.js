@@ -473,6 +473,26 @@
       (signup ? `<p><a class="link-btn" href="${esc(signup)}" target="_blank" rel="noopener">${esc(t("become_host"))}</a></p>` : "");
   }
 
+  // ---------- taxis and private transfers ----------
+  function renderTaxis() {
+    const sec = $("#taxis");
+    if (!sec) return;
+    const d = state.data.taxis || {};
+    const list = (d.taxis || []).filter(published);
+    sec.hidden = !list.length && !(d.fares || []).length;
+    if (sec.hidden) return;
+    const tel = (n) => String(n || "").replace(/[^+\d]/g, "");
+    const fares = (d.fares || []).length ? `<ul class="fares">${d.fares.map((f) => `<li><strong>${esc(tx(f.from))}</strong> → ${esc(destName())}: ${esc(f.price || "")}${tx(f.time) ? ` · ${esc(tx(f.time))}` : ""}</li>`).join("")}</ul>${tx(d.note) ? `<p class="meta">${esc(tx(d.note))}</p>` : ""}` : "";
+    const local = (x) => (x.base || "").toLowerCase() === destName().toLowerCase();
+    const sorted = [...list].sort((a, b) => (local(b) - local(a)) || a.name.localeCompare(b.name));
+    $("#taxis-body").innerHTML = fares + `<ul class="cards">${sorted.map((x) => {
+      const wa = tel(x.whatsapp || "");
+      return `<li class="card" id="taxi-${esc(x.id)}"><div class="card-main"><strong>${esc(x.name)}</strong>
+        <div class="meta">${[t(x.kind === "ncc" ? "taxi_ncc" : "taxi_taxi"), x.base, x.phone].filter(Boolean).map(esc).join(" · ")}</div>${tx(x.notes) ? `<p>${esc(tx(x.notes))}</p>` : ""}</div>
+        <div class="actions">${x.phone ? `<a class="btn small-btn" href="tel:${esc(tel(x.phone))}">☎ ${esc(t("taxi_call"))}</a>` : ""}${wa ? `<a class="btn ghost small-btn" href="https://wa.me/${esc(wa.replace("+", ""))}" target="_blank" rel="noopener">WhatsApp</a>` : ""}${isUrl(x.website) ? `<a class="btn ghost small-btn" href="${esc(x.website)}" target="_blank" rel="noopener">${esc(t("website"))}</a>` : ""}</div></li>`;
+    }).join("")}</ul>`;
+  }
+
   // ---------- availability from hosts' calendars ----------
   // "free" | "booked" | "" (no calendar, or not checked in the last 24 hours) for the night of `date`.
   function availOn(a, date) {
@@ -831,7 +851,8 @@
         const l = its[0];
         return `<div class="jw ok">✓ ${esc(t("lands_next", tm, hm(l[0].dep), hm(l[l.length - 1].arr), tx(dest.name)))}</div>`;
       }
-      return `<div class="jw warn">⚠ ${esc(t("lands_too_late", tm, hm(g.last), tx(dest.name), placeName(opt.airport)))}</div>`;
+      const taxiHref = state.dest ? "#taxis" : new URL(`${dest.id}/?${qs()}#taxis`, BASE).href;
+      return `<div class="jw warn">⚠ ${esc(t("lands_too_late", tm, hm(g.last), tx(dest.name), placeName(opt.airport)))} <a href="${esc(taxiHref)}">${esc(t("taxi_link"))} →</a></div>`;
     }).join("");
   }
 
@@ -1091,6 +1112,7 @@
     if (has("#destinations-body")) renderDestinations();
     renderJourney();
     renderHomeCards();
+    renderTaxis();
     if (has("#transfer-body")) renderTransfer();
     if (has("#stays-body")) renderStays();
     renderEvents();
@@ -1157,16 +1179,18 @@
 
     if (DEST) {
       state.dest = (dests.destinations || []).find((x) => x.id === DEST) || { id: DEST, name: { it: DEST, en: DEST }, lat: 40.05, lon: 9.0 };
-      const [destSettings, events, stays, info, avail] = await Promise.all([
+      const [destSettings, events, stays, info, avail, taxis] = await Promise.all([
         loadJSON(`destinations/${DEST}/destination`, { links: {} }),
         loadJSON(`destinations/${DEST}/events`, { events: [] }),
         loadJSON(`destinations/${DEST}/stays`, { stays: [] }),
         loadJSON(`destinations/${DEST}/info`, { tips: [] }),
-        loadJSON(`destinations/${DEST}/availability`, { stays: {} })
+        loadJSON(`destinations/${DEST}/availability`, { stays: {} }),
+        loadJSON(`destinations/${DEST}/taxis`, { taxis: [] })
       ]);
       state.data.destSettings = destSettings;
       state.data.stays = stays;
       state.data.avail = avail.stays || {};
+      state.data.taxis = taxis;
       state.data.events = state.data.events.concat(events.events || []);
       state.data.tips = (info.tips || []).concat(state.data.tips);
       state.data.year = events.year || state.data.year;

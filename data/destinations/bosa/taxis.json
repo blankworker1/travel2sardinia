@@ -1,0 +1,17 @@
+{
+  "updated": "2026-11-26",
+  "fares": [
+    {"from": {"it": "Aeroporto di Alghero", "en": "Alghero airport"}, "price": "€80–120", "time": {"it": "50–60 min", "en": "50–60 min"}},
+    {"from": {"it": "Stazione di Macomer", "en": "Macomer station"}, "price": "€60–80", "time": {"it": "circa 30 min", "en": "about 30 min"}}
+  ],
+  "note": {
+    "it": "Prezzi indicativi, da confermare con il servizio. Prenota in anticipo, soprattutto la sera, la domenica e nei giorni festivi.",
+    "en": "Indicative prices, to confirm with the service. Book ahead, especially in the evening, on Sundays and on public holidays."
+  },
+  "taxis": [
+    {"id": "bosa-taxi-service", "name": "Bosa Taxi Service", "kind": "taxi", "base": "Bosa", "address": "Via Montenegro 81", "phone": "+39 327 7173761", "whatsapp": "", "website": "", "email": "", "notes": {"it": "", "en": ""}, "verified": false, "published": true, "source": "tuttocitta.it, 2026-11-26"},
+    {"id": "gpa-travel", "name": "Gpa Travel", "kind": "taxi", "base": "Bosa", "address": "Via Francesco Ciusa Romagna 33", "phone": "+39 333 6762249", "whatsapp": "", "website": "", "email": "", "notes": {"it": "", "en": ""}, "verified": false, "published": true, "source": "tuttocitta.it, 2026-11-26"},
+    {"id": "radio-taxi-alghero", "name": "Taxi Alghero Radio Taxi", "kind": "taxi", "base": "Alghero", "address": "Via Brigata Sassari 7, Alghero", "phone": "+39 079 9892028", "whatsapp": "", "website": "", "email": "", "notes": {"it": "Taxi di Alghero, utile dall'aeroporto di Alghero.", "en": "Alghero taxis, useful from Alghero airport."}, "verified": false, "published": true, "source": "tuttocitta.it, 2026-11-26"},
+    {"id": "taxi-alghero", "name": "Taxi Alghero", "kind": "taxi", "base": "Alghero", "address": "Via Carbonia 13, Alghero", "phone": "+39 079 9739795", "whatsapp": "", "website": "", "email": "", "notes": {"it": "Taxi di Alghero, utile dall'aeroporto di Alghero.", "en": "Alghero taxis, useful from Alghero airport."}, "verified": false, "published": true, "source": "tuttocitta.it, 2026-11-26"}
+  ]
+}

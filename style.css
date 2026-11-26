@@ -265,3 +265,7 @@ footer { padding-bottom: 4.5rem; }
 .chips .chip.free { border-color: #1f7a3a; color: #1f7a3a; }
 .chips .chip.free.on { background: #1f7a3a; color: #fff; }
 .avail-hint { margin-top: .3rem; font-style: italic; }
+
+/* taxis */
+.fares { margin: .2rem 0 .4rem; padding-left: 1.1rem; }
+.fares li { margin: .15rem 0; }
