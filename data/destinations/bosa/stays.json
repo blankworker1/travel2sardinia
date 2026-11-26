@@ -178,7 +178,7 @@
       "name": "B&B Il Corallo",
       "name_comune": "B&B Il Corallo",
       "type": "bnb",
-      "area": "",
+      "area": "Bosa",
       "address": "VIA GEN.IBBA-PIRAS 23",
       "email": "info@ilcorallobb.com",
       "website": "http://www.ilcorallobb.com/",
@@ -190,7 +190,8 @@
       "notes": null,
       "published": true,
       "geo": "not_found",
-      "type_source": "guess"
+      "type_source": "guess",
+      "area_auto": true
     },
     {
       "id": "b-b-la-casa-del-pescatore",
