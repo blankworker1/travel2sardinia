@@ -217,6 +217,7 @@
       document.title = brand;
       $("#orgs-link").href = `organisations/?lang=${state.lang}`;
     }
+    document.querySelectorAll('footer a[href*="guida/"]').forEach((a) => { a.href = new URL(`guida/?lang=${state.lang}`, BASE).href; });
 
     // origin search box (phones) — the map handles choosing on bigger screens
     const inp = $("#origin-input");
