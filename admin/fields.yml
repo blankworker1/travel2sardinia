@@ -257,6 +257,7 @@ stays:
 - name: stays
   label: Stays
   widget: list
+  collapsed: true
   summary: '{{fields.name}} · {{fields.type}} · {{fields.area}}'
   fields:
   - name: id
@@ -269,7 +270,6 @@ stays:
   - name: name_comune
     label: Name on the Comune's list
     widget: hidden
-    required: false
   - name: type
     label: Type
     hint: Imported stays get a type guessed from the name until the Comune's page for that type is imported.
