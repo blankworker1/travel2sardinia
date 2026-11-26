@@ -854,6 +854,97 @@ collections:
         label: Source (for the coordinator)
         widget: string
         required: false
+  - name: bosa_bikes
+    label: 'Bosa: bike hire'
+    file: data/destinations/bosa/bikes.json
+    format: json
+    fields:
+    - widget: datetime
+      date_format: YYYY-MM-DD
+      time_format: false
+      format: YYYY-MM-DD
+      name: updated
+      label: Last updated
+    - name: note
+      label: Note under the list
+      widget: object
+      fields:
+      - name: it
+        label: Italiano
+        widget: text
+      - name: en
+        label: English
+        widget: text
+    - name: bikes
+      label: Bike hire
+      widget: list
+      collapsed: true
+      summary: '{{fields.name}} · {{fields.phone}}'
+      fields:
+      - name: id
+        label: ID (unique)
+        widget: string
+      - name: name
+        label: Name
+        widget: string
+      - name: address
+        label: Address
+        widget: string
+        required: false
+      - name: types
+        label: Bikes available (e.g. e-bike, MTB, road)
+        widget: object
+        required: false
+        fields:
+        - name: it
+          label: Italiano
+          widget: string
+          required: false
+        - name: en
+          label: English
+          widget: string
+          required: false
+      - name: phone
+        label: Phone (with +39)
+        widget: string
+        required: false
+      - name: whatsapp
+        label: WhatsApp number (with +39)
+        widget: string
+        required: false
+      - name: website
+        label: Website
+        widget: string
+        required: false
+      - name: email
+        label: Email
+        widget: string
+        required: false
+      - name: notes
+        label: Notes (e.g. tours, delivery, season)
+        widget: object
+        required: false
+        fields:
+        - name: it
+          label: Italiano
+          widget: text
+          required: false
+        - name: en
+          label: English
+          widget: text
+          required: false
+      - name: verified
+        label: Checked (confirmed by the business)
+        widget: boolean
+        required: false
+      - name: published
+        label: Published
+        widget: boolean
+        default: true
+      - name: source
+        label: Source (for the coordinator)
+        widget: string
+        required: false
   - name: bosa_info
     label: 'Bosa: local tips'
     file: data/destinations/bosa/info.json

@@ -1,0 +1,23 @@
+{
+  "updated": "2026-11-26",
+  "note": {
+    "it": "Prezzi e stagione da confermare con il noleggio. Prenota in anticipo in alta stagione.",
+    "en": "Prices and season to confirm with the rental. Book ahead in high season."
+  },
+  "bikes": [
+    {
+      "id": "bosa-bike-experience",
+      "name": "Bosa Bike Experience",
+      "address": "Via del Ginnasio 17, Bosa",
+      "types": {"it": "E-MTB, MTB, bici da corsa, bici junior", "en": "E-MTB, MTB, road bikes, junior bikes"},
+      "phone": "+39 346 6376574",
+      "whatsapp": "+39 346 6376574",
+      "website": "https://bosarentbike.it/",
+      "email": "bosabikeexperience@gmail.com",
+      "notes": {"it": "Anche tour guidati: culturali, naturalistici ed enogastronomici in e-bike.", "en": "Also guided tours: cultural, nature, and food and wine by e-bike."},
+      "verified": false,
+      "published": true,
+      "source": "bosarentbike.it, 2026-11-26"
+    }
+  ]
+}

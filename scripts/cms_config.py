@@ -53,6 +53,7 @@ def build():
                 file_entry(f"{did}_events", f"{name}: events", f"{base}/events.json", f["events"]),
                 file_entry(f"{did}_stays", f"{name}: places to stay", f"{base}/stays.json", f["stays"]),
                 file_entry(f"{did}_taxis", f"{name}: taxis and transfers", f"{base}/taxis.json", f["taxis"]),
+                file_entry(f"{did}_bikes", f"{name}: bike hire", f"{base}/bikes.json", f["bikes"]),
                 file_entry(f"{did}_info", f"{name}: local tips", f"{base}/info.json", f["info"]),
                 file_entry(f"{did}_settings", f"{name}: links and coordinator", f"{base}/destination.json", f["destination_settings"]),
             ],

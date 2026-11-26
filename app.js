@@ -493,6 +493,23 @@
     }).join("")}</ul>`;
   }
 
+  // ---------- bike hire ----------
+  function renderBikes() {
+    const sec = $("#bikes");
+    if (!sec) return;
+    const d = state.data.bikes || {};
+    const list = (d.bikes || []).filter(published).sort((a, b) => a.name.localeCompare(b.name));
+    sec.hidden = !list.length;
+    if (sec.hidden) return;
+    const tel = (n) => String(n || "").replace(/[^+\d]/g, "");
+    $("#bikes-body").innerHTML = `<ul class="cards">${list.map((x) => {
+      const wa = tel(x.whatsapp || "");
+      return `<li class="card" id="bike-${esc(x.id)}"><div class="card-main"><strong>${esc(x.name)}</strong>
+        <div class="meta">${[tx(x.types), x.address].filter(Boolean).map(esc).join(" · ")}</div>${tx(x.notes) ? `<p>${esc(tx(x.notes))}</p>` : ""}</div>
+        <div class="actions">${isUrl(x.website) ? `<a class="btn small-btn" href="${esc(x.website)}" target="_blank" rel="noopener">${esc(t("website"))}</a>` : ""}${wa ? `<a class="btn ghost small-btn" href="https://wa.me/${esc(wa.replace("+", ""))}" target="_blank" rel="noopener">WhatsApp</a>` : ""}${x.phone ? `<a class="btn ghost small-btn" href="tel:${esc(tel(x.phone))}">☎ ${esc(t("taxi_call"))}</a>` : ""}</div></li>`;
+    }).join("")}</ul>${tx(d.note) ? `<p class="meta">${esc(tx(d.note))}</p>` : ""}`;
+  }
+
   // ---------- availability from hosts' calendars ----------
   // "free" | "booked" | "" (no calendar, or not checked in the last 24 hours) for the night of `date`.
   function availOn(a, date) {
@@ -1141,6 +1158,7 @@
     renderJourney();
     renderHomeCards();
     renderTaxis();
+    renderBikes();
     if (has("#transfer-body")) renderTransfer();
     if (has("#stays-body")) renderStays();
     renderEvents();
@@ -1208,18 +1226,20 @@
 
     if (DEST) {
       state.dest = (dests.destinations || []).find((x) => x.id === DEST) || { id: DEST, name: { it: DEST, en: DEST }, lat: 40.05, lon: 9.0 };
-      const [destSettings, events, stays, info, avail, taxis] = await Promise.all([
+      const [destSettings, events, stays, info, avail, taxis, bikes] = await Promise.all([
         loadJSON(`destinations/${DEST}/destination`, { links: {} }),
         loadJSON(`destinations/${DEST}/events`, { events: [] }),
         loadJSON(`destinations/${DEST}/stays`, { stays: [] }),
         loadJSON(`destinations/${DEST}/info`, { tips: [] }),
         loadJSON(`destinations/${DEST}/availability`, { stays: {} }),
-        loadJSON(`destinations/${DEST}/taxis`, { taxis: [] })
+        loadJSON(`destinations/${DEST}/taxis`, { taxis: [] }),
+        loadJSON(`destinations/${DEST}/bikes`, { bikes: [] })
       ]);
       state.data.destSettings = destSettings;
       state.data.stays = stays;
       state.data.avail = avail.stays || {};
       state.data.taxis = taxis;
+      state.data.bikes = bikes;
       state.data.events = state.data.events.concat(events.events || []);
       state.data.tips = (info.tips || []).concat(state.data.tips);
       state.data.year = events.year || state.data.year;
