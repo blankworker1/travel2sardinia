@@ -246,11 +246,23 @@
   // One line for the journey card: the period on the chosen date (or the next one), and how many more.
   function scheduleShort(r) {
     if (isTbc(r)) return scheduleText(r) || t("days_tbc");
-    const s = state.date ? (seasonOn(r, state.date) || null) : nextSeason(r);
-    if (!s) return state.date ? t("not_on_date") : "";
-    const one = scheduleText(Object.assign({}, r, { seasons: [s] }));
-    const more = (r.seasons || []).filter((x) => (hasDays(x) || isTbc(r)) && x.end >= today()).length - 1;
-    return more > 0 ? `${one} (${t("more_periods", more)})` : one;
+    let ss;
+    if (state.date) {
+      const wd = String(isoWeekday(state.date));
+      ss = (r.seasons || []).filter((x) => hasDays(x) && x.start <= state.date && state.date <= x.end && String(x.days).includes(wd));
+      if (!ss.length) return t("not_on_date");
+    } else {
+      const ns = nextSeason(r);
+      if (!ns) return "";
+      ss = (r.seasons || []).filter((x) => hasDays(x) && x.start === ns.start && x.end === ns.end);
+    }
+    // One line for all flights of the same period: the days together, the landing times together.
+    const days = [...new Set(ss.flatMap((x) => String(x.days).split("")))].sort().join("");
+    const times = [...new Set(ss.map((x) => arrTime(r, x)).filter(Boolean))].sort();
+    const tt = times.length > 3 ? `${times.slice(0, 2).join(", ")} … ${times.at(-1)}` : times.join(", ");
+    const one = scheduleText(Object.assign({}, r, { seasons: [Object.assign({}, ss[0], { days, arr_time: tt })] }));
+    const others = new Set((r.seasons || []).filter((x) => hasDays(x) && x.end >= today() && !(x.start === ss[0].start && x.end === ss[0].end)).map((x) => x.start + x.end)).size;
+    return others > 0 ? `${one} (${t("more_periods", others)})` : one;
   }
 
   function scheduleText(r) {
