@@ -106,8 +106,8 @@
       "address": "VIA LAMARMORA 19",
       "email": "piera.81@tiscali.it",
       "website": "",
-      "lat": null,
-      "lon": null,
+      "lat": 40.2978144,
+      "lon": 8.4996827,
       "source": "comune",
       "url": "",
       "languages": [],
@@ -189,9 +189,9 @@
       "languages": [],
       "notes": null,
       "published": true,
+      "area_auto": true,
       "geo": "not_found",
-      "type_source": "guess",
-      "area_auto": true
+      "type_source": "guess"
     },
     {
       "id": "b-b-la-casa-del-pescatore",
