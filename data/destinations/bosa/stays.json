@@ -30,8 +30,8 @@
       "address": "Località Buddesi SNC",
       "email": "info@mattagiana.com",
       "website": "https://www.mattagiana.com",
-      "lat": null,
-      "lon": null,
+      "lat": 40.3104953,
+      "lon": 8.529361,
       "source": "comune",
       "url": "",
       "languages": [],
@@ -113,9 +113,9 @@
       "languages": [],
       "notes": null,
       "published": true,
+      "area_auto": true,
       "geo": "not_found",
-      "type_source": "guess",
-      "area_auto": true
+      "type_source": "guess"
     },
     {
       "id": "b-b-alene",
