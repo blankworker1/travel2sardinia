@@ -870,7 +870,9 @@
       const its = itineraries(opt.airport, day, toMin(tm), 1, dest.id);
       if (its.length) {
         const l = its[0];
-        return `<div class="jw ok">✓ ${esc(t("lands_next", tm, hm(l[0].dep), hm(l[l.length - 1].arr), tx(dest.name)))}</div>`;
+        // A note set for a particular departure (transit-config.json → trip_notes), e.g. the late bus that waits for flights.
+        const tn = ((state.data.transitConfig || {}).trip_notes || []).find((n) => l.some((x) => x.seg === n.segment && x.dep >= toMin(n.from || "00:00") && x.dep <= toMin(n.to || "47:59")));
+        return `<div class="jw ok">✓ ${esc(t("lands_next", tm, hm(l[0].dep), hm(l[l.length - 1].arr), tx(dest.name)))}${tn ? ` <span class="meta">${esc(tx(tn))}</span>` : ""}</div>`;
       }
       const taxiHref = state.dest ? "#taxis" : new URL(`${dest.id}/?${qs()}#taxis`, BASE).href;
       const part = partialReach(opt.airport, day, toMin(tm), dest.id);

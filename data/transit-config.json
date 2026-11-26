@@ -141,5 +141,13 @@
       "lat": 40.6108,
       "lon": 8.9196
     }
-  }
+  },
+  "trip_notes": [
+    {
+      "segment": "AHO-BOSA",
+      "from": "23:00",
+      "it": "Questo autobus di solito aspetta i voli in ritardo.",
+      "en": "This bus usually waits for late flights."
+    }
+  ]
 }
