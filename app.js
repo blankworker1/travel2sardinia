@@ -129,11 +129,11 @@
     return s.trips.filter((x) => serviceActive(tr, x[2], date)).map((x) => ({ seg, dep: x[0], arr: x[1], route: x[3], mode: s.mode, operator: s.operator }));
   }
 
-  function itineraries(airport, date, landedMin, limit, destId = DEST) {
+  function itineraries(airport, date, landedMin, limit, destId = DEST, chainList = null) {
     const tr = state.data.transit;
     const gap = tr.min_transfer_minutes || 10;
     const results = [];
-    for (const chain of chainsFor(airport, destId)) {
+    for (const chain of chainList || chainsFor(airport, destId)) {
       const legsByStep = chain.map((seg) => tripsOn(seg, date).sort((a, b) => a.dep - b.dep));
       if (legsByStep.some((l) => !l.length)) continue;
       for (const first of legsByStep[0].filter((x) => x.dep >= landedMin + AIRPORT_EXIT_MIN)) {
@@ -838,6 +838,27 @@
       .sort((a, b) => (a.ground.dur ?? 1e9) - (b.ground.dur ?? 1e9));
   }
 
+  // No connection all the way: can the traveller still reach the last change point (e.g. Macomer by train)?
+  function partialReach(airport, day, landedMin, destId) {
+    const chains = chainsFor(airport, destId).filter((c) => c.length > 1);
+    let best = null;
+    for (const c of chains) {
+      const its = itineraries(airport, day, landedMin, 1, destId, [c.slice(0, -1)]);
+      if (!its.length) continue;
+      const l = its[0], lastSeg = c[c.length - 1];
+      const lastOut = tripsOn(lastSeg, day).reduce((m, x) => Math.max(m, x.dep), -1);
+      const arr = l[l.length - 1].arr;
+      if (!best || arr < best.arr) best = { arr, place: lastSeg.split("-")[0], lastOut, mode: (state.data.transit.segments[c[c.length - 2]] || {}).mode };
+    }
+    return best;
+  }
+  function fareFrom(destId, place) {
+    const taxis = state.dest ? state.data.taxis : ((state.data.destData || {})[destId] || {}).taxis;
+    const name = placeName(place).toLowerCase();
+    const f = ((taxis || {}).fares || []).find((x) => [x.from && x.from.it, x.from && x.from.en].some((s) => s && s.toLowerCase().includes(name)));
+    return f ? f.price : "";
+  }
+
   function connectionCheck(opt, dest) {
     const g = opt.ground;
     if (!g.count) return `<div class="jw warn">${esc(t("no_ground_data"))}</div>`;
@@ -852,6 +873,11 @@
         return `<div class="jw ok">✓ ${esc(t("lands_next", tm, hm(l[0].dep), hm(l[l.length - 1].arr), tx(dest.name)))}</div>`;
       }
       const taxiHref = state.dest ? "#taxis" : new URL(`${dest.id}/?${qs()}#taxis`, BASE).href;
+      const part = partialReach(opt.airport, day, toMin(tm), dest.id);
+      if (part && part.lastOut >= 0 && part.arr > part.lastOut) {
+        const fare = fareFrom(dest.id, part.place);
+        return `<div class="jw warn">⚠ ${esc(t("stranded_at", tm, placeName(part.place), hm(part.arr), hm(part.lastOut), tx(dest.name), fare, part.mode))} <a href="${esc(taxiHref)}">${esc(t("taxi_link"))} →</a></div>`;
+      }
       return `<div class="jw warn">⚠ ${esc(t("lands_too_late", tm, hm(g.last), tx(dest.name), placeName(opt.airport)))} <a href="${esc(taxiHref)}">${esc(t("taxi_link"))} →</a></div>`;
     }).join("");
   }
@@ -1168,12 +1194,13 @@
       // The home page shows each town's stays and events in its own cards.
       state.data.destData = {};
       await Promise.all((dests.destinations || []).filter(published).map(async (d) => {
-        const [events, stays, avail] = await Promise.all([
+        const [events, stays, avail, taxis] = await Promise.all([
           loadJSON(`destinations/${d.id}/events`, { events: [] }),
           loadJSON(`destinations/${d.id}/stays`, { stays: [] }),
-          loadJSON(`destinations/${d.id}/availability`, { stays: {} })
+          loadJSON(`destinations/${d.id}/availability`, { stays: {} }),
+          loadJSON(`destinations/${d.id}/taxis`, { taxis: [] })
         ]);
-        state.data.destData[d.id] = { events: events.events || [], stays: stays.stays || [], avail: avail.stays || {} };
+        state.data.destData[d.id] = { events: events.events || [], stays: stays.stays || [], avail: avail.stays || {}, taxis };
       }));
     }
 
