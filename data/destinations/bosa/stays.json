@@ -102,7 +102,7 @@
       "name": "B & b sa Rochitta",
       "name_comune": "B & b sa Rochitta",
       "type": "bnb",
-      "area": "",
+      "area": "Bosa",
       "address": "VIA LAMARMORA 19",
       "email": "piera.81@tiscali.it",
       "website": "",
@@ -114,7 +114,8 @@
       "notes": null,
       "published": true,
       "geo": "not_found",
-      "type_source": "guess"
+      "type_source": "guess",
+      "area_auto": true
     },
     {
       "id": "b-b-alene",
