@@ -26,7 +26,7 @@
       "name": "Agricampeggio e Fattoria Didattica Mattagiana di Katja Pinna",
       "name_comune": "Agricampeggio e Fattoria Didattica Mattagiana di Katja Pinna",
       "type": "camping",
-      "area": "",
+      "area": "countryside",
       "address": "Località Buddesi SNC",
       "email": "info@mattagiana.com",
       "website": "https://www.mattagiana.com",
@@ -38,7 +38,8 @@
       "notes": null,
       "published": true,
       "geo": "not_found",
-      "type_source": "guess"
+      "type_source": "guess",
+      "area_auto": true
     },
     {
       "id": "alba-casa-vacanze",
